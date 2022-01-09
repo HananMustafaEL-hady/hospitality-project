@@ -23,7 +23,10 @@ export const LayoutNavbar = () => {
           <Nav className="me-auto my-2 my-lg-0 " navbarScroll>
             <Nav.Link>
               <Link href={"/room/add"}>
-                <span className="add-room">إضافة غرفة +</span>
+                <a className="add-room">
+                  <span>إضافة غرفة </span>
+                  <i className="fas fa-plus"></i>
+                </a>
               </Link>
             </Nav.Link>
 

@@ -16,22 +16,26 @@ export const NotificationDropdown = () => {
       {/* <NavDropdown.Item> */}
       <Link href={"/profile/notification"}>
         <a className="dropdown-item">
-          <p>تم الموافقة علي طلبك لحجز الغرفة ....</p>
-          <p>12:43 am</p>
+          <h3 className="font-14">تم الموافقة علي طلبك لحجز الغرفة ....</h3>
+          <span className="notification__date font-14">12:43 am</span>
         </a>
       </Link>
 
       <NavDropdown.Divider />
 
       <NavDropdown.Item href="#action4">
-        <p>تم الموافقة علي طلبك لحجز الغرفة ....</p>
-        <p>12:43 am</p>
+        <a className="dropdown-item">
+          <h3 className="font-14">تم الموافقة علي طلبك لحجز الغرفة ....</h3>
+          <span className="notification__date font-14">12:43 am</span>
+        </a>
       </NavDropdown.Item>
 
       <NavDropdown.Divider />
       <NavDropdown.Item href="#action5">
-        <p>تم الموافقة علي طلبك لحجز الغرفة ....</p>
-        <p>12:43 am</p>
+        <a className="dropdown-item">
+          <h3 className="font-14">تم الموافقة علي طلبك لحجز الغرفة ....</h3>
+          <span className="notification__date font-14">12:43 am</span>
+        </a>
       </NavDropdown.Item>
     </NavDropdown>
   );

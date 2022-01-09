@@ -12,26 +12,27 @@ export const ProfileDropdown = () => {
         title={<span className="user-title">مرحبا محمد </span>}
         id="navbarScrollingDropdowProfile"
       >
-        <Link href={"/profile"}>
-          <a className="dropdown-item">الملف الشخصي</a>
-        </Link>
-        <Link href={"/profile/incomingrequests"}>
-          <a className="dropdown-item">الطلبات الواردة</a>
-        </Link>
-        <Link href={"/profile/reservations"}>
-          <a className="dropdown-item"> حجوزاتي</a>
-        </Link>
-        <Link href={"/profile/reservations"}>
-          <a className="dropdown-item"> المفضلات</a>
-        </Link>
-
-        <NavDropdown.Item
-          onClick={() => {
-            setLogoutModalShow(!logoutModalShow);
-          }}
-        >
-          تسجيل خروج
-        </NavDropdown.Item>
+        <div className="dropdown-menu-profile">
+          <Link href={"/profile"}>
+            <a className="dropdown-item">الملف الشخصي</a>
+          </Link>
+          <Link href={"/profile/incomingrequests"}>
+            <a className="dropdown-item">الطلبات الواردة</a>
+          </Link>
+          <Link href={"/profile/reservations"}>
+            <a className="dropdown-item"> حجوزاتي</a>
+          </Link>
+          <Link href={"/profile/reservations"}>
+            <a className="dropdown-item"> المفضلات</a>
+          </Link>
+          <NavDropdown.Item
+            onClick={() => {
+              setLogoutModalShow(!logoutModalShow);
+            }}
+          >
+            تسجيل خروج
+          </NavDropdown.Item>
+        </div>
       </NavDropdown>
       <Logout handleShow={setLogoutModalShow} show={logoutModalShow} />
     </Fragment>

@@ -80,6 +80,7 @@
     margin-top: 0;
     flex-wrap: nowrap;
     flex-direction: column;
+    padding: 1.5rem;
   }
   .grid-container_col {
     grid-template-columns: repeat(1, 1fr);

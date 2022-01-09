@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+
   images: {
     domains: [
       "r1imghtlak.mmtcdn.com",
@@ -11,4 +12,6 @@ module.exports = {
       "www.mydomaine.com",
     ],
   },
+
+  presets: ["next/babel"],
 };
