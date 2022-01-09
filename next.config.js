@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  presets: ["next/babel"],
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
@@ -15,9 +14,5 @@ module.exports = {
       "q-xx.bstatic.com",
       "www.mydomaine.com",
     ],
-  },
-
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
