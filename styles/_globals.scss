@@ -1,0 +1,210 @@
+@use "./variables" as *;
+@use "mixin" as *;
+
+body {
+  // direction: rtl;
+  font-family: "Cairo", sans-serif;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.title-section {
+  @include toRem(font-size, 20);
+  font-weight: bold;
+}
+.title-subsection {
+  @include toRem(font-size, 16);
+  font-weight: bold;
+  @include toRem(margin-bottom, 8);
+}
+.title-subsection-gray {
+  color: #a5a9ab;
+  @include toRem(font-size, 16);
+}
+.title-subsection-18 {
+  color: #626a6f;
+  @include toRem(font-size, 18);
+  @include toRem(margin-bottom, 12);
+}
+.title-susubsection2 {
+  @include toRem(font-size, 14);
+  color: #212529;
+  @include toRem(margin-bottom, 6);
+}
+.font-14 {
+  @include toRem(font-size, 14);
+}
+.font-16 {
+  @include toRem(font-size, 16);
+}
+
+.font-18 {
+  @include toRem(font-size, 18);
+}
+.mb-6 {
+  @include toRem(margin-bottom, 6);
+}
+.mt-6 {
+  @include toRem(margin-top, 6);
+}
+.mb-8 {
+  @include toRem(margin-bottom, 8);
+}
+.mb-16 {
+  @include toRem(margin-bottom, 16);
+}
+.mb-24 {
+  @include toRem(margin-bottom, 24);
+}
+.mb-32 {
+  @include toRem(margin-bottom, 32);
+}
+.ml-8 {
+  @include toRem(margin-left, 8);
+}
+.ml-16 {
+  @include toRem(margin-left, 16);
+}
+.ml-18 {
+  @include toRem(margin-left, 18);
+}
+.mt-32 {
+  @include toRem(margin-top, 32);
+}
+.mr-6 {
+  @include toRem(margin-right, 6);
+}
+.py-24 {
+  @include toRem(padding-top, 24);
+  @include toRem(padding-bottom, 24);
+}
+.p-24 {
+  @include toRem(padding, 24);
+}
+
+.p-32 {
+  @include toRem(padding, 32);
+}
+.px-32 {
+  @include toRem(padding-left, 32);
+  @include toRem(padding-right, 32);
+}
+.a:hover {
+  color: #d2d2d2;
+}
+.main__title {
+  color: $main_color;
+}
+.secondary__title {
+  color: $secondary_gray_color;
+}
+
+.container-section {
+  border-radius: 8px;
+  box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.dropdown-menu {
+  text-align: right;
+}
+.direction-ltr {
+  direction: ltr;
+}
+a {
+  text-decoration: none;
+  font-size: 0.75rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: right;
+  font-family: "Cairo", sans-serif;
+}
+
+.f-bold {
+  font-weight: 700;
+}
+
+#navbarScrollingDropdownChat::after {
+  content: none;
+}
+.secondary__title {
+  color: $secondary_gray_color;
+}
+
+.dropdown-menu-items {
+  position: absolute;
+  z-index: 1000;
+  display: block;
+  min-width: 11rem;
+  color: #212529;
+  text-align: right;
+  background-color: #fff;
+  background-clip: padding-box;
+  // border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.modal-content-filtration {
+  width: 571px;
+  border-radius: 8px;
+  box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #d2d2d2;
+}
+textarea {
+  resize: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.gray-color {
+  color: #626a6f;
+}
+@media (max-width: 475px) {
+  // p,
+  // span {
+  //   font-size: 12px;
+  // }
+  .navbar > .container {
+    background: white;
+  }
+}
+
+.alert-danger {
+  width: 100%;
+  padding: 0.1rem 0.1rem;
+  margin-top: 8px;
+  background: none;
+  border: 0;
+}
+li {
+  list-style: none;
+}
+
+.line-34 {
+  line-height: 34px;
+}
+
+.divImage {
+  position: relative;
+  .deleteImage {
+    position: absolute;
+    color: red;
+    top: 1px;
+    z-index: 100;
+    right: 5px;
+    display: none;
+    cursor: pointer;
+  }
+  &:hover {
+    .deleteImage {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+$theme-colors: (
+  "primary": #013ca6,
+  "danger": #e30000,
+  "warning":#FFA900,
+  "success": #01A618,
+  "secondary":#626A6F
+);
+@forward '~bootstrap/scss/bootstrap' with(
+    $theme-colors: $theme-colors
+);
+@forward "variables";
+@forward "mixin";
+@forward "functions";
+@forward "globals";
+@forward "pages";
+@forward "components";

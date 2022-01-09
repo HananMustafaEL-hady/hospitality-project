@@ -1,0 +1,60 @@
+@use "../mixin" as *;
+
+.title-section-user {
+  color: #1e1f31;
+  @include toRem(font-size, 18);
+  font-weight: bold;
+  letter-spacing: 0;
+
+  @include toRem(margin-bottom, 4);
+}
+.title-subsection-user {
+  color: #a66701;
+
+  font-family: Cairo;
+  @include toRem(font-size, 14);
+  font-weight: bold;
+}
+
+.user-img {
+  margin-top: -95px;
+
+  height: 160px;
+  width: 160px;
+}
+
+.user-reservations {
+  height: 40px;
+  border: 1px solid #e30000;
+  border-radius: 8px;
+  background-color: rgba(227, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  p {
+    margin-bottom: 0;
+    color: #212529;
+    @include toRem(font-size, 12);
+  }
+  .user-reservations__warning {
+    @include toRem(margin-left, 8);
+
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    background-color: #f4a8a8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      img {
+        width: 15px;
+      }
+    }
+  }
+}

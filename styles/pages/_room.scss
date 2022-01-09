@@ -1,0 +1,105 @@
+@use "../functions" as *;
+
+.room-details {
+  &__item {
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  &__owner {
+    height: 330px;
+    cursor: pointer;
+    position: sticky;
+    top: 82px;
+  }
+  &__fav-btn {
+    border: 1px solid #626a6f;
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  &__fav-span {
+    position: relative;
+    top: -4px;
+    padding-right: 7px;
+  }
+  &__user-icon {
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #a66701;
+    padding: 4px 8px;
+    margin-right: 5px;
+  }
+  &__price {
+    color: #a66701;
+    font-weight: 700;
+  }
+  &__line {
+    height: 1px;
+    background-color: #d2d2d2;
+    margin: 20px 0;
+  }
+  &__icons {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #a66701;
+    padding: 5px 8px 0px 8px;
+    margin-right: 5px;
+    &__text {
+      position: relative;
+      top: -5px;
+    }
+  }
+  &__room-title {
+    color: #1e1f31;
+    font-size: funToRem(20);
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 34px;
+  }
+}
+
+.container-section-booking {
+  border-radius: 8px;
+  box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 32px 196px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__form {
+    width: 766px;
+  }
+  &__section-date {
+    width: 48%;
+  }
+}
+
+@media (max-width: 415px) {
+  .container-section-booking {
+    padding: 32px 0;
+    &__form {
+      width: 344px;
+    }
+    &__section-date {
+      width: 99%;
+    }
+  }
+  .input {
+    width: 342px;
+  }
+}
+
+@media (max-width: 376px) {
+  .container-section-booking {
+    &__form {
+      width: 344px;
+    }
+  }
+  .input {
+    width: 342px;
+  }
+}

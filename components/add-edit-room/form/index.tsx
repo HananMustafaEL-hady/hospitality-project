@@ -1,0 +1,118 @@
+import React from "react";
+import { Alert } from "react-bootstrap";
+import {
+  Control,
+  Controller,
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
+import Select from "react-select";
+import { Checkboxes } from "../../form/checkboxes";
+import { FormInput } from "../../form/inputs/form-input";
+import { LocationModal } from "../../home-filtration/filter-card/map-Modal/map";
+import { FieldArrayImage } from "./fieldArrayImage";
+import { SelectPersonsCount } from "./select-count";
+
+const options = [
+  { value: "1", label: "1" },
+  { value: "2", label: "2" },
+  { value: "3", label: "3" },
+  { value: "4", label: "4" },
+  { value: "5", label: "5" },
+  { value: "6", label: "6" },
+  { value: "7", label: "7" },
+  { value: "8", label: "8" },
+];
+interface props {
+  register: UseFormRegister<FieldValues>;
+  control: Control<FieldValues, object>;
+  errors: any;
+}
+
+export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
+  console.log(Object.keys(errors).length);
+  return (
+    <form className="mt-32">
+      <section className="row ">
+        <div className="col-lg-6 col-sm-12 ">
+          <div className="Form ">
+            <FormInput
+              register={register}
+              placeholder="أضف  إسم الغرفة"
+              inputtype="text"
+              label="اسم الغرفة"
+              name="roomname"
+              hasError={Boolean(errors?.roomname)}
+              message={errors?.roomname?.message}
+              Errormessage="يجب إدخال اسم الغرفة"
+              isRequired={true}
+            />
+          </div>
+          <div className="mb-24 Form ">
+            <h4 className="title-susubsection2">
+              {" "}
+              التفاصيل
+              <span className="text-danger">*</span>
+            </h4>
+            <textarea
+              className="input textarea-room"
+              placeholder="أدخل التفاصيل"
+              {...register("details", { required: "يجب إدخال تفاصيل الغرفة " })}
+            />
+            {errors?.details?.message && (
+              <Alert variant="danger">{errors?.details?.message}</Alert>
+            )}
+          </div>
+          <div className="mb-24 Form ">
+            <h4 className="title-susubsection2">
+              سعر الليلة
+              <span className="text-danger">*</span>
+            </h4>
+            <input
+              className="input"
+              {...register("pricenight", {
+                required: "يجب إدخال سعر الليلة ",
+                pattern: {
+                  value: /^[0-9]{1,5}$/,
+                  message: "يجب إدخال رقم صحيح ",
+                },
+              })}
+              placeholder={`أدخل سعر الليلة ${"                                                                              "} جنية`}
+            />
+          </div>
+          {errors?.pricenight?.message && (
+            <Alert variant="danger">{errors?.pricenight?.message}</Alert>
+          )}
+          <div className="mb-24 ">
+            <h4 className="title-susubsection2">
+              عدد الافراد
+              <span className="text-danger">*</span>
+            </h4>
+
+            <SelectPersonsCount control={control} />
+          </div>
+        </div>
+        <div className="col-lg-6 col-sm-12 ">
+          <Checkboxes register={register} isRequired={true} errors={errors} />
+
+          <FieldArrayImage register={register} control={control} />
+          <div className="mtb-15">
+            <h4 className="title-susubsection2">
+              العنوان على الخريطة
+              <span className="text-danger">*</span>
+            </h4>
+            <LocationModal />
+          </div>
+        </div>
+      </section>
+    </form>
+  );
+};
+function rgba(
+  arg0: number,
+  arg1: number,
+  arg2: number,
+  arg3: number
+): import("@emotion/serialize").CSSInterpolation {
+  throw new Error("Function not implemented.");
+}

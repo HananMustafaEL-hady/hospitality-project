@@ -1,0 +1,21 @@
+@use "../functions" as *;
+
+.logo {
+  height: funToRem(60);
+  width: funToRem(181);
+  display: flex;
+
+  h1 {
+    font-size: funToRem(20);
+    font-weight: 500;
+    margin-bottom: funToRem(6);
+  }
+  h2 {
+    font-size: funToRem(16);
+  }
+}
+
+.logo__title {
+  margin-left: funToRem(5);
+  margin-top: funToRem(5);
+}

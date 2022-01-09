@@ -1,0 +1,37 @@
+.chat-form {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid #d2d2d2;
+  border-radius: 0 0 0 8px;
+  height: 51px;
+  &__input {
+    width: 100%;
+    border: 0;
+    padding-right: 8px;
+    &__file {
+      visibility: hidden;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      border: 0;
+    }
+  }
+  &__btn {
+    border-right: 1px solid #d2d2d2;
+    padding: 16px;
+    text-align: center;
+    border-radius: 0 0 0 8px;
+    &:active {
+      outline: none;
+    }
+  }
+  &__label {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}

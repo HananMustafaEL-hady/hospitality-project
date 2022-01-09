@@ -1,0 +1,37 @@
+.RequestDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d2d2d2;
+  li {
+    border-left: 1px solid #a5a9ab;
+    padding-left: 46px;
+    h4 {
+      color: #626a6f;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    &:last-child {
+      border: 0;
+    }
+  }
+
+  &__status {
+    height: 29px;
+    width: 60px;
+    border-radius: 8px;
+    box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.04);
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__totalPrice {
+    color: #a66701;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}

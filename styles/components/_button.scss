@@ -1,0 +1,106 @@
+@use "../variables" as *;
+@use "../functions" as *;
+
+.main-btn {
+  height: 45px;
+  width: 300px;
+  border-radius: 8px;
+  background-color: $main_color;
+  color: white;
+}
+.pass-btn {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  &__eye {
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+}
+
+.btn-search {
+  background: $main_color;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.btn-md {
+  height: 49px;
+  width: 178px;
+  border-radius: 8px;
+}
+.btn-sm {
+  height: 48px;
+  width: 129px;
+  border-radius: 8px;
+}
+
+.btn-outline-secondary {
+  border: 1px solid #626a6f;
+  border-radius: 8px;
+  color: #626a6f;
+}
+.btn-outline-primary {
+  border: 1px solid $main-color;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: $main-color;
+}
+
+.btn-outline-danger {
+  border: 1px solid #e30000;
+  color: #e30000;
+  border-radius: 8px;
+}
+.section-edit-btns {
+  display: flex;
+  justify-content: center;
+  :first-child {
+    margin-left: funToRem(16);
+  }
+}
+@media (max-width: 416px) {
+  .btn-search {
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 23px;
+    display: flex;
+    justify-content: center;
+    i,
+    span {
+      line-height: 0;
+    }
+  }
+  .section-edit-btns {
+    flex-direction: column;
+    align-items: center;
+
+    &:first-child {
+      margin-left: 0;
+      margin-bottom: funToRem(18);
+    }
+  }
+}
+
+@media (max-width: 376px) {
+  .pass-btn {
+    &__eye {
+      position: absolute;
+      inset: 38px 300px;
+    }
+  }
+}
+
+btn:hover {
+  color: #ffffff;
+}

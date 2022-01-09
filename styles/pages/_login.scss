@@ -1,0 +1,62 @@
+@use "../functions" as *;
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  &__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  &__img {
+    background-image: url("/loginbg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+  &__form {
+    width: funToRem(375);
+    &__btn {
+      width: 100%;
+      border-radius: funToRem(8);
+      height: funToRem(48);
+    }
+  }
+  &__title {
+    font-size: funToRem(24);
+    color: #212529;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 769px) {
+  .login {
+    &__img {
+      display: none;
+    }
+    &__section {
+      display: flex !important;
+      flex-wrap: nowrap;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.signup {
+  height: 142vh;
+  &__img {
+    height: 142vh;
+  }
+}
+
+@media (max-width: 376px) {
+  .login {
+    &__form {
+      width: funToRem(340);
+    }
+  }
+}

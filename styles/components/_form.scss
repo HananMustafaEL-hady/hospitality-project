@@ -1,0 +1,25 @@
+.section-form {
+  margin-top: 145px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .submit-form {
+    width: 375px;
+  }
+  .section-otp {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 415px) {
+  .section-form {
+    .submit-form {
+      width: 337px;
+    }
+  }
+}
+
+.Form {
+  width: 377px;
+}

@@ -1,0 +1,156 @@
+@use "../functions" as *;
+
+.room-card {
+  height: 290px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+  margin-bottom: funToRem(24);
+  box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    height: funToRem(169);
+  }
+  &__location {
+    color: #626a6f;
+    font-size: funToRem(12);
+  }
+
+  &__description {
+    font-size: funToRem(16);
+    font-weight: bolder;
+    margin-top: funToRem(10);
+    margin-bottom: 5px;
+    line-height: 24px;
+  }
+}
+
+.heart_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  background: white;
+  top: 7px;
+  left: 10px;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+  align-content: center;
+  i {
+    font-size: 14px;
+  }
+}
+
+.card-body-room {
+  padding: 1rem 0.6rem;
+}
+
+.userIcon,
+.priceIcon {
+  position: absolute;
+  top: 155px;
+  color: #a66701;
+  height: 35px;
+  width: 43px;
+  background: white;
+  border-radius: 17%;
+  right: 80px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.priceIcon {
+  right: 10px;
+  width: 60px;
+  letter-spacing: 0;
+  line-height: 25px;
+}
+
+.fa-heart {
+  color: #d2d2d2;
+}
+.heart-fav {
+  color: #e30000;
+}
+
+.add-room {
+  color: #013ca6;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: right;
+}
+
+.IncomingRequestRoomCard {
+  display: flex;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 18px;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+
+  &__img {
+    // margin-left: 18px;
+    border-radius: 8px;
+    width: funToRem(152);
+    height: funToRem(152);
+
+    img {
+      object-fit: cover;
+      width: funToRem(152);
+      height: funToRem(152);
+      border-radius: 8px;
+    }
+  }
+  &__right {
+    padding: 16px 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+  &__description {
+    font-size: funToRem(14);
+    font-weight: bold;
+    color: #1e1f31;
+    margin-bottom: 16px;
+  }
+  &__location {
+    font-size: funToRem(12);
+    color: #626a6f;
+    margin-bottom: 18px;
+  }
+  &__price {
+    color: #a66701;
+    font-size: funToRem(20);
+    font-weight: bold;
+  }
+  &__date {
+    font-size: funToRem(12);
+  }
+}
+
+@media (max-width: 416px) {
+  .IncomingRequestRoomCard {
+    flex-direction: column;
+    &__img {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
