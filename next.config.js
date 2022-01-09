@@ -14,4 +14,7 @@ module.exports = {
   },
 
   presets: ["next/babel"],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
