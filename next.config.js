@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  presets: ["next/babel"],
 
   images: {
     domains: [
@@ -13,7 +14,6 @@ module.exports = {
     ],
   },
 
-  presets: ["next/babel"],
   eslint: {
     ignoreDuringBuilds: true,
   },
