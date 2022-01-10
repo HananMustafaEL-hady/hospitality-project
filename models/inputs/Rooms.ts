@@ -10,7 +10,7 @@ export interface Room {
 }
 
 export interface RoomIncomingReques{
-    id: number,
+    id: string,
     description: string,
     imageurl: string,
     location: string,

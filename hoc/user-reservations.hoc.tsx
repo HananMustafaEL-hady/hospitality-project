@@ -53,39 +53,39 @@ export const UserReservationsHOC: React.FC<Props> = ({ Rooms }) => {
           </div>
           <div className="col-lg-8 col-sm-12  section-edit-info-left">
             <TabPanel>
-              <RoomsCard
+              {/* <RoomsCard
                 Rooms={Rooms}
                 roomscol={4}
                 urllink="/profile/reservations"
-              />
+              /> */}
             </TabPanel>
             <TabPanel>
-              <RoomsCard
+              {/* <RoomsCard
                 Rooms={Rooms}
                 roomscol={4}
                 urllink="/profile/reservations"
-              />
+              /> */}
             </TabPanel>
             <TabPanel>
-              <RoomsCard
+              {/* <RoomsCard
                 Rooms={Rooms}
                 roomscol={4}
                 urllink="/profile/reservations"
-              />
+              /> */}
             </TabPanel>{" "}
             <TabPanel>
-              <RoomsCard
+              {/* <RoomsCard
                 Rooms={Rooms}
                 roomscol={4}
                 urllink="/profile/reservations"
-              />
+              /> */}
             </TabPanel>{" "}
             <TabPanel>
-              <RoomsCard
+              {/* <RoomsCard
                 Rooms={Rooms}
                 roomscol={4}
                 urllink="/profile/reservations"
-              />
+              /> */}
             </TabPanel>
           </div>
         </div>

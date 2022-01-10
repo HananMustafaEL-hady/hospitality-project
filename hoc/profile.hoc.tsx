@@ -26,7 +26,7 @@ export const Profilehoc: React.FC<Props> = ({ Rooms }) => {
         </div>
       </section>
       <div className="container mt-5">
-        <RoomsCard Rooms={Rooms} roomscol={3} urllink="/profile/room" />
+        {/* <RoomsCard Rooms={Rooms} roomscol={3} urllink="/profile/room" /> */}
       </div>
     </div>
   );

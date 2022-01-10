@@ -46,7 +46,7 @@ export const SearchResulthoc: React.FC<Props> = ({ Rooms }) => {
       </section>
 
       <section className=" mt-5">
-        <RoomsCard Rooms={Rooms} roomscol={3} />
+        {/* <RoomsCard Rooms={Rooms} roomscol={3} /> */}
       </section>
       <Selectlocation
         modalShow={filteringModalShow}

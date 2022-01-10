@@ -18,7 +18,7 @@ export const RoomOwnerhoc: React.FC<Props> = ({ Rooms }) => {
         </button>
       </section>
       <div className="container mt-5">
-        <RoomsCard Rooms={Rooms} roomscol={3} />
+        {/* <RoomsCard Rooms={Rooms} roomscol={3} /> */}
       </div>
     </div>
   );
