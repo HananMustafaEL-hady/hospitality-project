@@ -3,7 +3,7 @@ import DatePicker from "sassy-datepicker";
 import { addDays } from "date-fns";
 import { FormCheckboxInput } from "../../../form/inputs/checkbox-input";
 import { FormFiltrationInput } from "../../../form/inputs/input-filtration-modal";
-import { hookFilterForm } from "../../../../models/hook-form-inputs";
+import { hookFilterForm } from "../../../../models/inputs/hook-form-inputs";
 import { FormCounterInput } from "../../../form/inputs/counter-input/input";
 import FormInputDate from "../../../form/inputs/date-input";
 import { Checkboxes } from "../../../form/checkboxes";

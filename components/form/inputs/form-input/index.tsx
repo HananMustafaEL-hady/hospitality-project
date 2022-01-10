@@ -1,5 +1,5 @@
 import React from "react";
-import { FormInputProps } from "../../../../models/hook-form-inputs";
+import { FormInputProps } from "../../../../models/inputs/hook-form-inputs";
 
 export const FormInput: React.FC<FormInputProps> = ({
   placeholder,

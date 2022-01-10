@@ -1,5 +1,5 @@
 import React from "react";
-import { hookFormInputs } from "../../../models/hook-form-inputs";
+import { hookFormInputs } from "../../../models/inputs/hook-form-inputs";
 import { BtnSubmit } from "../../form/button/btn-submit";
 const AuthOTP: React.FC<hookFormInputs> = ({
   onSubmitFun,

@@ -1,5 +1,5 @@
 import React from "react";
-import { AddroomProps } from "../../../models/add-room";
+import { AddroomProps } from "../../../models/inputs/add-room";
 import { LoadingSpinner } from "../../spinner";
 import { RoomForm } from "../form";
 

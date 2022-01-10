@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Room } from "../../../../models/Rooms";
+import { Room } from "../../../../models/inputs/Rooms";
 import { RoomCard } from "../../room-card";
 import { IncomingRequestRoomCard } from "../../room-card/Incoming-request-card";
 interface Props {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { hookFilterForm } from "../../../../models/hook-form-inputs";
+import { hookFilterForm } from "../../../../models/inputs/hook-form-inputs";
 
 import { LocationModal } from "../../../home-filtration/filter-card/map-Modal/map";
 import { SelectPrice } from "./select-price";

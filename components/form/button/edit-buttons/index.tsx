@@ -1,5 +1,5 @@
 import React from "react";
-import { BtnsEditrops } from "../../../../models/button";
+import { BtnsEditrops } from "../../../../models/inputs/button";
 import { LoadingSpinner } from "../../../spinner";
 
 export const EditBtns: React.FC<BtnsEditrops> = ({

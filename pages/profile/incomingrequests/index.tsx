@@ -2,7 +2,7 @@ import { Layout } from "../../../components/layout/layout";
 import Head from "next/head";
 import { IncomingRequestsHOC } from "../../../hoc/incoming-request.hoc";
 import { NextPage } from "next";
-import { Room } from "../../../models/Rooms";
+import { Room } from "../../../models/inputs/Rooms";
 import { RoomsData } from "../../../db";
 
 interface Props {

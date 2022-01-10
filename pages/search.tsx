@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Layout } from "../components/layout/layout";
 import { RoomsData } from "../db";
 import { SearchResulthoc } from "../hoc/search-result.hoc";
-import { Room } from "../models/Rooms";
+import { Room } from "../models/inputs/Rooms";
 interface Props {
   rooms: [Room];
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import { hookformCount } from "../../../../models/hook-form-inputs";
+import { hookformCount } from "../../../../models/inputs/hook-form-inputs";
 export const FormCounterInput: React.FC<hookformCount> = ({
   register,
   setValue,

@@ -3,7 +3,8 @@ import { FilterCard } from "../components/home-filtration/filter-card";
 import { RoomsCard } from "../components/room/rooms-card";
 import { Selectlocation } from "../components/search-filtration/filtering/filtration-modal";
 import { SortModal } from "../components/search-filtration/sort/sorting-modal";
-import { Room } from "../models/Rooms";
+import { Room } from "../models/inputs/Rooms";
+import { useRouter } from "next/router";
 
 interface Props {
   Rooms: [Room];
@@ -12,10 +13,16 @@ interface Props {
 export const SearchResulthoc: React.FC<Props> = ({ Rooms }) => {
   const [filteringModalShow, setFilteringModalShow] = React.useState(false);
   const [sortingModalShow, setSortingModalShow] = React.useState(false);
+  const router = useRouter();
 
   return (
     <div className="container mt-5">
-      <FilterCard />
+      <FilterCard
+        enddate={router.query.fromDate}
+        startdate={router.query.toDate}
+        location={router.query.location}
+        count={router.query?.count}
+      />
       <section className="d-flex flex-row justify-content-lg-between justify-content-md-between justify-content-sm-center  flex-wrap mt-32 align-items-center">
         <h2 className="title-section"> نتائج البحث</h2>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { RoomReservationprops } from "../../../models/room-reservation";
+import { RoomReservationprops } from "../../../models/inputs/room-reservation";
 import FormInputDate from "../../form/inputs/date-input";
 import { LoadingSpinner } from "../../spinner";
 

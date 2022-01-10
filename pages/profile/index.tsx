@@ -1,7 +1,7 @@
 import { Layout } from "../../components/layout/layout";
 import Head from "next/head";
 import { Profilehoc } from "../../hoc/profile.hoc";
-import { Room } from "../../models/Rooms";
+import { Room } from "../../models/inputs/Rooms";
 import { NextPage } from "next";
 import { RoomsData } from "../../db";
 

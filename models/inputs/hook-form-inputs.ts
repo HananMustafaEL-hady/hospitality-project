@@ -62,7 +62,8 @@ export interface hookformCount{
     divclassname:string
     hasIcon:boolean
     isrequired:boolean
-    
+    defaultValue?: any;
+
   }
 
   export interface FormInputProps{

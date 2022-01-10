@@ -1,6 +1,6 @@
 import React from "react";
 import { RoomForm } from "../form";
-import { AddroomProps } from "../../../models/add-room";
+import { AddroomProps } from "../../../models/inputs/add-room";
 import { LoadingSpinner } from "../../spinner";
 import { EditBtns } from "../../form/button/edit-buttons";
 

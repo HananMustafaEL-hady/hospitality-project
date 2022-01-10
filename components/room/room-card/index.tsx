@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Image from "next/image";
-import { Room } from "../../../models/Rooms";
+import { Room } from "../../../models/inputs/Rooms";
 import Link from "next/link";
 export const RoomCard: React.FC<Room> = ({
   description,
@@ -16,7 +16,7 @@ export const RoomCard: React.FC<Room> = ({
   return (
     <Link href={urllink ? `${urllink}/${id}` : `room/${id}`}>
       <div className="room-card">
-        <Card.Img variant="top" src={imageurl} />
+        <Card.Img variant="top" src={imageurl} placeholder="blur" />
         <div
           className="heart_icon"
           onClick={() => setStateFavorite(!stateFavorite)}

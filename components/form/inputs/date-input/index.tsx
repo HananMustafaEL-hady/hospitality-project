@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Controller } from "react-hook-form";
 import DatePicker from "sassy-datepicker";
 import { addDays } from "date-fns";
-import { hookInputdate } from "../../../../models/hook-form-inputs";
+import { hookInputdate } from "../../../../models/inputs/hook-form-inputs";
 import { ErrorMessage } from "@hookform/error-message";
 import { Alert } from "react-bootstrap";
 import dayjs from "dayjs";
@@ -17,10 +17,14 @@ const FormInputDate: React.FC<hookInputdate> = ({
   divclassname,
   hasIcon,
   isrequired,
+  defaultValue,
 }) => {
   const [toggledate, setToggledate] = useState(false);
   const [value, SetValue] = useState<any>();
-  console.log(isrequired);
+  // useEffect(() => {
+  //   defaultValue && SetValue(dayjs(defaultValue).format("ddd MMM DD YYYY"));
+  // }, []);
+
   return (
     <>
       <section>
@@ -64,7 +68,6 @@ const FormInputDate: React.FC<hookInputdate> = ({
                       SetValue(e?.toDateString());
                       if (name == "startdate") {
                         field.onChange(+dayjs(e).startOf("day"));
-
                         setStartDate(e);
                       } else {
                         field.onChange(+dayjs(e).endOf("day"));

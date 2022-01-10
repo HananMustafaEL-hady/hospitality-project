@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { hookFormLogin } from "../../../models/hook-form-inputs";
+import { hookFormLogin } from "../../../models/inputs/hook-form-inputs";
 import { BtnSubmit } from "../../form/button/btn-submit";
 import { FormInput } from "../../form/inputs/form-input";
 import { FormPasswordInput } from "../../form/inputs/password-input/index";

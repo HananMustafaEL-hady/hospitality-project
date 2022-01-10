@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { Fragment } from "react";
 import { RoomsCard } from "../components/room/rooms-card";
 import { OwnerCard } from "../components/user/owner-card";
-import { Room } from "../models/Rooms";
+import { Room } from "../models/inputs/Rooms";
 interface Props {
   Rooms: [Room];
 }

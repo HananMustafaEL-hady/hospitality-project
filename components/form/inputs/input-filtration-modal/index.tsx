@@ -1,5 +1,5 @@
 import React from "react";
-import { hookformFiltrationInput } from "../../../../models/hook-form-inputs";
+import { hookformFiltrationInput } from "../../../../models/inputs/hook-form-inputs";
 
 export const FormFiltrationInput: React.FC<hookformFiltrationInput> = ({
   register,

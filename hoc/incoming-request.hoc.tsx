@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { RoomsCard } from "../components/room/rooms-card";
-import { Room } from "../models/Rooms";
+import { Room } from "../models/inputs/Rooms";
 import Image from "next/image";
 import { RoomRequestsCardS } from "../components/room/rooms-card/Incoming-request-cards";
 interface Props {

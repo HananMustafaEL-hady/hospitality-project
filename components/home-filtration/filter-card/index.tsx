@@ -4,18 +4,19 @@ import { Selectlocation } from "./map-Modal/selectlocation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import FormInputDate from "../../form/inputs/date-input";
 import { BtnSearch } from "../../form/button/btn-search";
-interface filtrationtypes {
-  count?: number;
-  toDate?: Date;
-  fromDate?: Date;
-  map?: string;
-}
+import { useRouter } from "next/router";
 
+interface filtrationtypes {
+  count?: string | string[];
+  startdate?: string | string[];
+  enddate?: string | string[];
+  location?: string | string[];
+}
 export const FilterCard: React.FC<filtrationtypes> = ({
   count,
-  toDate,
-  fromDate,
-  map,
+  startdate,
+  enddate,
+  location,
 }) => {
   const {
     register,
@@ -26,7 +27,18 @@ export const FilterCard: React.FC<filtrationtypes> = ({
   } = useForm();
   const [toggleForm, setToggleForm] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const router = useRouter();
+
   const onSubmit: SubmitHandler<filtrationtypes> = (data) => {
+    console.log(data);
+    router.push({
+      pathname: "/search",
+      query: {
+        location: data.location,
+        toDate: data.startdate,
+        fromDate: data.enddate,
+      },
+    });
     console.log(data);
   };
   return (
@@ -48,6 +60,7 @@ export const FilterCard: React.FC<filtrationtypes> = ({
           divclassname={"grid__item"}
           hasIcon={true}
           isrequired={false}
+          defaultValue={startdate}
         />
         <FormInputDate
           placeholder={"  إلي تاريخ"}
@@ -60,8 +73,9 @@ export const FilterCard: React.FC<filtrationtypes> = ({
           divclassname={"grid__item"}
           hasIcon={true}
           isrequired={false}
+          defaultValue={enddate}
         />
-        <Filtercount register={register} />
+        <Filtercount register={register} defaultValue={count} />
       </div>
       <BtnSearch
         method={() => {
@@ -71,3 +85,6 @@ export const FilterCard: React.FC<filtrationtypes> = ({
     </form>
   );
 };
+function pathname(pathname: any, arg1: string, state: any, arg3: {}) {
+  throw new Error("Function not implemented.");
+}

@@ -1,6 +1,6 @@
 import tr from "date-fns/esm/locale/tr/index.js";
 import React, { useState } from "react";
-import { hookformCheckbox } from "../../../../models/hook-form-inputs";
+import { hookformCheckbox } from "../../../../models/inputs/hook-form-inputs";
 
 export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
   inputValue,

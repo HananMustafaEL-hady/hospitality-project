@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { ProfileEditrops } from "../../../models/profile-edit";
+import { ProfileEditrops } from "../../../models/inputs/profile-edit";
 import { EditBtns } from "../../form/button/edit-buttons";
 import { FormInput } from "../../form/inputs/form-input";
 import { FormInputImage } from "../../form/inputs/image-input";
