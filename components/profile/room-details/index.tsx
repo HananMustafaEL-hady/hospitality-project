@@ -4,6 +4,7 @@ import { RoomDetails } from "../../room/room-details";
 import { RoomDetailsSwiper } from "../../room/room-images-slider";
 import { OwnerCard } from "../../user/owner-card";
 import { Room } from "../../../models/rooms";
+import { ImagesSwiper } from "../../swiper";
 
 interface Props {
   room: Room;
@@ -46,7 +47,7 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
         </div>
       </section>
       <div className="container mt-5">
-        <RoomDetailsSwiper />
+        <ImagesSwiper images={room.images} />
 
         <section className="p-32 container-section">
           <RoomDetails

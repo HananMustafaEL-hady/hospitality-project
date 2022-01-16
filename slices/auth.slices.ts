@@ -6,7 +6,7 @@ interface User {
   name: string;
   phone: string;
   id: number;
-  profileImage: [];
+  profileImage: { original: ""; thumbnail: "" };
   roomCount: number;
   stripeCustomerId: string;
 }

@@ -4,14 +4,13 @@ import { Nav } from "react-bootstrap";
 import { ChatNotificationDropdown } from "./nav-dropdown/chat-notification-dropdown";
 import { NotificationDropdown } from "./nav-dropdown/notification-dropdown";
 import { ProfileDropdown } from "./nav-dropdown/profile-dropdown";
-import Image from "next/image";
 import { BlurImage } from "../../blurimage";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 
 export const AuthNav = () => {
-  const user = useSelector((state: RootState) => state.auth);
-  console.log(user);
+  const user = useSelector((state: RootState) => state.auth.user);
+
   return (
     <Nav className="me-auto my-2 my-lg-0 " navbarScroll>
       {" "}
@@ -30,12 +29,17 @@ export const AuthNav = () => {
         <a>
           {/* {user ? (
             <BlurImage
-              image={user?.profileImage}
+              image={user.profileImage}
               classimage="rounded-circle cursor-pointer"
             />
           ) : (
             ""
           )} */}
+          <img
+            src={user?.profileImage?.original}
+            alt=""
+            className="rounded-circle cursor-pointer user-title__img"
+          />
         </a>
       </Link>
     </Nav>

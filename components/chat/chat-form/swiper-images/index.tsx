@@ -9,8 +9,12 @@ import "swiper/css/thumbs";
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 interface Props {
   images: any[];
+  handleDeleteImage: Function;
 }
-export const ImagesSwiper: React.FC<Props> = ({ images }) => {
+export const ImagesSwiper: React.FC<Props> = ({
+  images,
+  handleDeleteImage,
+}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   return (
     <section className="container">
@@ -23,7 +27,7 @@ export const ImagesSwiper: React.FC<Props> = ({ images }) => {
         {images.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={item.original} />
+              <img src={URL.createObjectURL(item)} />
             </SwiperSlide>
           );
         })}
@@ -40,7 +44,11 @@ export const ImagesSwiper: React.FC<Props> = ({ images }) => {
           return (
             <SwiperSlide key={index}>
               <div className="divImage">
-                <img src={item.original} />
+                <i
+                  className="far fa-ban deleteImage"
+                  onClick={() => handleDeleteImage(index)}
+                ></i>
+                <img src={URL.createObjectURL(item)} />
               </div>{" "}
             </SwiperSlide>
           );
