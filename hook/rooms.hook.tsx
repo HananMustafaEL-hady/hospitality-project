@@ -11,10 +11,12 @@ export function useRoomPages(
   page: number,
   fallbackData: Roomspage | undefined
 ): returnType {
-  // fallbackData = page == 1 ? fallbackData : undefined;
+  fallbackData = page == 1 ? fallbackData : undefined;
   const { data, error } = useSWR(
-    `https://index-hospitality.herokuapp.com/rooms?pageNumber=${page}&limit=12`
-    // { fallbackData }
+    { url: `/rooms?pageNumber=${page}&limit=12` },
+    {
+      fallbackData,
+    }
   );
   console.log(page);
   console.log(data);

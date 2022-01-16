@@ -11,6 +11,7 @@ module.exports = {
       "hotels.elgouna.com",
       "q-xx.bstatic.com",
       "www.mydomaine.com",
+      "res.cloudinary.com",
     ],
   },
 

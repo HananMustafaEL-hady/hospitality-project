@@ -3,6 +3,8 @@ import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { LoginForm } from "../components/Auth/login/index";
 import { Logo } from "../components/logo";
 import { useRouter } from "next/router";
+import { AddUser } from "../api/auth.api";
+import { useDispatch } from "react-redux";
 export const LoginHOC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,14 +17,14 @@ export const LoginHOC = () => {
     watch,
   } = useForm();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   async function onSubmitFun(data: any) {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      router.push(`/`);
-      setIsLoading(false);
-    }, 2000);
+    AddUser(data, dispatch, "auth/login");
+    console.log(data);
+    router.push(`/`);
+    setIsLoading(false);
   }
   return (
     <div className="row">

@@ -26,6 +26,13 @@ export const FormInput: React.FC<FormInputProps> = ({
             value: isRequired,
             message: Errormessage,
           },
+          // pattern: {
+          //   value:
+          //     name == "phoneNumber"
+          //       ? /^\+[0-9]{1,3}\.[0-9]{4,14}(?:x.+)?$/
+          //       : /[A-Za-z_][A-Za-z_0-9]/,
+          //   message: "يجب إدخال رقم هاتف صحيح",
+          // },
         })}
         placeholder={placeholder}
         autoComplete="username"

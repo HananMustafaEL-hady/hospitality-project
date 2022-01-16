@@ -20,7 +20,7 @@ export const UserReservationsDetailsHOC = () => {
                 <h2 className="font-14 m-0 "> تفاصيل الغرفة</h2>
               </Tab>
             </TabList>
-            {state == 1 && <ProfileCard />}
+            {/* {state == 1 && <ProfileCard />} */}
           </div>
           <div className="col-lg-8 col-sm-12 container-section section-edit-info-left">
             <TabPanel>
@@ -29,7 +29,7 @@ export const UserReservationsDetailsHOC = () => {
             <TabPanel>
               <RoomDetailsSwiper />
               <section className="px-32">
-                <RoomDetails hasReservationSection={false} />
+                {/* <RoomDetails hasReservationSection={false} /> */}
               </section>
             </TabPanel>
           </div>

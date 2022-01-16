@@ -1,34 +1,93 @@
 import { Layout } from "../../components/layout/layout";
 import Head from "next/head";
 import { Profilehoc } from "../../hoc/profile.hoc";
-import { Room } from "../../models/inputs/Rooms";
-import { NextPage } from "next";
-import { RoomsData } from "../../db";
+import { GetServerSideProps, NextPage } from "next";
+import axios from "axios";
+import nookies from "nookies";
+import { parseCookies, setCookie, destroyCookie } from "nookies";
+import { Owner } from "../../models/owner.model";
+import { json } from "stream/consumers";
+import { requireAuthentication } from "../../hoc/require-authentication.hoc";
 
 interface Props {
-  rooms: [Room];
+  profile: Owner;
 }
-const Profile: NextPage<Props> = (props) => {
+const Profile: NextPage<Props> = ({ profile }) => {
+  console.log(profile);
   return (
     <Layout>
       <Head>
         <title>Profile </title>
       </Head>
-      <Profilehoc Rooms={props.rooms} />
+      <Profilehoc profile={profile} />
     </Layout>
   );
 };
 
 export default Profile;
 
-export async function getStaticProps() {
-  // const response = await fetch("http://localhost:3000/Rooms");
-  // const rooms = await response.json();
-  const rooms = RoomsData;
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+  async (context) => {
+    const { req } = context;
+    const { token } = parseCookies({ req });
+    console.log("token", token);
+    try {
+      const res = await axios(
+        `https://index-hospitality.herokuapp.com/users/profile`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log(res);
+      // const profile = res;
 
-  return {
-    props: {
-      rooms,
-    },
-  };
-}
+      return {
+        props: {
+          profile: {},
+        },
+      };
+    } catch (error) {
+      console.log("error", error);
+
+      return {
+        props: {},
+      };
+    }
+  }
+);
+// async (context) => {
+// const cookies = nookies.get(context);
+// const { req } = context;
+// const parsedCookies = parseCookies({ req });
+// let token = undefined;
+// if (parsedCookies != undefined) {
+//   token = parsedCookies.token;
+// }
+
+// if (!token) {
+//   return {
+//     redirect: {
+//       destination: "/login",
+//       permanent: false,
+//     },
+//   };
+//   }
+//   try {
+//     const res = await axios(
+//       `https://index-hospitality.herokuapp.com/users/profile`,
+//       { headers: { Authorization: `Bearer ${token}` } }
+//     );
+//     console.log(res);
+//     const profile = res?.data;
+
+//     return {
+//       props: {
+//         profile,
+//       },
+//     };
+//   } catch (error) {
+//     console.log("error", error);
+
+//     return {
+//       props: {},
+//     };
+//   }
+// };

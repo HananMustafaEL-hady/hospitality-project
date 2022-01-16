@@ -1,9 +1,18 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import SignupAPI from "../api/auth.api";
 import AuthOTP from "../components/Auth/OTP";
+import useSignup from "../hook/signup.hook";
+import { authUser } from "../models/auth.model";
+interface Props {
+  formdata: authUser;
+}
+const OTPhoc: React.FC<Props> = ({ formdata }) => {
+  console.log(formdata?.phone, formdata);
+  const dispatch = useDispatch();
 
-const OTPhoc = () => {
   const {
     register,
     handleSubmit,
@@ -13,16 +22,15 @@ const OTPhoc = () => {
     watch,
   } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-
-  const router = useRouter();
+  // const [statecode, setstatecode] = useState("");
+  // const [statedata, setstatdata] = useState("");
+  // const { data, loading, error } = useSignup(statedata, statecode);
 
   async function onSubmitFun(data: any) {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      router.push(`/resetpassword`);
-      setIsLoading(false);
-    }, 2000);
+    const code = `${data.code4}${data.code3}${data.code2}${data.code1}`;
+    await SignupAPI(formdata, code, dispatch);
+    setIsLoading(false);
   }
   return (
     <AuthOTP

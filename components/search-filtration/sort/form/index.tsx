@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { hookFilterForm } from "../../../../models/inputs/hook-form-inputs";
 
-import { LocationModal } from "../../../home-filtration/filter-card/map-Modal/map";
+import { LocationModal } from "../../../home/home-filtration/filter-card/map-Modal/map";
 import { SelectPrice } from "./select-price";
 export const FilterForm: React.FC<hookFilterForm> = ({
   register,

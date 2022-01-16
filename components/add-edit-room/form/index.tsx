@@ -5,11 +5,11 @@ import {
   Controller,
   FieldValues,
   UseFormRegister,
+  UseFormSetValue,
 } from "react-hook-form";
-import Select from "react-select";
 import { Checkboxes } from "../../form/checkboxes";
 import { FormInput } from "../../form/inputs/form-input";
-import { LocationModal } from "../../home-filtration/filter-card/map-Modal/map";
+import { LocationModal } from "../../home/home-filtration/filter-card/map-Modal/map";
 import { FieldArrayImage } from "./fieldArrayImage";
 import { SelectPersonsCount } from "./select-count";
 
@@ -27,9 +27,15 @@ interface props {
   register: UseFormRegister<FieldValues>;
   control: Control<FieldValues, object>;
   errors: any;
+  setValue: UseFormSetValue<FieldValues>;
 }
 
-export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
+export const RoomForm: React.FC<props> = ({
+  register,
+  control,
+  errors,
+  setValue,
+}) => {
   console.log(Object.keys(errors).length);
   return (
     <form className="mt-32">
@@ -41,9 +47,9 @@ export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
               placeholder="أضف  إسم الغرفة"
               inputtype="text"
               label="اسم الغرفة"
-              name="roomname"
-              hasError={Boolean(errors?.roomname)}
-              message={errors?.roomname?.message}
+              name="name"
+              hasError={Boolean(errors?.name)}
+              message={errors?.name?.message}
               Errormessage="يجب إدخال اسم الغرفة"
               isRequired={true}
             />
@@ -57,10 +63,12 @@ export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
             <textarea
               className="input textarea-room"
               placeholder="أدخل التفاصيل"
-              {...register("details", { required: "يجب إدخال تفاصيل الغرفة " })}
+              {...register("description", {
+                required: "يجب إدخال تفاصيل الغرفة ",
+              })}
             />
-            {errors?.details?.message && (
-              <Alert variant="danger">{errors?.details?.message}</Alert>
+            {errors?.description?.message && (
+              <Alert variant="danger">{errors?.description?.message}</Alert>
             )}
           </div>
           <div className="mb-24 Form ">
@@ -70,7 +78,8 @@ export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
             </h4>
             <input
               className="input"
-              {...register("pricenight", {
+              type="number"
+              {...register("nightPrice", {
                 required: "يجب إدخال سعر الليلة ",
                 pattern: {
                   value: /^[0-9]{1,5}$/,
@@ -80,8 +89,8 @@ export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
               placeholder={`أدخل سعر الليلة ${"                                                                              "} جنية`}
             />
           </div>
-          {errors?.pricenight?.message && (
-            <Alert variant="danger">{errors?.pricenight?.message}</Alert>
+          {errors?.nightPrice?.message && (
+            <Alert variant="danger">{errors?.nightPrice?.message}</Alert>
           )}
           <div className="mb-24 ">
             <h4 className="title-susubsection2">
@@ -94,25 +103,16 @@ export const RoomForm: React.FC<props> = ({ register, control, errors }) => {
         </div>
         <div className="col-lg-6 col-sm-12 ">
           <Checkboxes register={register} isRequired={true} errors={errors} />
-
           <FieldArrayImage register={register} control={control} />
           <div className="mtb-15">
             <h4 className="title-susubsection2">
               العنوان على الخريطة
               <span className="text-danger">*</span>
             </h4>
-            <LocationModal />
+            <LocationModal setValue={setValue} />
           </div>
         </div>
       </section>
     </form>
   );
 };
-function rgba(
-  arg0: number,
-  arg1: number,
-  arg2: number,
-  arg3: number
-): import("@emotion/serialize").CSSInterpolation {
-  throw new Error("Function not implemented.");
-}

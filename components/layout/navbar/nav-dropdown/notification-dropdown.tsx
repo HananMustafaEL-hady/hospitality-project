@@ -22,21 +22,20 @@ export const NotificationDropdown = () => {
       </Link>
 
       <NavDropdown.Divider />
-
-      <NavDropdown.Item href="#action4">
+      <Link href={"/profile/notification"}>
         <a className="dropdown-item">
           <h3 className="font-14">تم الموافقة علي طلبك لحجز الغرفة ....</h3>
           <span className="notification__date font-14">12:43 am</span>
         </a>
-      </NavDropdown.Item>
+      </Link>
 
       <NavDropdown.Divider />
-      <NavDropdown.Item href="#action5">
+      <Link href={"/profile/notification"}>
         <a className="dropdown-item">
           <h3 className="font-14">تم الموافقة علي طلبك لحجز الغرفة ....</h3>
           <span className="notification__date font-14">12:43 am</span>
         </a>
-      </NavDropdown.Item>
+      </Link>
     </NavDropdown>
   );
 };

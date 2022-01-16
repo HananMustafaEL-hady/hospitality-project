@@ -1,6 +1,7 @@
 import React from "react";
 import { hookFormInputs } from "../../../models/inputs/hook-form-inputs";
 import { BtnSubmit } from "../../form/button/btn-submit";
+import { OTPinput } from "../../form/inputs/opt-input";
 const AuthOTP: React.FC<hookFormInputs> = ({
   onSubmitFun,
   handleSubmit,
@@ -13,62 +14,35 @@ const AuthOTP: React.FC<hookFormInputs> = ({
       <div className="d-flex flex-column align-items-center ">
         <h2 className="login__title">كود التحقق !</h2>
         <h3 className="title-subsection-gray">
-          أدخل كود التحقق لإسترجاع كلمة المرور
+          أدخل كود التحقق لإستكمال عملية التسجيل
         </h3>
       </div>
       <form onSubmit={handleSubmit(onSubmitFun)} className="submit-form  ">
         <div className="mt-32 section-otp">
-          <input
-            className="input-opt"
-            type="text"
-            {...register(`code1`, {
-              required: {
-                value: true,
-                message: "يجب إدخال الكود كامل",
-              },
-            })}
+          <OTPinput
+            name="code1"
+            register={register}
+            hasError={Boolean(errors?.code1)}
+            errorMessage={errors?.code1?.message}
           />
-          <input
-            className="input-opt"
-            type="text"
-            {...register(`code2`, {
-              required: {
-                value: true,
-                message: "يجب إدخال الكود كامل",
-              },
-            })}
+          <OTPinput
+            name="code2"
+            register={register}
+            hasError={Boolean(errors?.code2)}
+            errorMessage={errors?.code2?.message}
           />{" "}
-          <input
-            className="input-opt"
-            type="text"
-            {...register(`code3`, {
-              required: {
-                value: true,
-                message: "يجب إدخال الكود كامل",
-              },
-            })}
+          <OTPinput
+            name="code3"
+            register={register}
+            hasError={Boolean(errors?.code3)}
+            errorMessage={errors?.code3?.message}
           />{" "}
-          <input
-            className="input-opt"
-            type="text"
-            {...register(`code4`, {
-              required: {
-                value: true,
-                message: "يجب إدخال الكود كامل",
-              },
-            })}
-          />{" "}
-          <input
-            className="input-opt"
-            type="text"
-            {...register(`code5`, {
-              required: {
-                value: true,
-                message: "يجب إدخال الكود كامل",
-              },
-            })}
+          <OTPinput
+            name="code4"
+            register={register}
+            hasError={Boolean(errors?.code4)}
+            errorMessage={errors?.code4?.message}
           />
-          <p className="input__error"> {errors?.PhoneNumber?.message}</p>
         </div>
         <BtnSubmit
           btnclass="login__form__btn btn-primary btn mt-32"

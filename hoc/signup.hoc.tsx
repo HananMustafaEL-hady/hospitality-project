@@ -1,34 +1,48 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Logo } from "../components/logo";
 import { useRouter } from "next/router";
 import { SignupForm } from "../components/Auth/signup";
+import OTPhoc from "./OTP.hoc";
+import { authUser } from "../models/auth.model";
+import { OTPsend } from "../api/otp.api";
+
 export const SignupHOC = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const [iSSignupform, setISSignupform] = useState(true);
+  const [OTPResponse, setOTPResponse] = useState();
+  const [dataFormState, SetDataFormState] = useState<authUser>({
+    email: "",
+    name: "",
+    phone: "",
+    profileImage: "",
+    password: "",
+  });
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
     control,
+    setError,
     watch,
   } = useForm();
   const router = useRouter();
 
   async function onSubmitFun(data: any) {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      router.push(`/`);
-      setIsLoading(false);
-    }, 2000);
+    await OTPsend(data.phone, setOTPResponse, setISSignupform);
+    console.log(OTPResponse);
+    const { email, name, password, phone } = data;
+    const profileImage = data?.profileImage ? data.profileImage[0] : "";
+    SetDataFormState({ email, name, password, phone, profileImage });
+
+    setIsLoading(false);
   }
   return (
-    <div className="row">
-      <div className=" login__img signup__img col-6"></div>
-      <div className="col-lg-6 col-sm-12 ">
-        <section className="container login__section ">
+    <Fragment>
+      {iSSignupform ? (
+        <Fragment>
           <SignupForm
             onSubmitFun={onSubmitFun}
             handleSubmit={handleSubmit}
@@ -36,10 +50,13 @@ export const SignupHOC = () => {
             register={register}
             isLoading={isLoading}
             watch={watch}
+            errormessage={OTPResponse}
+            setError={setError}
           />
-          <Logo />
-        </section>
-      </div>
-    </div>
+        </Fragment>
+      ) : (
+        <OTPhoc formdata={dataFormState} />
+      )}
+    </Fragment>
   );
 };

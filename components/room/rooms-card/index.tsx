@@ -12,15 +12,7 @@ export const RoomsCard: React.FC<Props> = ({ Rooms, roomscol, urllink }) => {
       {Rooms?.map((room) => {
         return (
           <div key={room.id} className={`col-lg-${roomscol} col-md-6  `}>
-            <RoomCard
-              description={room.name}
-              imageurl={room?.images[0]?.original}
-              location={room.location.type}
-              countUsers={room.capacity}
-              price={room.nightPrice}
-              id={room.id}
-              urllink={urllink}
-            />
+            <RoomCard urllink={urllink} room={room} />
           </div>
         );
       })}

@@ -14,7 +14,7 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
     <div className="d-inline-block ml-8 mb-8">
       <input
         type="checkbox"
-        {...register("services", {
+        {...register("service", {
           required: {
             value: isRequired,
             message: "يجب إدخال خدمات ",

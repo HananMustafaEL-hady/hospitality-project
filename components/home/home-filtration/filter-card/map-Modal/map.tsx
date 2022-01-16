@@ -49,7 +49,10 @@ export const LocationModal: React.FC<Props> = ({ setValue }) => {
   });
   const [selected, setSelected] = useState<any>(null);
   useEffect(() => {
-    setValue && setValue("location", [marker.lat, marker.lng]);
+    if (setValue) {
+      setValue("latitude", marker.lat);
+      setValue("longitude", marker.lng);
+    }
   }, [marker]);
 
   const mapRef = useRef();

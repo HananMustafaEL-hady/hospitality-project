@@ -28,9 +28,9 @@ export const LoginForm: React.FC<hookFormLogin> = ({
           placeholder="أدخل رقم الهاتف"
           inputtype="tel"
           label="  رقم الهاتف"
-          hasError={Boolean(errors?.phonenumber)}
-          message={errors?.phonenumber?.message}
-          name="phonenumber"
+          hasError={Boolean(errors?.username)}
+          message={errors?.username?.message}
+          name="username"
           Errormessage="يجب إدخال رقم الهاتف"
           isRequired={true}
         />

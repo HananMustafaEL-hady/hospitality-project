@@ -1,5 +1,5 @@
 import React from "react";
-import { FilterCard } from "../components/home-filtration/filter-card";
+import { FilterCard } from "../components/home/home-filtration/filter-card";
 import { RoomsCard } from "../components/room/rooms-card";
 import { Selectlocation } from "../components/search-filtration/filtering/filtration-modal";
 import { SortModal } from "../components/search-filtration/sort/sorting-modal";

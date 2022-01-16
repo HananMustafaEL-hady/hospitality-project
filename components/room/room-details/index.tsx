@@ -1,57 +1,46 @@
 import React, { Fragment, useState } from "react";
 import Image from "next/image";
-import { LocationModal } from "../../home-filtration/filter-card/map-Modal/map";
+import { LocationModal } from "../../home/home-filtration/filter-card/map-Modal/map";
 import router from "next/router";
+import { Room } from "../../../models/rooms";
 import { ReservationSection } from "./reservation-section";
+import { RoomServices } from "./room-services";
+import { CapacitySection } from "./room-capacity";
 interface props {
   hasReservationSection: boolean;
+  hasCapacitySection: boolean;
+  room: Room;
 }
-export const RoomDetails: React.FC<props> = ({ hasReservationSection }) => {
+export const RoomDetails: React.FC<props> = ({
+  hasReservationSection,
+  room,
+  hasCapacitySection,
+}) => {
   return (
     <Fragment>
-      <p className="mb-5 room-details__room-title">
-        غرفة بالعين السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة بالعين
-        السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك
-      </p>
-      {hasReservationSection ? <ReservationSection /> : ""}
+      <p className="mb-5 room-details__room-title">{room?.name}</p>
+      <div className=" room-details__reservarion">
+        {hasCapacitySection ? (
+          <CapacitySection
+            id={room?.id}
+            nightPrice={room?.nightPrice}
+            capacity={room?.capacity}
+          />
+        ) : (
+          ""
+        )}
+        {hasReservationSection ? <ReservationSection id={room?.id} /> : ""}
+      </div>
       <div className="room-details__line"></div>
       <div>
         <h2 className="title-subsection-18 f-bold">التفاصيل</h2>
-        <p className="title-subsection-18">
-          غرفة بالعين السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة
-          بالعين السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة بالعين
-          السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة بالعين السخنة في
-          كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة بالعين السخنة في كمباوند
-          أروما بلوك 48 بجانب أكوا بارك غرفة بالعين السخنة في كمباوند أروما بلوك
-          48 بجانب أكوا بارك غرفة بالعين السخنة في كمباوند أروما بلوك 48 بجانب
-          أكوا بارك غرفة بالعين السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك
-          غرفة بالعين السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة
-          بالعين السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة بالعين
-          السخنة في كمباوند أروما بلوك 48 بجانب أكوا بارك غرفة بالعين السخنة في
-          كمباوند أروما بلوك 48 بجانب أكوا بارك
-        </p>
+        <p className="title-subsection-18">{room?.description}</p>
       </div>
       <div className="room-details__line"></div>
       <div>
         <h2 className="title-subsection-18 f-bold">الخدمات المقدمة</h2>
-        <div className="room-details__icons">
-          <Image src={`/room-services.svg`} width={17} height={17} />
-          <span className="room-details__icons__text"> روم سيرفيس </span>
-        </div>
-        <div className="room-details__icons">
-          <Image src={`/wifi.svg`} width={17} height={17} />
-          <span className="room-details__icons__text"> واي فاي </span>
-        </div>
 
-        <div className="room-details__icons">
-          <Image src={`/air-conditioner.svg`} width={17} height={17} />
-          <span className="room-details__icons__text"> تكيف </span>
-        </div>
-
-        <div className="room-details__icons">
-          <Image src={`/kitchen.svg`} width={17} height={17} />
-          <span className="room-details__icons__text"> المطبخ </span>
-        </div>
+        <RoomServices roomServices={room?.services} />
       </div>
 
       <div className="room-details__line"></div>

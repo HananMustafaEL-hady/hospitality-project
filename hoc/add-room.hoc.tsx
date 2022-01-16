@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
+import { Alert } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { AddRoomAPI } from "../api/room.api";
 import { AddRoom } from "../components/add-edit-room/add-room";
+import { Toast } from "../components/toast";
+
 export const AddRoomhoc = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errormessage, setErrorMessage] = useState(false);
+  const [successmessage, setSuccessMessage] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -10,24 +17,35 @@ export const AddRoomhoc = () => {
     formState: { errors },
     control,
     watch,
+    setValue,
   } = useForm();
+  // watch(["nightPrice", "number"]);
 
   async function onSubmit(data: any) {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      setIsLoading(false);
-    }, 2000);
+    const arr = [];
+    for (var i = 0; i < data.images.length; i++) {
+      arr.push(data.images[i]?.images[0]);
+    }
+    data.images = arr;
+    console.log();
+    console.log(data);
+    AddRoomAPI(data, setErrorMessage, setIsLoading, setSuccessMessage);
   }
 
   return (
-    <AddRoom
-      handleSubmit={handleSubmit}
-      onSubmit={onSubmit}
-      register={register}
-      control={control}
-      isLoading={isLoading}
-      errors={errors}
-    />
+    <Fragment>
+      {errormessage ? <Alert variant="danger">{errormessage}</Alert> : ""}
+      {successmessage ? <Toast message={successmessage} /> : ""}
+      <AddRoom
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        register={register}
+        control={control}
+        isLoading={isLoading}
+        setValue={setValue}
+        errors={errors}
+      />
+    </Fragment>
   );
 };

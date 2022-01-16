@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Filtercount } from "./search-persons";
 import { Selectlocation } from "./map-Modal/selectlocation";
 import { useForm, SubmitHandler } from "react-hook-form";
-import FormInputDate from "../../form/inputs/date-input";
-import { BtnSearch } from "../../form/button/btn-search";
+import FormInputDate from "../../../form/inputs/date-input";
+import { BtnSearch } from "../../../form/button/btn-search";
 import { useRouter } from "next/router";
 
 interface filtrationtypes {

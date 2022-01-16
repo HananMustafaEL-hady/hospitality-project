@@ -7,7 +7,7 @@ const OTP = () => {
       <Head>
         <title>OTP code</title>
       </Head>
-      <OTPhoc />
+      {/* <OTPhoc /> */}
     </Layout>
   );
 };

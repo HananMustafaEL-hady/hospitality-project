@@ -10,7 +10,7 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-import { BtnSearch } from "../../../form/button/btn-search";
+import { BtnSearch } from "../../../../form/button/btn-search";
 
 export const Search = () => {
   const {

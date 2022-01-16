@@ -11,12 +11,18 @@ export const EditRoom: React.FC<AddroomProps> = ({
   control,
   isLoading,
   errors,
+  setValue,
 }) => {
   return (
     <section className="container mt-32 add-section ">
       <h2 className="title-section">إضافة غرفة</h2>
       <h3 className="title-subsection-gray ">أضف بيانات الغرفة المراد عرضها</h3>
-      <RoomForm register={register} control={control} errors={errors} />
+      <RoomForm
+        register={register}
+        control={control}
+        errors={errors}
+        setValue={setValue}
+      />
       <EditBtns
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}

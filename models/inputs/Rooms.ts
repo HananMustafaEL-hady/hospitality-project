@@ -1,10 +1,6 @@
-export interface Room {
-    id: string,
-    description: string,
-    imageurl: string,
-    location: string,
-    price: number,
-    countUsers: number,
+import {Room} from "../rooms"
+export interface RoomCardProps {
+ room:Room
     urllink?:string
 
 }

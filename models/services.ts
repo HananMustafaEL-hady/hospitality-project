@@ -5,6 +5,3 @@ updatedAt:string,
 id:string
 }
 
-export interface Serviecs{
-    serviecs:[Service]
-}

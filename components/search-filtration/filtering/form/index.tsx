@@ -7,7 +7,7 @@ import { hookFilterForm } from "../../../../models/inputs/hook-form-inputs";
 import { FormCounterInput } from "../../../form/inputs/counter-input/input";
 import FormInputDate from "../../../form/inputs/date-input";
 import { Checkboxes } from "../../../form/checkboxes";
-import { LocationModal } from "../../../home-filtration/filter-card/map-Modal/map";
+import { LocationModal } from "../../../home/home-filtration/filter-card/map-Modal/map";
 export const FilterForm: React.FC<hookFilterForm> = ({
   register,
   setValue,

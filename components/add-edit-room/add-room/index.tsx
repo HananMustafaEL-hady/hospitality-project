@@ -6,6 +6,7 @@ import { RoomForm } from "../form";
 export const AddRoom: React.FC<AddroomProps> = ({
   handleSubmit,
   onSubmit,
+  setValue,
   register,
   control,
   isLoading,
@@ -15,7 +16,12 @@ export const AddRoom: React.FC<AddroomProps> = ({
     <section className="container mt-32 add-section ">
       <h2 className="title-section">إضافة غرفة</h2>
       <h3 className="title-subsection-gray ">أضف بيانات الغرفة المراد عرضها</h3>
-      <RoomForm register={register} control={control} errors={errors} />
+      <RoomForm
+        register={register}
+        control={control}
+        errors={errors}
+        setValue={setValue}
+      />
       <div className="d-flex justify-content-center">
         <button
           className="btn btn-from btn-primary"

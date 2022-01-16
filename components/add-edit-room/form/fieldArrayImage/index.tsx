@@ -24,7 +24,7 @@ export const FieldArrayImage: React.FC<props> = ({ register, control }) => {
         {fields.map((item, index) => (
           <FormInputImage
             register={register}
-            imagename={`images.${index}.image`}
+            imagename={`images.${index}.images`}
             key={index}
           />
         ))}

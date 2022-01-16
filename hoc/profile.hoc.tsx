@@ -2,18 +2,25 @@ import Link from "next/link";
 import React, { Fragment } from "react";
 import { RoomsCard } from "../components/room/rooms-card";
 import { OwnerCard } from "../components/user/owner-card";
-import { Room } from "../models/inputs/Rooms";
+import Cookies from "js-cookie";
+
 interface Props {
-  Rooms: [Room];
+  profile: Owner;
 }
 import { useRouter } from "next/router";
-export const Profilehoc: React.FC<Props> = ({ Rooms }) => {
+import { useProfile } from "../hook/profile.hook";
+import { Owner } from "../models/owner.model";
+export const Profilehoc: React.FC<Props> = ({ profile }) => {
+  const token = Cookies.get("token");
+  console.log(token);
+  const { profileData, error } = useProfile();
+  console.log(profileData);
   const router = useRouter();
   return (
     <div className="">
       <div className="profile-header"></div>
       <section className="container d-flex justify-content-between align-items-center">
-        <OwnerCard />
+        <OwnerCard owner={profileData} />
         <div>
           <button
             className="btn btn-outline-primary btn-sm"

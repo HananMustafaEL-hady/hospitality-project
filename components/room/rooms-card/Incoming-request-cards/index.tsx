@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Room } from "../../../../models/inputs/Rooms";
+import { Room } from "../../../../models/rooms";
 import { RoomCard } from "../../room-card";
 import { IncomingRequestRoomCard } from "../../room-card/Incoming-request-card";
 interface Props {
@@ -11,7 +11,7 @@ export const RoomRequestsCardS: React.FC<Props> = ({ Rooms }) => {
       {Rooms?.map((room) => {
         return (
           <div key={room.id} className="col-12 ">
-            <IncomingRequestRoomCard
+            {/* <IncomingRequestRoomCard
               description={room.description}
               imageurl={room.imageurl}
               location={room.location}
@@ -19,7 +19,7 @@ export const RoomRequestsCardS: React.FC<Props> = ({ Rooms }) => {
               id={room.id}
               FromDate="November 20"
               Todate="December 9"
-            />
+            /> */}
           </div>
         );
       })}

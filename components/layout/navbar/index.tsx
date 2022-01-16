@@ -6,7 +6,13 @@ import Link from "next/link";
 import { ProfileDropdown } from "./nav-dropdown/profile-dropdown";
 import { ChatNotificationDropdown } from "./nav-dropdown/chat-notification-dropdown";
 import { NotificationDropdown } from "./nav-dropdown/notification-dropdown";
+import { AuthNav } from "./auth-nav";
+import { parseCookies } from "nookies";
+import { UnauthNav } from "./unauth-nav";
+
 export const LayoutNavbar = () => {
+  const { token } = parseCookies();
+  console.log(token);
   return (
     <Navbar expand="lg" className="nav-layout">
       <Container>
@@ -20,30 +26,7 @@ export const LayoutNavbar = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
 
         <Navbar.Collapse id="navbarScroll">
-          <Nav className="me-auto my-2 my-lg-0 " navbarScroll>
-            <Nav.Link>
-              <Link href={"/room/add"}>
-                <a className="add-room">
-                  <span>إضافة غرفة </span>
-                  <i className="fas fa-plus"></i>
-                </a>
-              </Link>
-            </Nav.Link>
-
-            <ChatNotificationDropdown />
-            <NotificationDropdown />
-            <ProfileDropdown />
-            <Link href={"/profile"}>
-              <a>
-                <Image
-                  src="/profile.png"
-                  width={50}
-                  height={50}
-                  className="rounded-circle cursor-pointer"
-                />
-              </a>
-            </Link>
-          </Nav>
+          {token ? <AuthNav /> : <UnauthNav />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

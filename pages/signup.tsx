@@ -2,11 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Fragment } from "react";
 import { SignupHOC } from "../hoc/signup.hoc";
-import { Room } from "../models/inputs/Rooms";
-interface Props {
-  rooms: [Room];
-}
-const Signup: NextPage<Props> = () => {
+
+const Signup = () => {
   return (
     <Fragment>
       <Head>

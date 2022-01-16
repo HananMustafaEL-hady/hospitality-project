@@ -4,9 +4,10 @@ import Image from "next/image";
 import { Layout } from "../components/layout/layout";
 import { HomeHOC } from "../hoc/home.hoc";
 import { Roomspage } from "../models/rooms";
+import axios from "../utils/axios.util";
 
 interface Props {
-  Roomspage: Roomspage;
+  Roomspage?: Roomspage;
 }
 const Home: NextPage<Props> = ({ Roomspage }) => {
   return (
@@ -22,16 +23,21 @@ export const getServerSideProps = async (context: {
   query: { page: string };
 }) => {
   const page = context.query.page;
-  const response = await fetch(
-    `https://index-hospitality.herokuapp.com/rooms?pageNumber=${1}&limit=12`
-  );
-  console.log(response);
-  const Roomspage = await response.json();
-  return {
-    props: {
-      Roomspage,
-    },
-  };
+  try {
+    const response = await axios.get(`/rooms?pageNumber=${1}&limit=12`);
+
+    console.log(response);
+    const Roomspage = response.data;
+    return {
+      props: {
+        Roomspage,
+      },
+    };
+  } catch {
+    return {
+      props: {},
+    };
+  }
 };
 
 export default Home;

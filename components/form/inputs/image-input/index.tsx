@@ -32,11 +32,12 @@ export const FormInputImage: React.FC<props> = ({ register, imagename }) => {
         )}
       </label>
       <input
-        {...register(imagename)}
+        {...register(imagename, {
+          onChange: (e) => onImageChange(e),
+        })}
         type="file"
         id={imagename}
         className="input-img"
-        // onChange={onImageChange}
       />
     </div>
   );

@@ -1,21 +1,34 @@
 import React, { Fragment } from "react";
-import Image from "next/image";
-export const OwnerCard = () => {
+import { Owner } from "../../../models/owner.model";
+import { BlurImage } from "../../blurimage";
+interface Props {
+  owner: Owner;
+}
+export const OwnerCard: React.FC<Props> = ({ owner }) => {
   return (
     <Fragment>
       <section className="d-flex  align-items-center flex-wrap">
-        <img
-          src="/profile2.png"
-          className="rounded-circle user-img  "
-          // width={"160px"}
-          // height={"160px"}
-        />
+        {/* {owner.profileImage ? (
+          <BlurImage
+            image={owner.profileImage}
+            classimage="rounded-circle user-img "
+          />
+        ) : (
+          <img
+            src={owner.profileImage}
+            className="rounded-circle user-img"
+          />
+        )} */}
 
+        <img
+          src={owner?.profileImage?.original}
+          className="rounded-circle user-img"
+        />
         <div>
-          <h2 className="title-section-user">حسين صابر الرفاعي</h2>
+          <h2 className="title-section-user">{owner?.name}</h2>
           <h3 className="title-subsection-user">
             <i className="fas fa-door-open"></i>
-            <span>24 غرفة</span>
+            <span>{owner?.roomCount} غرفة</span>
           </h3>
         </div>
       </section>

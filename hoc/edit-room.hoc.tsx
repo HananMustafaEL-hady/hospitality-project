@@ -10,6 +10,7 @@ export const EditRoomhoc = () => {
     formState: { errors },
     control,
     watch,
+    setValue,
   } = useForm();
 
   async function onSubmit(data: any) {
@@ -28,6 +29,7 @@ export const EditRoomhoc = () => {
       control={control}
       isLoading={isLoading}
       errors={errors}
+      setValue={setValue}
     />
   );
 };
