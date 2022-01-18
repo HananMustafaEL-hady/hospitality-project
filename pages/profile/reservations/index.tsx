@@ -3,9 +3,10 @@ import Head from "next/head";
 import { Layout } from "../../../components/layout/layout";
 import { RoomsData } from "../../../db";
 import { UserReservationsHOC } from "../../../hoc/user-reservations.hoc";
-import { Room } from "../../../models/inputs/Rooms";
+import axios from "../../../utils/axios.util";
+
 interface Props {
-  rooms: [Room];
+  rooms: [];
 }
 const ownerProfile: NextPage<Props> = (props) => {
   return (
@@ -13,20 +14,26 @@ const ownerProfile: NextPage<Props> = (props) => {
       <Head>
         <title>owner profile</title>
       </Head>
-      <UserReservationsHOC Rooms={props.rooms} />
+      {/* <UserReservationsHOC Rooms={[]} /> */}
     </Layout>
   );
 };
 export async function getStaticProps() {
-  // const response = await fetch("http://localhost:3000/Rooms");
-  // const rooms = await response.json();
-  const rooms = RoomsData;
+  try {
+    const response = await axios.get(`/rooms?pageNumber=1&limit=12`);
 
-  return {
-    props: {
-      rooms,
-    },
-  };
+    console.log(response);
+    const Roomspage = await response.data;
+    return {
+      props: {
+        Roomspage,
+      },
+    };
+  } catch {
+    return {
+      props: {},
+    };
+  }
 }
 
 export default ownerProfile;

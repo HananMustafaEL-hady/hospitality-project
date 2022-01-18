@@ -7,12 +7,14 @@ import { Blurhash } from "react-blurhash";
 import { BlurImage } from "../../blurimage";
 
 export const RoomCard: React.FC<RoomCardProps> = ({ room, urllink }) => {
+  console.log(room?.images[0]);
   const [stateFavorite, setStateFavorite] = useState(false);
   return (
-    <Link href={urllink ? `${urllink}/${room.id}` : `room/${room.id}`}>
+    // <Link href={urllink ? `${urllink}/${room.id}` : `room/${room.id}`}>
+    <Link href={`/room/${room.id}`}>
       <div className="room-card">
         <div className="img-top">
-          <BlurImage image={room.images[0]} />
+          {room?.images[0] && <BlurImage image={room.images[0]} />}
         </div>
 
         <div

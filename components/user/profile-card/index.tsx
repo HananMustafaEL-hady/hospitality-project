@@ -8,7 +8,7 @@ interface Props {
 export const ProfileCard: React.FC<Props> = ({ owner }) => {
   let imgsrc = "/avatar.png";
   return (
-    <Link href={`/room/profile/ownerID`}>
+    <Link href={`/profile/${owner.id}`}>
       <section className="  d-flex flex-column justify-content-center align-items-center   room-details__item room-details__owner">
         <p className="f-bold">مالك الغرفة </p>
         <Image

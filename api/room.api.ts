@@ -17,9 +17,7 @@ export const AddRoomAPI = async (
     setIsLoading(false);
     setErrorMessage("");
     setSuccessMessage("تم إضافة الغرفة بنجاح");
-    setTimeout(() => {
-      Router.push(`/profile/room/${res.data?.id}`);
-    }, 2000);
+    Router.push(`/profile/room/${res.data?.id}`);
 
     return res.data;
   } catch (error: any) {

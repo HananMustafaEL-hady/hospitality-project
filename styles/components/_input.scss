@@ -46,7 +46,14 @@
     }
   }
 }
-
+.input-checkbox {
+  &:checked + label {
+    background-color: $main-color;
+    color: #fff;
+  }
+  // }
+  // &__active {
+}
 .CheckboxInput {
   height: 29px;
   border-radius: 8px;
@@ -59,10 +66,6 @@
 
   span {
     padding-right: 8px;
-  }
-  &__active {
-    background-color: $main-color;
-    color: #fff;
   }
 }
 

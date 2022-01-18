@@ -5,11 +5,10 @@ import { ChatNotificationDropdown } from "./nav-dropdown/chat-notification-dropd
 import { NotificationDropdown } from "./nav-dropdown/notification-dropdown";
 import { ProfileDropdown } from "./nav-dropdown/profile-dropdown";
 import { BlurImage } from "../../blurimage";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
+import useCurrentUser from "../../../hook/select-current-user.hook";
 
 export const AuthNav = () => {
-  const user = useSelector((state: RootState) => state.auth.user);
+  const { user } = useCurrentUser();
 
   return (
     <Nav className="me-auto my-2 my-lg-0 " navbarScroll>
@@ -25,7 +24,7 @@ export const AuthNav = () => {
       <ChatNotificationDropdown />
       <NotificationDropdown />
       <ProfileDropdown />
-      <Link href={"/profile"}>
+      <Link href={`/profile/${user?.id}`}>
         <a>
           {/* {user ? (
             <BlurImage

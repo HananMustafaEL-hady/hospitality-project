@@ -2,7 +2,7 @@ import { Layout } from "../../components/layout/layout";
 import Head from "next/head";
 import { Profilehoc } from "../../hoc/profile.hoc";
 import { GetServerSideProps, NextPage } from "next";
-import axios from "axios";
+import axios from "../../utils/axios.util";
 import nookies from "nookies";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { Owner } from "../../models/owner.model";
@@ -19,7 +19,7 @@ const Profile: NextPage<Props> = ({ profile }) => {
       <Head>
         <title>Profile </title>
       </Head>
-      <Profilehoc profile={profile} />
+      {/* <Profilehoc profile={profile} /> */}
     </Layout>
   );
 };
@@ -28,15 +28,12 @@ export default Profile;
 
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
   async (context) => {
-    const { req } = context;
-    const { token } = parseCookies({ req });
-    console.log("token", token);
+    // const { req } = context;
+    // const { token } = parseCookies({ req });
+    // console.log("token", token);
     try {
-      const res = await axios(
-        `https://index-hospitality.herokuapp.com/users/profile`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      console.log(res);
+      const res = await axios(`/users/profile`);
+      // console.log(res);
       // const profile = res;
 
       return {

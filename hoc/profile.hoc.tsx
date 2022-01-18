@@ -1,39 +1,34 @@
 import Link from "next/link";
 import React, { Fragment } from "react";
-import { RoomsCard } from "../components/room/rooms-card";
 import { OwnerCard } from "../components/user/owner-card";
-import Cookies from "js-cookie";
-
-interface Props {
-  profile: Owner;
-}
 import { useRouter } from "next/router";
 import { useProfile } from "../hook/profile.hook";
 import { Owner } from "../models/owner.model";
-export const Profilehoc: React.FC<Props> = ({ profile }) => {
-  const token = Cookies.get("token");
-  console.log(token);
-  const { profileData, error } = useProfile();
-  console.log(profileData);
+import { Room, Roomspage } from "../models/rooms";
+import { RoomsHOC } from "./rooms.hooc";
+import { ProfileEditbtn } from "../components/profile/profile-edit-information/profile-edit-btn";
+import useCurrentUser from "../hook/select-current-user.hook";
+import { ProfileChatbtn } from "../components/profile/chat-btn";
+interface Props {
+  profile: Owner;
+  Roomspage: Roomspage;
+}
+
+export const Profilehoc: React.FC<Props> = ({ profile, Roomspage }) => {
   const router = useRouter();
+  const { profileID } = router.query;
+  const { profileData, error } = useProfile(profileID, profile);
+  const { user } = useCurrentUser();
+  console.log(profileData);
   return (
     <div className="">
       <div className="profile-header"></div>
       <section className="container d-flex justify-content-between align-items-center">
         <OwnerCard owner={profileData} />
-        <div>
-          <button
-            className="btn btn-outline-primary btn-sm"
-            onClick={() => {
-              router.push("/profile/edit");
-            }}
-          >
-            <span className="mx-1"> تعديل الحساب </span>
-          </button>
-        </div>
+        {profileID == user?.id ? <ProfileEditbtn /> : <ProfileChatbtn />}
       </section>
       <div className="container mt-5">
-        {/* <RoomsCard Rooms={Rooms} roomscol={3} urllink="/profile/room" /> */}
+        <RoomsHOC initialData={Roomspage} />
       </div>
     </div>
   );

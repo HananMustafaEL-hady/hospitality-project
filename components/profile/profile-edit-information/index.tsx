@@ -5,10 +5,16 @@ import { ProfileEditrops } from "../../../models/inputs/profile-edit";
 import { EditBtns } from "../../form/button/edit-buttons";
 import { FormInput } from "../../form/inputs/form-input";
 import { FormInputImage } from "../../form/inputs/image-input";
-import { LoadingSpinner } from "../../spinner";
-
+import axios from "../../../utils/axios.util";
+import Router from "next/router";
+import useCurrentUser from "../../../hook/select-current-user.hook";
+import { getFormData } from "../../FormDataFun";
+import { updateUser } from "../../../slices/auth.slices";
+import { useDispatch } from "react-redux";
 export const EditInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useCurrentUser();
   const {
     register,
     handleSubmit,
@@ -16,14 +22,37 @@ export const EditInfo = () => {
     formState: { errors },
     control,
     watch,
-  } = useForm({ mode: "onTouched" });
+  } = useForm({
+    defaultValues: {
+      name: user?.name,
+      phone: user?.phone,
+      profileImage: null,
+    },
+  });
 
   async function onSubmit(data: any) {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      setIsLoading(false);
-    }, 2000);
+    const { name, phone } = data;
+    const profileImage = data?.profileImage ? data.profileImage[0] : "";
+    let formdata = {};
+    if (phone != user?.phone) {
+      formdata = getFormData({ name, phone, profileImage });
+    } else {
+      formdata = getFormData({ name, profileImage });
+    }
+    (async function () {
+      try {
+        if (phone !== user?.phone) {
+        }
+        const response = await axios.patch("/users/updateProfile", formdata);
+        console.log(response.data);
+        dispatch(updateUser({ user: response.data }));
+        Router.push(`/profile`);
+      } catch (err: any) {
+        console.log(err);
+      }
+    })();
+    setIsLoading(false);
   }
   return (
     <section className="section-edit-info ">
@@ -33,9 +62,13 @@ export const EditInfo = () => {
             إختر صورة
             <span className="text-danger">*</span>
           </h4>
-          <FormInputImage imagename={"imageIfo"} register={register} />
-          {errors?.imageIfo?.message && (
-            <p className="text-danger">{errors?.imageIfo?.message}</p>
+          <FormInputImage
+            imagename={"profileImage"}
+            register={register}
+            userimage={user?.profileImage?.original}
+          />
+          {errors?.profileImage?.message && (
+            <p className="text-danger">{errors?.profileImage?.message}</p>
           )}
         </div>
         <div className="mb-16">
@@ -44,9 +77,9 @@ export const EditInfo = () => {
             placeholder="أدخل الإسم"
             inputtype="text"
             label="الإسم"
-            name="profilename"
-            hasError={Boolean(errors?.profilename)}
-            message={errors?.profilename?.message}
+            name="name"
+            hasError={Boolean(errors?.name)}
+            message={errors?.name?.message}
             Errormessage={"يجب إدخال الإسم"}
             isRequired={true}
           />
@@ -57,9 +90,9 @@ export const EditInfo = () => {
             placeholder="أدخل رقم الهاتف"
             inputtype="tel"
             label="  رقم الهاتف"
-            hasError={Boolean(errors?.phonenumber)}
-            message={errors?.phonenumber?.message}
-            name="phonenumber"
+            hasError={Boolean(errors?.phone)}
+            message={errors?.phone?.message}
+            name="phone"
             Errormessage="يجب إدخال رقم الهاتف"
             isRequired={true}
           />

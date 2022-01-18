@@ -7,6 +7,7 @@ interface Props {
   urllink?: string;
 }
 export const RoomsCard: React.FC<Props> = ({ Rooms, roomscol, urllink }) => {
+  console.log(roomscol);
   return (
     <section className="row ">
       {Rooms?.map((room) => {

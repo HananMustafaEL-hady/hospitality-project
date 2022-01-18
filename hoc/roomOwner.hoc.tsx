@@ -11,7 +11,7 @@ export const RoomOwnerhoc: React.FC<Props> = ({ Rooms }) => {
     <div className="">
       <div className="profile-header"></div>
       <section className="container d-flex justify-content-between align-items-center flex-wrap">
-        <OwnerCard />
+        {/* <OwnerCard owner={} /> */}
         <button className="btn btn-primary btn-sm">
           <i className="fas fa-comment-dots"></i>{" "}
           <span className="mx-1  "> محادثة </span>

@@ -20,7 +20,7 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
           <button
             className="btn btn-outline-primary btn-sm ml-16"
             onClick={() => {
-              router.push("/profile/edit");
+              router.push(`/room/edit/${room.id}`);
             }}
           >
             <i className="fas fa-pen mx-2"></i>

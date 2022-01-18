@@ -7,19 +7,25 @@ import { LoadingSpinner } from "../components/spinner";
 import { useRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { HomeHeader } from "../components/home/home-header";
+import { useRoomPagesProfile } from "../hook/rooms-profile.hook";
 
 interface Props {
   initialData?: Roomspage;
 }
 
-export const HomeHOC: React.FC<Props> = ({ initialData }) => {
-  const router = useRouter();
+export const RoomsHOC: React.FC<Props> = ({ initialData }) => {
   console.log(initialData);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [roomsScroll, setRoomsScroll] = useState<any>([]);
   const [hasMore, setHasMore] = useState(true);
+  const router = useRouter();
+  const { profileID } = router.query;
+  const { Roomspage, isLoading, error } = useRoomPagesProfile(
+    pageNumber,
 
-  const { Roomspage, isLoading, error } = useRoomPages(pageNumber, initialData);
+    initialData,
+    profileID
+  );
   useEffect(() => {
     if (Roomspage?.data && !isLoading) {
       setRoomsScroll((prevState: any) => [...prevState, ...Roomspage.data]);
@@ -34,10 +40,7 @@ export const HomeHOC: React.FC<Props> = ({ initialData }) => {
 
   return (
     <Fragment>
-      <HomeHeader />
-      <FilterCard />
       <section className="container mt-5">
-        <h2 className="mb-3 f-bold"> غرفة قريبة منك !</h2>
         {isLoading ? (
           <div className="d-flex justify-content-center">
             <LoadingSpinner color={"green"} loading={isLoading} />

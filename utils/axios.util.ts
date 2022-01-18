@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
 import { mapAxiosError } from "./map-error.util";
 import Cookies from "js-cookie";
+import { parseCookies } from "nookies";
 
 // import nookies from 'nookies'
 const instance = axios.create({
@@ -9,8 +10,8 @@ const instance = axios.create({
 
   headers: {
     "Access-Control-Allow-Origin": "*",
-    "Content-Type": "application/json ,multipart/form-data",
-    // "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
+    // "Content-Type": "application/json ,multipart/form-data",
+    "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
     // "Access-Control-Allow-Credentials": "true",
     // supports_credentials: "true",
     // CORS_ALLOW_HEADERS: "true",
@@ -26,8 +27,9 @@ instance.interceptors.request.use(
       config.headers["Access-Control-Allow-Origin"] = "*";
       config.headers["Content-Type"] = "application/json";
       const token = Cookies.get("token");
-      console.log(token);
+      // const { token } = parseCookies();
       config.headers.Authorization = `Bearer ${token}`;
+      console.log(token);
 
       // if (process.browser) {
       //   const token = localStorage.getItem("token");
@@ -43,6 +45,8 @@ instance.interceptors.request.use(
 );
 
 axios.interceptors.response.use((response) => {
+  const { token } = parseCookies();
+  response.headers.Authorization = `Bearer ${token}`;
   if (response.data.token) {
     if (process.browser) {
       localStorage.setItem("token", response.data.token);

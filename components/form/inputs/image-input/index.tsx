@@ -1,29 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 interface props {
   imagename: string;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<any>;
+  userimage?: string;
+  imagaurl: string;
 }
-export const FormInputImage: React.FC<props> = ({ register, imagename }) => {
-  const [state, setstate] = useState<{
-    image: string | any;
-  }>({ image: null });
+export const FormInputImage: React.FC<props> = ({
+  register,
+  imagename,
+  userimage,
+  imagaurl,
+}) => {
+  const [imageURL, setImageURL] = useState<{ image: string | any }>({
+    image: null,
+  });
+  console.log(typeof imagaurl);
+  console.log(imagaurl);
+  useEffect(() => {
+    if (typeof imagaurl == "string") {
+      setImageURL({ image: imagaurl });
+    }
+  }, [imagaurl]);
+
   const onImageChange = (event: any) => {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (e) => {
-        setstate({ image: e?.target?.result });
+        -setImageURL({ image: e?.target?.result });
       };
       reader.readAsDataURL(event.target.files[0]);
     }
   };
+
   return (
     <div className="d-inline-block  ml-8">
       <label htmlFor={imagename} className="input-img__label">
-        {state.image ? (
+        {imageURL.image ? (
           <Image
-            src={state.image}
+            src={imageURL.image}
+            layout="fill"
+            className="input-img__label__image"
+          />
+        ) : imagename == "profileImage" && userimage ? (
+          <Image
+            src={userimage}
             layout="fill"
             className="input-img__label__image"
           />
@@ -33,6 +55,7 @@ export const FormInputImage: React.FC<props> = ({ register, imagename }) => {
       </label>
       <input
         {...register(imagename, {
+          // required: true,
           onChange: (e) => onImageChange(e),
         })}
         type="file"

@@ -17,7 +17,7 @@ export const ProfileDropdown = () => {
         id="navbarScrollingDropdowProfile"
       >
         <div className="dropdown-menu-profile">
-          <Link href={"/profile"}>
+          <Link href={`/profile/${user?.id}`}>
             <a className="dropdown-item">الملف الشخصي</a>
           </Link>
           <Link href={"/profile/incomingrequests"}>

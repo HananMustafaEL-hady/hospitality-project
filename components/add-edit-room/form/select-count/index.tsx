@@ -26,7 +26,7 @@ export const SelectPersonsCount: React.FC<props> = ({ control }) => {
       }}
       render={({ field: { onChange, value, ref } }) => (
         <Select
-          // defaultValue={options[0]}
+          defaultValue={{ value: 8, label: "8" }}
           placeholder="أدخل عدد الافراد"
           // inputRef={ref}
           onChange={(val) => onChange(val?.value)}

@@ -1,17 +1,20 @@
 import {
   Control,
   FieldValues,
+  UseFormGetValues,
   UseFormHandleSubmit,
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
+import { Room } from "../rooms";
 
 export interface AddroomProps {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   onSubmit: Function;
-  register: UseFormRegister<FieldValues>;
-  control: Control<FieldValues, object>;
+  register: UseFormRegister<any>;
+  control: Control<any, object>;
   isLoading: boolean;
   errors: any;
-  setValue: UseFormSetValue<FieldValues>;
+  setValue: UseFormSetValue<any>;
+  getValues?: UseFormGetValues<Room>;
 }

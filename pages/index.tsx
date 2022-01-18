@@ -24,10 +24,10 @@ export const getServerSideProps = async (context: {
 }) => {
   const page = context.query.page;
   try {
-    const response = await axios.get(`/rooms?pageNumber=${1}&limit=12`);
+    const response = await axios.get(`/rooms?pageNumber=1&limit=12`);
 
     console.log(response);
-    const Roomspage = response.data;
+    const Roomspage = await response.data;
     return {
       props: {
         Roomspage,

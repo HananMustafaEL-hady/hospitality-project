@@ -66,16 +66,20 @@ const FormInputDate: React.FC<hookInputdate> = ({
                   <DatePicker
                     onChange={(e) => {
                       SetValue(e?.toDateString());
-                      if (name == "startdate") {
+                      if (name == "startDate") {
                         field.onChange(+dayjs(e).startOf("day"));
+                        // field.onChange(e);
+
                         setStartDate(e);
                       } else {
+                        // field.onChange(e);
+
                         field.onChange(+dayjs(e).endOf("day"));
                       }
                     }}
                     selected={startdate}
                     minDate={
-                      name == "enddate" ? startdate : addDays(new Date(), -1)
+                      name == "endDate" ? startdate : addDays(new Date(), -1)
                     }
                     maxDate={
                       new Date(

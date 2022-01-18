@@ -24,7 +24,7 @@ export const RoomReservation: React.FC<RoomReservationprops> = ({
           </p>
           <FormInputDate
             placeholder={"من تاريخ"}
-            name="startdate"
+            name="startDate"
             control={control}
             setStartDate={setStartDate}
             startdate={startDate}
@@ -42,7 +42,7 @@ export const RoomReservation: React.FC<RoomReservationprops> = ({
           </p>
           <FormInputDate
             placeholder={"إلي تاريخ"}
-            name="enddate"
+            name="endDate"
             control={control}
             setStartDate={setStartDate}
             startdate={startDate}
@@ -66,7 +66,7 @@ export const RoomReservation: React.FC<RoomReservationprops> = ({
           className="input input-notes "
           placeholder="
             أدخل التفاصيل"
-          {...register("details", {
+          {...register("notes", {
             required: "يجب إدخال تفاصيل الغرفة ",
             minLength: {
               value: 20,

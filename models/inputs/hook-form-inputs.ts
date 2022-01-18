@@ -68,10 +68,10 @@ export interface FormInputProps {
   inputtype: string;
   label: string;
   hasError: boolean;
-  message: string;
-  register: UseFormRegister<FieldValues>;
+  message?: string;
+  register: UseFormRegister<any>;
   name: string;
   Errormessage: string;
   isRequired: boolean;
-  setError: UseFormSetError<FieldValues>;
+  setError?: UseFormSetError<FieldValues>;
 }

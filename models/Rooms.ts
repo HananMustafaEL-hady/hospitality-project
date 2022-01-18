@@ -3,11 +3,12 @@ import { Owner } from "./owner.model";
 import { image } from "./image.model";
 
 export interface Room {
+  item: any;
   services: [Service];
   owner: Owner;
   location: { coordinates: [number]; type: string };
   verified: boolean;
-  images: [image];
+  images: image[];
   nightPrice: number;
   capacity: number;
   description: string;

@@ -1,6 +1,7 @@
 import React from "react";
 import { RoomDetails } from "../components/room/room-details";
 import { RoomDetailsSwiper } from "../components/room/room-images-slider";
+import { ImagesSwiper } from "../components/swiper";
 import { ProfileCard } from "../components/user/profile-card";
 import { Room } from "../models/rooms";
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 export const RoomDetailshoc: React.FC<Props> = ({ room }) => {
   return (
     <div className="container ">
-      <RoomDetailsSwiper />
+      <ImagesSwiper images={room.images} />
       <div className="row g-1 room-details">
         <div className="col-lg-3 col-md-12">
           <ProfileCard owner={room?.owner} />

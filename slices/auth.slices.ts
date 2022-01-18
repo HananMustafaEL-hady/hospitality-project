@@ -41,6 +41,12 @@ const authSlice = createSlice({
       // state.isAuth = true;
       setCookie(null, "token", token);
     },
+    updateUser: (
+      state,
+      { payload: { user } }: PayloadAction<{ user: User }>
+    ) => {
+      state.user = user;
+    },
     logout: (state) => {
       state.token = "";
       state.user = null;
@@ -58,7 +64,7 @@ const authSlice = createSlice({
 });
 
 const { reducer, actions } = authSlice;
-export const { addAuthUser, authFail } = actions;
+export const { addAuthUser, authFail, updateUser } = actions;
 export default reducer;
 
 export const selectCurrentUser = (state: RootState) => state.auth.user;

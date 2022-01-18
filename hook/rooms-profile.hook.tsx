@@ -7,14 +7,18 @@ interface returnType {
   isLoading: boolean;
   error?: AxiosError;
 }
-export function useRoomPages(
+export function useRoomPagesProfile(
   page: number,
-  fallbackData: Roomspage | undefined
+  fallbackData: Roomspage | undefined,
+  id?: string | string[] | undefined
 ): returnType {
   fallbackData = page == 1 ? fallbackData : undefined;
-  const { data, error } = useSWR(`/rooms?pageNumber=${page}&limit=12`, {
-    fallbackData,
-  });
+  const { data, error } = useSWR(
+    `/rooms?pageNumber=${page}&limit=12&owners=${id}`,
+    {
+      fallbackData,
+    }
+  );
   console.log(page);
   console.log(data);
   return {

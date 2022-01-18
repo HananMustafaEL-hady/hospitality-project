@@ -9,7 +9,6 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
   iconClass,
   isRequired,
 }) => {
-  const [isChecked, SetisChecked] = useState(false);
   return (
     <div className="d-inline-block ml-8 mb-8">
       <input
@@ -21,16 +20,10 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
           },
         })}
         id={inputValue}
-        className="d-none"
+        className="d-none input-checkbox"
         value={inputValue}
       />
-      <label
-        htmlFor={inputValue}
-        className={
-          isChecked ? "CheckboxInput CheckboxInput__active" : "CheckboxInput"
-        }
-        onClick={() => SetisChecked(!isChecked)}
-      >
+      <label htmlFor={inputValue} className="CheckboxInput">
         <i className={iconClass}></i>
         <span>{inputPlaceholder}</span>
       </label>

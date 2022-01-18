@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { RoomReservation } from "../components/reservation/room-reservation-from";
 import { useForm } from "react-hook-form";
-import { LoadingSpinner } from "../components/spinner";
 import { BtnSubmit } from "../components/form/button/btn-submit";
+import axios from "../utils/axios.util";
+import Router from "next/router";
+import { useRouter } from "next/router";
+
 export const RoomReservationhoc = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [toggleForm, setToggleForm] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const router = useRouter();
+  const { roomid } = router.query;
   const {
     register,
     handleSubmit,
@@ -16,11 +21,24 @@ export const RoomReservationhoc = () => {
     watch,
   } = useForm();
   async function onSubmit(data: any) {
+    const { startDate, endDate, notes } = data;
+
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      setIsLoading(false);
-    }, 2000);
+    (async function () {
+      try {
+        const response = await axios.post("/bookings", {
+          startDate,
+          endDate,
+          notes,
+          room: roomid,
+        });
+        console.log(response.data);
+        // Router.push(`/profile/reservations`);
+      } catch (err: any) {
+        console.log(err);
+      }
+    })();
+    setIsLoading(false);
   }
   console.log(Object.keys(errors).length);
   console.log(errors);
@@ -48,9 +66,9 @@ export const RoomReservationhoc = () => {
         {!isLoading && "حجز"}
       </button>{" "} */}
       <BtnSubmit
-        btnclass={"btn btn-from mt-32"}
+        btnclass={"btn  btn-primary btn-from mt-32"}
         textValue={"حجز"}
-        isLoading={false}
+        isLoading={isLoading}
         hasErrors={Boolean(Object.keys(errors).length)}
         onSubmit={onSubmit}
         handleSubmit={handleSubmit}
