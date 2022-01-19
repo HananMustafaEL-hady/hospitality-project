@@ -15,7 +15,7 @@ export const EditRoom: React.FC<AddroomProps> = ({
 }) => {
   return (
     <section className="container mt-32 add-section ">
-      <h2 className="title-section">إضافة غرفة</h2>
+      <h2 className="title-section">تعديل غرفة</h2>
       <h3 className="title-subsection-gray ">أضف بيانات الغرفة المراد عرضها</h3>
       <RoomForm
         register={register}

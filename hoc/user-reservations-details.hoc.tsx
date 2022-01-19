@@ -22,7 +22,7 @@ export const UserReservationsDetailsHOC = () => {
             </TabList>
             {/* {state == 1 && <ProfileCard />} */}
           </div>
-          <div className="col-lg-8 col-sm-12 container-section section-edit-info-left">
+          <div className="col-lg-9 col-sm-12 container-section section-edit-info-left">
             <TabPanel>
               <RequestDetails />
             </TabPanel>

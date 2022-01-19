@@ -1,8 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { FilterCard } from "../components/home/home-filtration/filter-card";
 import { RoomsCard } from "../components/room/rooms-card";
 import { Roomspage } from "../models/rooms";
-import { useRoomPages } from "../hook";
 import { LoadingSpinner } from "../components/spinner";
 import { useRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -15,6 +13,7 @@ interface Props {
 
 export const RoomsHOC: React.FC<Props> = ({ initialData }) => {
   console.log(initialData);
+
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [roomsScroll, setRoomsScroll] = useState<any>([]);
   const [hasMore, setHasMore] = useState(true);
@@ -58,7 +57,13 @@ export const RoomsHOC: React.FC<Props> = ({ initialData }) => {
             }
             // endMessage={<h4>لا يوجد المزيد </h4>}
           >
-            {Roomspage && <RoomsCard Rooms={roomsScroll} roomscol={3} />}
+            {Roomspage && (
+              <RoomsCard
+                Rooms={roomsScroll}
+                roomscol={3}
+                isBookingCard={false}
+              />
+            )}
           </InfiniteScroll>
         )}
       </section>

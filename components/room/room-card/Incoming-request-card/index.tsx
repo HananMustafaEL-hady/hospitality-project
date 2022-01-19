@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Image from "next/image";
-import { RoomIncomingReques } from "../../../../models/inputs/Rooms";
 import Link from "next/link";
+interface RoomIncomingReques {
+  id: string;
+  description: string;
+  imageurl: string;
+  location: string;
+  price: number;
+  FromDate: string;
+  Todate: string;
+}
+
 export const IncomingRequestRoomCard: React.FC<RoomIncomingReques> = ({
   description,
   imageurl,

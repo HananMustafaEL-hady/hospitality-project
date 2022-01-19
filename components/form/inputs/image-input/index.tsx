@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import {
+  FieldArrayMethodProps,
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
 interface props {
   imagename: string;
   register: UseFormRegister<any>;
   userimage?: string;
   imagaurl: string;
+  // append: (
+  //   value: Partial<unknown> | Partial<unknown>[],
+  //   options?: FieldArrayMethodProps | undefined
+  // ) => void;
+  // disabledAppend: boolean;
 }
 export const FormInputImage: React.FC<props> = ({
   register,
   imagename,
   userimage,
   imagaurl,
+  // append,
+  // disabledAppend,
 }) => {
   const [imageURL, setImageURL] = useState<{ image: string | any }>({
     image: null,
   });
   console.log(typeof imagaurl);
   console.log(imagaurl);
+
   useEffect(() => {
     if (typeof imagaurl == "string") {
       setImageURL({ image: imagaurl });
@@ -36,7 +48,13 @@ export const FormInputImage: React.FC<props> = ({
 
   return (
     <div className="d-inline-block  ml-8">
-      <label htmlFor={imagename} className="input-img__label">
+      <label
+        htmlFor={imagename}
+        className="input-img__label"
+        // onClick={() => {
+        //   disabledAppend && append({ image: "" });
+        // }}
+      >
         {imageURL.image ? (
           <Image
             src={imageURL.image}

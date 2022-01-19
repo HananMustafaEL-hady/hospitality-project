@@ -6,8 +6,6 @@ import {
   UseFormGetValues,
   UseFormRegister,
 } from "react-hook-form";
-import { image } from "../../../../models/image.model";
-import { Room } from "../../../../models/rooms";
 import { FormInputImage } from "../../../form/inputs/image-input";
 
 interface props {
@@ -16,7 +14,10 @@ interface props {
 }
 
 export const FieldArrayImage: React.FC<props> = ({ register, control }) => {
-  const { fields, append, remove } = useFieldArray({ control, name: "images" });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "images",
+  });
 
   return (
     <div className="">
@@ -32,19 +33,21 @@ export const FieldArrayImage: React.FC<props> = ({ register, control }) => {
       )}
       <div className="d-flex">
         {fields.map((item, index) => (
-          <div key={item.id}>
+          <div key={item.id} className="position-relative">
             <FormInputImage
               register={register}
               imagename={`images.${index}.image`}
               key={index}
               imagaurl={item?.image?.original}
+              // append={append}
+              // disabledAppend={Boolean(fields.length < 5)}
             />
             <button
               type="button"
-              className="btn "
+              className="btn input-img__delete"
               onClick={() => remove(index)}
             >
-              X
+              <i className="fas fa-trash"></i>
             </button>
           </div>
         ))}

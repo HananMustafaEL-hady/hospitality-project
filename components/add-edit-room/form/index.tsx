@@ -56,21 +56,25 @@ export const RoomForm: React.FC<props> = ({
               isRequired={true}
             />
           </div>
-          <div className="mb-24 Form ">
+          <div className="mb-24 Form">
             <h4 className="title-susubsection2">
               {" "}
               التفاصيل
               <span className="text-danger">*</span>
             </h4>
             <textarea
-              className="input textarea-room"
+              className={
+                errors?.description
+                  ? "input textarea-room border-danger"
+                  : `input textarea-room  `
+              }
               placeholder="أدخل التفاصيل"
               {...register("description", {
                 required: "يجب إدخال تفاصيل الغرفة ",
               })}
             />
             {errors?.description?.message && (
-              <Alert variant="danger">{errors?.description?.message}</Alert>
+              <p className="text-danger">{errors?.description?.message}</p>
             )}
           </div>
           <div className="mb-24 Form ">
@@ -79,7 +83,7 @@ export const RoomForm: React.FC<props> = ({
               <span className="text-danger">*</span>
             </h4>
             <input
-              className="input"
+              className={errors?.nightPrice ? `input border-danger ` : "input"}
               type="number"
               {...register("nightPrice", {
                 required: "يجب إدخال سعر الليلة ",
@@ -90,10 +94,11 @@ export const RoomForm: React.FC<props> = ({
               })}
               placeholder={`أدخل سعر الليلة ${"                                                                              "} جنية`}
             />
+            {errors?.nightPrice?.message && (
+              <p className="text-danger">{errors?.nightPrice?.message}</p>
+            )}
           </div>
-          {errors?.nightPrice?.message && (
-            <Alert variant="danger">{errors?.nightPrice?.message}</Alert>
-          )}
+
           <div className="mb-24 ">
             <h4 className="title-susubsection2">
               عدد الافراد

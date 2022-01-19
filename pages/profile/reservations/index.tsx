@@ -3,30 +3,33 @@ import Head from "next/head";
 import { Layout } from "../../../components/layout/layout";
 import { RoomsData } from "../../../db";
 import { UserReservationsHOC } from "../../../hoc/user-reservations.hoc";
+import { BookingsPage } from "../../../models/bookings.model";
 import axios from "../../../utils/axios.util";
 
 interface Props {
-  rooms: [];
+  bookings: BookingsPage;
 }
-const ownerProfile: NextPage<Props> = (props) => {
+const ownerProfile: NextPage<Props> = ({ bookings }) => {
   return (
     <Layout>
       <Head>
-        <title>owner profile</title>
+        <title>Your bookings </title>
       </Head>
-      {/* <UserReservationsHOC Rooms={[]} /> */}
+      <UserReservationsHOC bookings={bookings} />
     </Layout>
   );
 };
 export async function getStaticProps() {
   try {
-    const response = await axios.get(`/rooms?pageNumber=1&limit=12`);
+    const response = await axios.get(
+      `/https://index-hospitality.herokuapp.com/bookings/clients?pageNumber=1&limit=9`
+    );
 
     console.log(response);
-    const Roomspage = await response.data;
+    const bookings = await response.data;
     return {
       props: {
-        Roomspage,
+        bookings,
       },
     };
   } catch {

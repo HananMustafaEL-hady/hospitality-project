@@ -1,7 +1,7 @@
 @use "../functions" as *;
 
 .room-card {
-  height: 290px;
+  height: 292px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -24,15 +24,16 @@
   }
 
   &__description {
-    font-size: funToRem(16);
+    font-size: funToRem(14);
     font-weight: bolder;
-    margin-top: funToRem(10);
-    margin-bottom: 5px;
+    margin-top: funToRem(12);
+    margin-bottom: funToRem(12);
     line-height: 24px;
   }
 }
 
 .heart_icon {
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;

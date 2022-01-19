@@ -19,14 +19,13 @@ export const SelectPersonsCount: React.FC<props> = ({ control }) => {
   return (
     <Controller
       control={control}
-      defaultValue={options.map((c) => c.value)}
       name="capacity"
       rules={{
         required: "يجب ادخال عدد الافراد",
       }}
       render={({ field: { onChange, value, ref } }) => (
         <Select
-          defaultValue={{ value: 8, label: "8" }}
+          defaultValue={{ value: value, label: `${value}` }}
           placeholder="أدخل عدد الافراد"
           // inputRef={ref}
           onChange={(val) => onChange(val?.value)}

@@ -9,7 +9,7 @@ export const Chathoc = () => {
     <section className="container">
       <h2 className="title-section mb-24 mt-32">المحادثات</h2>
       <div className="row chat">
-        <div className="col-3 chat__right ">
+        <div className="col-lg-3  col-md-3 col-sm-12  chat__right ">
           <ChatSearch />
           <ChatNotification
             name={"محمد سمير"}
@@ -69,7 +69,7 @@ export const Chathoc = () => {
             status={"online"}
           />
         </div>
-        <div className="col-9 chat__left">
+        <div className="col-lg-9 col-md-9 col-sm-12  chat__left">
           <div className="chat__left__user">
             <h3>محمد سمير</h3>
           </div>

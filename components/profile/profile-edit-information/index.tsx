@@ -32,22 +32,20 @@ export const EditInfo = () => {
 
   async function onSubmit(data: any) {
     setIsLoading(true);
-    const { name, phone } = data;
+    const { name } = data;
     const profileImage = data?.profileImage ? data.profileImage[0] : "";
     let formdata = {};
-    if (phone != user?.phone) {
-      formdata = getFormData({ name, phone, profileImage });
+    if (profileImage == "") {
+      formdata = getFormData({ name });
     } else {
       formdata = getFormData({ name, profileImage });
     }
     (async function () {
       try {
-        if (phone !== user?.phone) {
-        }
         const response = await axios.patch("/users/updateProfile", formdata);
         console.log(response.data);
         dispatch(updateUser({ user: response.data }));
-        Router.push(`/profile`);
+        Router.push(`/profile/${user?.id}`);
       } catch (err: any) {
         console.log(err);
       }
@@ -66,6 +64,7 @@ export const EditInfo = () => {
             imagename={"profileImage"}
             register={register}
             userimage={user?.profileImage?.original}
+            imagaurl={""}
           />
           {errors?.profileImage?.message && (
             <p className="text-danger">{errors?.profileImage?.message}</p>

@@ -1,4 +1,4 @@
-import { Service } from "./services";
+import { Service } from "./services.model";
 import { Owner } from "./owner.model";
 import { image } from "./image.model";
 
@@ -16,6 +16,7 @@ export interface Room {
   createdAt: string;
   updatedAt: string;
   id: string;
+  bookingid?: string;
 }
 
 export interface Roomspage {

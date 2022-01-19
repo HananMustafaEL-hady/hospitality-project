@@ -168,6 +168,9 @@ textarea {
 .gray-color {
   color: #626a6f;
 }
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  border-radius: 8px;
+}
 @media (max-width: 475px) {
   // p,
   // span {

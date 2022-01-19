@@ -1,0 +1,28 @@
+@use "../mixin" as *;
+@use "../variables" as *;
+@use "../functions" as *;
+.add-section {
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: -1px 2px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: funToRem(32 97);
+  // @include toRem(padding-top, 32);
+  // @include toRem(padding-bottom, 32);
+  // @include toRem(padding-right, 97);
+  // @include toRem(padding-left, 97);
+}
+
+.btn-from {
+  height: 48px;
+  width: 176px;
+  border-radius: 8px;
+  color: #ffffff;
+  background-color: $main-color;
+}
+
+@media (max-width: 415px) {
+  .add-section {
+    padding-left: 0px;
+    @include toRem(padding-right, 10);
+  }
+}

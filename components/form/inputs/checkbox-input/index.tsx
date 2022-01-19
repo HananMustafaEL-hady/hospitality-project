@@ -24,7 +24,7 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
         value={inputValue}
       />
       <label htmlFor={inputValue} className="CheckboxInput">
-        <i className={iconClass}></i>
+        <i className={`fas fa-${iconClass}`}></i>
         <span>{inputPlaceholder}</span>
       </label>
     </div>

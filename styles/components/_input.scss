@@ -87,7 +87,12 @@
   overflow: hidden;
   width: 0px;
   height: 0px;
-
+  &__delete {
+    position: absolute;
+    top: 1px;
+    right: -5px;
+    color: red;
+  }
   &__label {
     position: relative;
     cursor: pointer;

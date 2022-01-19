@@ -1,6 +1,6 @@
 import React from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
-import { services } from "../../../services";
+import { useServices } from "../../../hook/services.hook";
 import { FormCheckboxInput } from "../inputs/checkbox-input";
 interface Props {
   register: UseFormRegister<FieldValues>;
@@ -12,19 +12,20 @@ export const Checkboxes: React.FC<Props> = ({
   isRequired,
   errors,
 }) => {
+  const { services, error } = useServices();
   return (
     <fieldset className="mtb-15">
       <h3 className="title-subsection">
         الخدمات المقدمة
         {isRequired && <span className="text-danger">*</span>}
       </h3>
-      {services.map((item) => (
+      {services?.map((item) => (
         <FormCheckboxInput
-          key={item.value}
+          key={item.name}
           inputValue={item.id}
           inputPlaceholder={item.name}
           register={register}
-          iconClass={item.iconClass}
+          iconClass={item.name}
           isRequired={isRequired}
         />
       ))}

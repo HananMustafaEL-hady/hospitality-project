@@ -11,15 +11,17 @@ export const BlurImage: React.FC<Props> = ({ image, classimage }) => {
   console.log(isLoadingState);
   return (
     <Fragment>
-      <Blurhash
-        hash={image.placeholder}
-        width={"100%"}
-        height={"100%"}
-        className="blurImg"
-      />
+      {image?.placeholder && (
+        <Blurhash
+          hash={image?.placeholder}
+          width={"100%"}
+          height={"100%"}
+          className="blurImg"
+        />
+      )}
       <img
         className={isLoadingState ? `isloading` : "isready"}
-        src={image.original}
+        src={image?.original}
         onLoad={(e) => {
           setIsLoadingState(false);
         }}

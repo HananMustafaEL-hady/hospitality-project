@@ -5,23 +5,13 @@ interface Props {
   owner: Owner;
 }
 export const OwnerCard: React.FC<Props> = ({ owner }) => {
+  let imgsrc = "/avatar.png";
+
   return (
     <Fragment>
       <section className="d-flex  align-items-center flex-wrap">
-        {/* {owner.profileImage ? (
-          <BlurImage
-            image={owner.profileImage}
-            classimage="rounded-circle user-img "
-          />
-        ) : (
-          <img
-            src={owner.profileImage}
-            className="rounded-circle user-img"
-          />
-        )} */}
-
         <img
-          src={owner?.profileImage?.original}
+          src={owner?.profileImage ? owner.profileImage?.original : imgsrc}
           className="rounded-circle user-img"
         />
         <div>

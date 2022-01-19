@@ -48,6 +48,7 @@
   &__services {
     display: flex;
     &__icons {
+      margin-left: funToRem(8);
       padding: 0 8px;
       display: inline-block;
       color: white;
@@ -89,7 +90,7 @@
   }
 }
 
-@media (max-width: 415px) {
+@media (max-width: 541px) {
   .room-details {
     &__reservarion,
     &__editbts {

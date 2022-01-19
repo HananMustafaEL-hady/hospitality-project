@@ -16,8 +16,8 @@ export const AuthNav = () => {
       <Nav.Link>
         <Link href={"/room/add"}>
           <a className="add-room">
+            <i className="far fa-plus"></i> {"  "}
             <span>إضافة غرفة </span>
-            <i className="fas fa-plus"></i>
           </a>
         </Link>
       </Nav.Link>

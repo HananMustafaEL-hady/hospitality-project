@@ -10,14 +10,6 @@ export const AddRoomhoc = () => {
   const [errormessage, setErrorMessage] = useState(false);
   const [successmessage, setSuccessMessage] = useState("");
 
-  // const defaultValues = {
-  //   images: [
-  //     {
-  //       name: "images",
-  //     },
-  //   ],
-  // };
-
   const {
     register,
     handleSubmit,
@@ -26,7 +18,17 @@ export const AddRoomhoc = () => {
     control,
     watch,
     setValue,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      capacity: 1,
+
+      // images: [
+      //   {
+      //     name: "images",
+      //   },
+      // ],
+    },
+  });
   // watch(["nightPrice", "number"]);
   // const watchData = watch();
 

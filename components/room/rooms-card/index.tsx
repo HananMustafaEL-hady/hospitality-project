@@ -4,16 +4,21 @@ import { Room } from "../../../models/rooms";
 interface Props {
   Rooms: [Room];
   roomscol: number;
-  urllink?: string;
+  isBookingCard: boolean;
+  bookingid?: string;
 }
-export const RoomsCard: React.FC<Props> = ({ Rooms, roomscol, urllink }) => {
+export const RoomsCard: React.FC<Props> = ({
+  Rooms,
+  roomscol,
+  isBookingCard,
+}) => {
   console.log(roomscol);
   return (
     <section className="row ">
       {Rooms?.map((room) => {
         return (
           <div key={room.id} className={`col-lg-${roomscol} col-md-6  `}>
-            <RoomCard urllink={urllink} room={room} />
+            <RoomCard room={room} isBookingCard={isBookingCard} />
           </div>
         );
       })}

@@ -2,19 +2,20 @@ import useSWR from "swr";
 import { Roomspage, Room } from "../models/rooms";
 import { useRouter } from "next/router";
 import { AxiosError } from "axios";
+import { BookingsPage } from "../models/bookings.model";
 interface returnType {
-  Roomspage?: Roomspage;
+  Bookingspage?: BookingsPage;
   isLoading: boolean;
   error?: AxiosError;
 }
-export function useRoomPages(
+export function useBookingsPages(
   page: number,
-  fallbackData: Roomspage | undefined,
-  id?: string | string[] | undefined
+  fallbackData: BookingsPage | undefined,
+  status?: string
 ): returnType {
   fallbackData = page == 1 ? fallbackData : undefined;
   const { data, error } = useSWR(
-    `/rooms?pageNumber=${page}&limit=12&owners=${id}`,
+    `/bookings/clients?pageNumber=${page}&limit=12&status=${status}`,
     {
       fallbackData,
     }
@@ -22,7 +23,7 @@ export function useRoomPages(
   console.log(page);
   console.log(data);
   return {
-    Roomspage: data,
+    Bookingspage: data,
     isLoading: !data && !error,
     error: error,
   };

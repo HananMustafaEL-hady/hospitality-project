@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { destroyCookie, setCookie } from "nookies";
 import type { RootState } from "../store/store";
+import { createSelector } from "@reduxjs/toolkit";
 
 interface User {
   name: string;
@@ -67,4 +68,10 @@ const { reducer, actions } = authSlice;
 export const { addAuthUser, authFail, updateUser } = actions;
 export default reducer;
 
-export const selectCurrentUser = (state: RootState) => state.auth.user;
+export const CurrentUser = (state: RootState) => state.auth;
+type Return = (state: RootState) => string | User | null;
+
+export const selectcurrentUser = (): Return =>
+  createSelector(CurrentUser, (state) => state.user);
+export const selectTokenUser = (): Return =>
+  createSelector(CurrentUser, (state) => state.token);

@@ -5,12 +5,16 @@ import { RoomDetailsSwiper } from "../../room/room-images-slider";
 import { OwnerCard } from "../../user/owner-card";
 import { Room } from "../../../models/rooms";
 import { ImagesSwiper } from "../../swiper";
+import { deleteRoom } from "../../../api/room.api";
+import { DeleteRoom } from "../../room/room-delete";
 
 interface Props {
   room: Room;
 }
 export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
   console.log(room);
+  const [deleteModalShow, setDeleteModalShow] = React.useState(false);
+
   return (
     <div className="">
       <div className="profile-header"></div>
@@ -18,16 +22,16 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
         <OwnerCard owner={room?.owner} />
         <div className="mt-3 room-details__editbts ">
           <button
-            className="btn btn-outline-primary btn-sm ml-16"
+            className="btn btn-outline-primary btn-sm ml-16 mb-16 "
             onClick={() => {
               router.push(`/room/edit/${room.id}`);
             }}
           >
-            <i className="fas fa-pen mx-2"></i>
+            <i className="fas fa-pen mx-2 "></i>
             <span className="mx-1"> تعديل </span>
           </button>{" "}
           <button
-            className="btn btn-outline-secondary btn-sm ml-16"
+            className="btn btn-outline-secondary btn-sm ml-16 mb-16"
             onClick={() => {
               router.push("/profile/edit");
             }}
@@ -38,7 +42,7 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
           <button
             className="btn btn-outline-danger btn-sm ml-16"
             onClick={() => {
-              router.push("/profile/edit");
+              setDeleteModalShow(true);
             }}
           >
             <i className="fas fa-trash mx-2"></i>
@@ -57,6 +61,12 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
           />
         </section>
       </div>
+      <DeleteRoom
+        handleShow={setDeleteModalShow}
+        show={deleteModalShow}
+        roomid={room?.id}
+        ownerid={room?.owner?.id}
+      />
     </div>
   );
 };

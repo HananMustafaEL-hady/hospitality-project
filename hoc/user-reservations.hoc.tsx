@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { RoomsCard } from "../components/room/rooms-card";
-import { Room } from "../models/inputs/Rooms";
-import Image from "next/image";
+import { BookingsPage } from "../models/bookings.model";
+import { BookingsRoomsHOC } from "./Bookings-rooms.hoc";
 interface Props {
-  Rooms: [Room];
+  bookings: BookingsPage;
 }
 
-export const UserReservationsHOC: React.FC<Props> = ({ Rooms }) => {
+export const UserReservationsHOC: React.FC<Props> = ({ bookings }) => {
+  console.log(bookings);
   const [state, sethandleSelect] = useState(0);
 
   return (
@@ -58,6 +59,8 @@ export const UserReservationsHOC: React.FC<Props> = ({ Rooms }) => {
                 roomscol={4}
                 urllink="/profile/reservations"
               /> */}
+
+              <BookingsRoomsHOC initialData={bookings} status={"PENDING"} />
             </TabPanel>
             <TabPanel>
               {/* <RoomsCard

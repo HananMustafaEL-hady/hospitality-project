@@ -38,7 +38,7 @@ export const EditRoomhoc: React.FC<Props> = ({ room }) => {
         return {
           image: {
             original: Roomdata?.images[index]?.original,
-            placeholder: Roomdata?.images[index]?.original,
+            placeholder: Roomdata?.images[index]?.placeholder,
           },
         };
       }),
@@ -50,13 +50,16 @@ export const EditRoomhoc: React.FC<Props> = ({ room }) => {
 
   async function onSubmit(data: any) {
     // setIsLoading(true);
-    const arr = [];
+    const imagesarr = [];
+    const imagearr = [];
+
     for (var i = 0; i < data.images.length; i++) {
-      if (data.images[i]?.image[0]) arr.push(data.images[i]?.image[0]);
-      else arr.push(data.images[i]?.image);
+      if (data.images[i]?.image[0]) imagesarr.push(data.images[i]?.image[0]);
+      else imagearr.push(data.images[i]?.image);
     }
-    data.images = arr;
-    console.log(arr);
+    data.images = imagesarr;
+    data.image = imagearr;
+    console.log(imagearr);
     console.log(data);
     const formData = getFormData(data);
     try {

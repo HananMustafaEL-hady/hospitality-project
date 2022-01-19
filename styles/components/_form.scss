@@ -12,14 +12,17 @@
   }
 }
 
-@media (max-width: 415px) {
+.Form {
+  width: 377px;
+}
+
+@media (max-width: 426px) {
   .section-form {
     .submit-form {
       width: 337px;
     }
   }
-}
-
-.Form {
-  width: 377px;
+  .Form {
+    width: 300px;
+  }
 }

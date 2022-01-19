@@ -27,3 +27,14 @@ export const AddRoomAPI = async (
     setErrorMessage(error?.message);
   }
 };
+
+export const deleteRoom = async (roomid: string, userid: number) => {
+  try {
+    const res = await axios.delete(`/rooms/${roomid}`);
+    console.log(res);
+    Router.push(`/profile/${userid}`);
+    return res.data;
+  } catch (error: any) {
+    console.log(error?.message);
+  }
+};
