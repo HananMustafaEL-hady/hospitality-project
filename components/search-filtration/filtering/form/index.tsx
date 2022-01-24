@@ -20,15 +20,15 @@ export const FilterForm: React.FC<hookFilterForm> = ({
     <form>
       <div>
         <h3 className="title-subsection">نطاق السعر</h3>
-        <div className="d-flex flex-row justify-content-between mtb-15 ">
+        <div className="modal-content-filtration__input">
           <FormFiltrationInput
             placeholder="الحد الادني للسعر"
-            name="min-price"
+            name="minNightPrice"
             register={register}
           />
           <FormFiltrationInput
             placeholder="الحد الاقصي للسعر"
-            name="max-price"
+            name="maxNightPrice"
             register={register}
           />
         </div>
@@ -36,7 +36,7 @@ export const FilterForm: React.FC<hookFilterForm> = ({
       <div className="line"></div>
       <div className="mtb-15 ">
         <h3 className="title-subsection"> مدة الاقامة</h3>
-        <div className="d-flex flex-row justify-content-between">
+        <div className="modal-content-filtration__input">
           <FormInputDate
             placeholder={"  من  تاريخ"}
             name="startdate"

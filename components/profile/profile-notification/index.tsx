@@ -1,13 +1,16 @@
 import React from "react";
-
-export const ProfileNotification = () => {
+import { NotificationProps } from "../../../models/notification.model";
+import { ProfileNotificationMessage } from "./notification-message.tsx";
+interface props {
+  notifications: [NotificationProps];
+}
+export const ProfileNotifications: React.FC<props> = ({ notifications }) => {
+  console.log(notifications);
   return (
-    <div className="notification">
-      <h3 className="notification__message">
-        تمت الموافقة على طلبك لحجز غرفة “ غرفة بالعين السخنة في كمباوند أروما
-        بلوك 48 بجانب أكوا بارك غرفة بالعين السخنة …” برجاء الدفع الآن .
-      </h3>
-      <span className="notification__date">12:43 am</span>
+    <div className="container-section ">
+      {notifications.map((item, index) => {
+        return <ProfileNotificationMessage notification={item} />;
+      })}
     </div>
   );
 };

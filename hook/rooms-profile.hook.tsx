@@ -19,8 +19,7 @@ export function useRoomPagesProfile(
       fallbackData,
     }
   );
-  console.log(page);
-  console.log(data);
+
   return {
     Roomspage: data,
     isLoading: !data && !error,

@@ -10,16 +10,8 @@ export const RoomRequestsCardS: React.FC<Props> = ({ Rooms }) => {
     <section className="row ">
       {Rooms?.map((room) => {
         return (
-          <div key={room.id} className="col-12 ">
-            {/* <IncomingRequestRoomCard
-              description={room.description}
-              imageurl={room.imageurl}
-              location={room.location}
-              price={room.price}
-              id={room.id}
-              FromDate="November 20"
-              Todate="December 9"
-            /> */}
+          <div key={room._id} className="col-12 ">
+            <IncomingRequestRoomCard room={room} />
           </div>
         );
       })}

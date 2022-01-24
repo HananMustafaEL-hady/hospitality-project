@@ -1,43 +1,49 @@
 import React from "react";
-import { FormInputProps } from "../../../../models/inputs/hook-form-inputs";
-
-export const FormInput: React.FC<FormInputProps> = ({
-  placeholder,
-  inputtype,
-  label,
-  hasError,
-  message,
+import {
+  Control,
+  Controller,
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+interface Props {
+  disabled: boolean;
+  register: UseFormRegister<any>;
+  errors: FieldErrors<FieldValues>;
+  isRequired: boolean;
+  control?: Control<FieldValues>;
+}
+export const InputPhone: React.FC<Props> = ({
+  errors,
   register,
-  name,
-  Errormessage,
   isRequired,
+  disabled,
 }) => {
   return (
     <div className="mb-24">
-      <label htmlFor={name} className="title-susubsection2">
-        {label} <span className="text-danger">*</span>
+      <label htmlFor="phone" className="title-susubsection2">
+        رقم الهاتف <span className="text-danger">*</span>
       </label>
       <input
-        id={name}
-        type={inputtype}
-        className={hasError ? `input border-danger ` : "input"}
-        {...register(name, {
+        id="phone"
+        type="tel"
+        disabled={disabled}
+        className={errors.phone ? `input border-danger ` : "input"}
+        {...register("phone", {
           required: {
             value: isRequired,
-            message: Errormessage,
+            message: "يجب إدخال رقم الهاتف",
           },
-          // pattern: {
-          //   value:
-          //     name == "phoneNumber"
-          //       ? /^\+[0-9]{1,3}\.[0-9]{4,14}(?:x.+)?$/
-          //       : /[A-Za-z_][A-Za-z_0-9]/,
-          //   message: "يجب إدخال رقم هاتف صحيح",
-          // },
+          pattern: {
+            value: /^[\+]2?01[0125][0-9]{8}$/,
+            message: "هذا الهاتف غير صالح",
+          },
         })}
-        placeholder={placeholder}
+        placeholder="أدخل رقم الهاتف"
         autoComplete="username"
       />
-      {hasError && <p className="text-danger">{message}</p>}
+      {errors.phone && <p className="text-danger">{errors?.phone?.message}</p>}
     </div>
   );
 };

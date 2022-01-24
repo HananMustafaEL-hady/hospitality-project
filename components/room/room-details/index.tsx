@@ -6,6 +6,7 @@ import { Room } from "../../../models/rooms";
 import { ReservationSection } from "./reservation-section";
 import { RoomServices } from "./room-services";
 import { CapacitySection } from "./room-capacity";
+import { Owner } from "../../../models/owner.model";
 interface props {
   hasReservationSection: boolean;
   hasCapacitySection: boolean;
@@ -22,14 +23,14 @@ export const RoomDetails: React.FC<props> = ({
       <div className=" room-details__reservarion">
         {hasCapacitySection ? (
           <CapacitySection
-            id={room?.id}
+            id={room?._id}
             nightPrice={room?.nightPrice}
             capacity={room?.capacity}
           />
         ) : (
           ""
         )}
-        {hasReservationSection ? <ReservationSection id={room?.id} /> : ""}
+        {hasReservationSection ? <ReservationSection id={room?._id} /> : ""}
       </div>
       <div className="room-details__line"></div>
       <div>

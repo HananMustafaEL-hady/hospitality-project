@@ -55,7 +55,13 @@ export const HomeHOC: React.FC<Props> = ({ initialData }) => {
             }
             // endMessage={<h4>لا يوجد المزيد </h4>}
           >
-            {Roomspage && <RoomsCard Rooms={roomsScroll} roomscol={3} />}
+            {Roomspage && (
+              <RoomsCard
+                Rooms={roomsScroll}
+                roomscol={3}
+                isBookingCard={false}
+              />
+            )}
           </InfiniteScroll>
         )}
       </section>

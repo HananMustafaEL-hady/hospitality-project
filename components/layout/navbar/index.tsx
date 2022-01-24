@@ -9,10 +9,10 @@ import { NotificationDropdown } from "./nav-dropdown/notification-dropdown";
 import { AuthNav } from "./auth-nav";
 import { parseCookies } from "nookies";
 import { UnauthNav } from "./unauth-nav";
+import useCurrentUser from "../../../hook/select-current-user.hook";
 
 export const LayoutNavbar = () => {
-  const { token } = parseCookies();
-  console.log(token);
+  const { user } = useCurrentUser();
   return (
     <Navbar expand="lg" className="nav-layout">
       <Container>
@@ -26,7 +26,7 @@ export const LayoutNavbar = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
 
         <Navbar.Collapse id="navbarScroll">
-          {token ? <AuthNav /> : <UnauthNav />}
+          {user ? <AuthNav /> : <UnauthNav />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -12,8 +12,6 @@ export function useRoom(
   fallbackData: Room | undefined
 ): returnType {
   const { data, error } = useSWR(`/rooms/${id}`, { fallbackData });
-  console.log(id);
-  console.log(data);
   return {
     Room: data,
     isLoading: !data && !error,

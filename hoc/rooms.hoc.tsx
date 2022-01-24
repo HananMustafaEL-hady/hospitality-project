@@ -21,7 +21,6 @@ export const RoomsHOC: React.FC<Props> = ({ initialData }) => {
   const { profileID } = router.query;
   const { Roomspage, isLoading, error } = useRoomPagesProfile(
     pageNumber,
-
     initialData,
     profileID
   );

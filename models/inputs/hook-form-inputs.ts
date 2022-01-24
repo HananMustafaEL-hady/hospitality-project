@@ -24,6 +24,7 @@ export interface hookFormLogin {
   isLoading: boolean;
   errormessage?: string;
   watch: UseFormWatch<FieldValues>;
+  control?: Control<FieldValues>;
   setError: UseFormSetError<FieldValues>;
 }
 export interface hookformCheckbox {

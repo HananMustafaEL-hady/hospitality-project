@@ -5,18 +5,21 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import FormInputDate from "../../../form/inputs/date-input";
 import { BtnSearch } from "../../../form/button/btn-search";
 import { useRouter } from "next/router";
+import useSWR, { useSWRConfig } from "swr";
 
 interface filtrationtypes {
   count?: string | string[];
   startdate?: string | string[];
   enddate?: string | string[];
-  location?: string | string[];
+  longitude?: string | string[];
+  latitude?: string | string[];
 }
 export const FilterCard: React.FC<filtrationtypes> = ({
   count,
   startdate,
   enddate,
-  location,
+  longitude,
+  latitude,
 }) => {
   const {
     register,
@@ -28,18 +31,33 @@ export const FilterCard: React.FC<filtrationtypes> = ({
   const [toggleForm, setToggleForm] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const router = useRouter();
+  const { mutate } = useSWRConfig();
 
   const onSubmit: SubmitHandler<filtrationtypes> = (data) => {
     console.log(data);
     router.push({
       pathname: "/search",
       query: {
-        location: data.location,
-        toDate: data.startdate,
-        fromDate: data.enddate,
+        // latitude: data.latitude,
+        // longitude: data.longitude,
+        // toDate: data.startdate,
+        // fromDate: data.enddate,
+        capacity: data.count,
       },
     });
-    console.log(data);
+    let url = "";
+    if (latitude && longitude) {
+      url = `/rooms?pageNumber=1&limit=12&longitude=${
+        data.longitude
+      }&latitude=${data.latitude}&minCapacity=${
+        data.count ? data.count : ""
+      }&maxCapacity=${data.count ? data.count : ""}`;
+    } else {
+      url = `/rooms?pageNumber=1&limit=12&minCapacity=${
+        data.count ? data.count : ""
+      }&maxCapacity=${data.count ? data.count : ""}`;
+    }
+    mutate(url);
   };
   return (
     <form
@@ -85,6 +103,3 @@ export const FilterCard: React.FC<filtrationtypes> = ({
     </form>
   );
 };
-function pathname(pathname: any, arg1: string, state: any, arg3: {}) {
-  throw new Error("Function not implemented.");
-}

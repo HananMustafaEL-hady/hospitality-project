@@ -10,7 +10,6 @@ interface returnType {
 }
 export function useServices(): returnType {
   const { data, error } = useSWR(`/services`, {});
-  console.log(data);
   return {
     services: data,
     isLoading: !data && !error,

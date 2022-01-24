@@ -1,42 +1,43 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
+import nookies from "nookies";
 import { Layout } from "../../../components/layout/layout";
-import { RoomsData } from "../../../db";
 import { UserReservationsHOC } from "../../../hoc/user-reservations.hoc";
 import { BookingsPage } from "../../../models/bookings.model";
 import axios from "../../../utils/axios.util";
 
 interface Props {
-  bookings: BookingsPage;
+  bookingsPENDING: BookingsPage;
 }
-const ownerProfile: NextPage<Props> = ({ bookings }) => {
+const clientbookings: NextPage<Props> = ({ bookingsPENDING }) => {
   return (
     <Layout>
       <Head>
         <title>Your bookings </title>
       </Head>
-      <UserReservationsHOC bookings={bookings} />
+      <UserReservationsHOC bookingsPENDING={bookingsPENDING} />
     </Layout>
   );
 };
-export async function getStaticProps() {
-  try {
-    const response = await axios.get(
-      `/https://index-hospitality.herokuapp.com/bookings/clients?pageNumber=1&limit=9`
-    );
 
-    console.log(response);
-    const bookings = await response.data;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    const pending = await axios.get(
+      `/bookings/clients?pageNumber=1&limit=9&status=PENDING`
+    );
+    const data = await pending.data;
+    console.log(pending);
     return {
       props: {
-        bookings,
+        bookingsPENDING: data,
       },
     };
-  } catch {
+  } catch (err) {
+    console.log(err);
     return {
       props: {},
     };
   }
-}
+};
 
-export default ownerProfile;
+export default clientbookings;

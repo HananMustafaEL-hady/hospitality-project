@@ -4,11 +4,23 @@ import { RoomsCard } from "../components/room/rooms-card";
 import { Room } from "../models/rooms";
 import Image from "next/image";
 import { RoomRequestsCardS } from "../components/room/rooms-card/Incoming-request-cards";
+import { BookingsPage } from "../models/bookings.model";
+import { BookingsProvidersRoomsHOC } from "./bookings-providers.hoc";
 interface Props {
-  Rooms: [Room];
+  bookingsPENDING: BookingsPage;
+  bookingsCANCELLED_BY_CLIENT: BookingsPage;
+  bookingsREJECTED: BookingsPage;
+  bookingsAccepted: BookingsPage;
+  bookingsEXPIRED: BookingsPage;
 }
 
-export const IncomingRequestsHOC: React.FC<Props> = ({ Rooms }) => {
+export const IncomingRequestsHOC: React.FC<Props> = ({
+  bookingsPENDING,
+  bookingsCANCELLED_BY_CLIENT,
+  bookingsREJECTED,
+  bookingsAccepted,
+  bookingsEXPIRED,
+}) => {
   return (
     <section className="container mt-32">
       <Tabs id="left-tabs-example">
@@ -37,19 +49,34 @@ export const IncomingRequestsHOC: React.FC<Props> = ({ Rooms }) => {
           </div>
           <div className="col-lg-8 col-sm-12  section-edit-info-left">
             <TabPanel>
-              <RoomRequestsCardS Rooms={Rooms} />
+              <BookingsProvidersRoomsHOC
+                initialData={bookingsPENDING}
+                status={"PENDING"}
+              />
             </TabPanel>
             <TabPanel>
-              <RoomRequestsCardS Rooms={Rooms} />
+              <BookingsProvidersRoomsHOC
+                initialData={bookingsAccepted}
+                status={"ACCEPTED"}
+              />
             </TabPanel>
             <TabPanel>
-              <RoomRequestsCardS Rooms={Rooms} />
-            </TabPanel>{" "}
+              <BookingsProvidersRoomsHOC
+                initialData={bookingsAccepted}
+                status={"bookingsAccepted"}
+              />
+            </TabPanel>
             <TabPanel>
-              <RoomRequestsCardS Rooms={Rooms} />
-            </TabPanel>{" "}
+              <BookingsProvidersRoomsHOC
+                initialData={bookingsREJECTED}
+                status={"REJECTED"}
+              />
+            </TabPanel>
             <TabPanel>
-              <RoomRequestsCardS Rooms={Rooms} />
+              <BookingsProvidersRoomsHOC
+                initialData={bookingsEXPIRED}
+                status={"EXPIRED"}
+              />
             </TabPanel>
           </div>
         </div>

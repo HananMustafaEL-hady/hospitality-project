@@ -10,7 +10,7 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-import { BtnSearch } from "../../../../form/button/btn-search";
+// import { BtnSearch } from "../../../../form/button/btn-search";
 
 export const Search = () => {
   const {
@@ -40,7 +40,9 @@ export const Search = () => {
           disabled={!ready}
           placeholder="أدخل العنوان "
         />
-        <BtnSearch method={() => {}} />
+        <button className="btn-search-map" type="submit">
+          <i className="fas fa-search"></i>
+        </button>{" "}
         <ComboboxPopover>
           {status === "OK" &&
             data.map(({ id, description }) => (

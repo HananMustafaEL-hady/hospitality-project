@@ -9,6 +9,7 @@ import { RoomsHOC } from "./rooms.hoc";
 import { ProfileEditbtn } from "../components/profile/profile-edit-information/profile-edit-btn";
 import useCurrentUser from "../hook/select-current-user.hook";
 import { ProfileChatbtn } from "../components/profile/chat-btn";
+import { useRoomPagesProfile } from "../hook/rooms-profile.hook";
 interface Props {
   profile: Owner;
   Roomspage: Roomspage;
@@ -25,7 +26,7 @@ export const Profilehoc: React.FC<Props> = ({ profile, Roomspage }) => {
       <div className="profile-header"></div>
       <section className="container d-flex justify-content-between align-items-center">
         <OwnerCard owner={profileData} />
-        {profileID == user?.id ? <ProfileEditbtn /> : <ProfileChatbtn />}
+        {profileID == user?._id ? <ProfileEditbtn /> : <ProfileChatbtn />}
       </section>
       <div className="container mt-5">
         <RoomsHOC initialData={Roomspage} />

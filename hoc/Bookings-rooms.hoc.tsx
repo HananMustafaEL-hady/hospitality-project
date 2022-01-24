@@ -3,10 +3,10 @@ import { RoomsInfiniteScroll } from "../components/reservation/infinite-scroll";
 import { useBookingsPages } from "../hook/bookings-clients.hook.";
 import { BookingsPage } from "../models/bookings.model";
 interface props {
-  initialData: BookingsPage;
+  initialData?: BookingsPage;
   status: string;
 }
-export const BookingsRoomsHOC: React.FC<props> = ({ initialData, status }) => {
+export const BookingsRoomsHOC: React.FC<props> = ({ status, initialData }) => {
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   const { Bookingspage, isLoading, error } = useBookingsPages(

@@ -15,7 +15,7 @@ export interface Room {
   name: string;
   createdAt: string;
   updatedAt: string;
-  id: string;
+  _id: string;
   bookingid?: string;
 }
 

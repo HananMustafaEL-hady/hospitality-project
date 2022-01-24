@@ -2,11 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { destroyCookie, setCookie } from "nookies";
 import type { RootState } from "../store/store";
 import { createSelector } from "@reduxjs/toolkit";
+import { purgeStoredState } from "redux-persist";
+import { Cookies } from "react-cookie";
 
 interface User {
   name: string;
   phone: string;
-  id: number;
+  _id: number;
   profileImage: { original: ""; thumbnail: "" };
   roomCount: number;
   stripeCustomerId: string;
@@ -53,6 +55,7 @@ const authSlice = createSlice({
       state.user = null;
       destroyCookie(null, "token");
     },
+
     authFail: (
       state,
       { payload: { message } }: PayloadAction<{ message: string }>
@@ -65,7 +68,7 @@ const authSlice = createSlice({
 });
 
 const { reducer, actions } = authSlice;
-export const { addAuthUser, authFail, updateUser } = actions;
+export const { addAuthUser, authFail, updateUser, logout } = actions;
 export default reducer;
 
 export const CurrentUser = (state: RootState) => state.auth;

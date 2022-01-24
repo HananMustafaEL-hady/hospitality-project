@@ -4,11 +4,11 @@ import { RoomsCard } from "../components/room/rooms-card";
 import { BookingsPage } from "../models/bookings.model";
 import { BookingsRoomsHOC } from "./Bookings-rooms.hoc";
 interface Props {
-  bookings: BookingsPage;
+  bookingsPENDING: BookingsPage;
 }
 
-export const UserReservationsHOC: React.FC<Props> = ({ bookings }) => {
-  console.log(bookings);
+export const UserReservationsHOC: React.FC<Props> = ({ bookingsPENDING }) => {
+  console.log(bookingsPENDING);
   const [state, sethandleSelect] = useState(0);
 
   return (
@@ -50,45 +50,37 @@ export const UserReservationsHOC: React.FC<Props> = ({ bookings }) => {
               <Tab selectedClassName="tab-selected ">
                 <h2 className="font-14 m-0 "> منتهية</h2>
               </Tab>
+              <Tab selectedClassName="tab-selected ">
+                <h2 className="font-14 m-0 "> مرفوضة</h2>
+              </Tab>
             </TabList>
           </div>
           <div className="col-lg-8 col-sm-12  section-edit-info-left">
             <TabPanel>
-              {/* <RoomsCard
-                Rooms={Rooms}
-                roomscol={4}
-                urllink="/profile/reservations"
-              /> */}
+              <BookingsRoomsHOC
+                initialData={bookingsPENDING}
+                status={"PENDING"}
+              />
+            </TabPanel>
 
-              <BookingsRoomsHOC initialData={bookings} status={"PENDING"} />
+            <TabPanel>
+              <BookingsRoomsHOC status={"Accepted"} />
             </TabPanel>
+
             <TabPanel>
-              {/* <RoomsCard
-                Rooms={Rooms}
-                roomscol={4}
-                urllink="/profile/reservations"
-              /> */}
+              <BookingsRoomsHOC status={"completed"} />
             </TabPanel>
+
             <TabPanel>
-              {/* <RoomsCard
-                Rooms={Rooms}
-                roomscol={4}
-                urllink="/profile/reservations"
-              /> */}
-            </TabPanel>{" "}
+              <BookingsRoomsHOC status={"CANCELLED_BY_CLIENT"} />
+            </TabPanel>
+
             <TabPanel>
-              {/* <RoomsCard
-                Rooms={Rooms}
-                roomscol={4}
-                urllink="/profile/reservations"
-              /> */}
-            </TabPanel>{" "}
+              <BookingsRoomsHOC status={"EXPIRED"} />
+            </TabPanel>
+
             <TabPanel>
-              {/* <RoomsCard
-                Rooms={Rooms}
-                roomscol={4}
-                urllink="/profile/reservations"
-              /> */}
+              <BookingsRoomsHOC status={"REJECTED"} />
             </TabPanel>
           </div>
         </div>

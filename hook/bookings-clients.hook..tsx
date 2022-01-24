@@ -20,8 +20,7 @@ export function useBookingsPages(
       fallbackData,
     }
   );
-  console.log(page);
-  console.log(data);
+
   return {
     Bookingspage: data,
     isLoading: !data && !error,

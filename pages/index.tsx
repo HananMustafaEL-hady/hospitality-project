@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { Layout } from "../components/layout/layout";
 import { HomeHOC } from "../hoc/home.hoc";
 import { Roomspage } from "../models/rooms";
@@ -25,8 +24,6 @@ export const getServerSideProps = async (context: {
   const page = context.query.page;
   try {
     const response = await axios.get(`/rooms?pageNumber=1&limit=12`);
-
-    console.log(response);
     const Roomspage = await response.data;
     return {
       props: {

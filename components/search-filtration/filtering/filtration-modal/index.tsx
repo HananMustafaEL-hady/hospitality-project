@@ -2,14 +2,17 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FilterForm } from "../form";
 import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "next/router";
 
 interface Props {
   modalShow: boolean;
   setModalShow: Function;
+  setIsfiltering: Function;
 }
-export const Selectlocation: React.FC<Props> = ({
+export const FiltrationModal: React.FC<Props> = ({
   modalShow,
   setModalShow,
+  setIsfiltering,
 }) => {
   const {
     register,
@@ -19,9 +22,26 @@ export const Selectlocation: React.FC<Props> = ({
     watch,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
+  const { capacity } = router.query;
   const onSubmit = (data: any) => {
     console.log(data);
     setModalShow(!modalShow);
+    const countcapacity = data.capacity != 0 ? data.capacity : capacity;
+    const services = data.service != false ? data.service : "";
+    router.push({
+      query: {
+        // latitude: data.latitude,
+        // longitude: data.longitude,
+        // toDate: data.startdate,
+        // fromDate: data.enddate,
+        capacity: countcapacity,
+        maxNightPrice: data.maxNightPrice,
+        service: services,
+        minNightPrice: data.minNightPrice,
+      },
+    });
+    setIsfiltering(true);
   };
 
   return (
@@ -32,6 +52,7 @@ export const Selectlocation: React.FC<Props> = ({
         aria-labelledby="contained-modal-title-vcenter"
         centered
         contentClassName="modal-content-filtration"
+        c
       >
         <Modal.Header className="justify-content-center">
           <Modal.Title className="font-18 f-bold">عوامل التصفية</Modal.Title>

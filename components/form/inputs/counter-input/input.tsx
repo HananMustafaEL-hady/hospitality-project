@@ -9,14 +9,14 @@ export const FormCounterInput: React.FC<hookformCount> = ({
   const [count, setCount] = useState(0);
   return (
     <div>
-      <input type="hidden" {...register("countpersons")} value={count} />
+      <input type="hidden" {...register("capacity")} value={count} />
 
       <Button
         variant="default"
         className={` counterInput p-0  ${count == 0 ? "disabled" : ""}`}
         onClick={() => {
           setCount((prevcount) => prevcount - 1);
-          setValue("countpersons", count - 1);
+          setValue("capacity", count - 1);
         }}
       >
         <i className="fas fa-minus"></i>
@@ -28,7 +28,7 @@ export const FormCounterInput: React.FC<hookformCount> = ({
         className={`counterInput  p-0 btn-default `}
         onClick={() => {
           setCount((prevcount) => prevcount + 1);
-          setValue("countpersons", count + 1);
+          setValue("capacity", count + 1);
         }}
       >
         <i className="fas fa-plus"></i>

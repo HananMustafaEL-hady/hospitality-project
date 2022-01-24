@@ -22,7 +22,7 @@ export const Checkboxes: React.FC<Props> = ({
       {services?.map((item) => (
         <FormCheckboxInput
           key={item.name}
-          inputValue={item.id}
+          inputValue={item._id}
           inputPlaceholder={item.name}
           register={register}
           iconClass={item.name}

@@ -5,25 +5,32 @@ import Link from "next/link";
 import { BlurImage } from "../../blurimage";
 import { Room } from "../../../models/rooms";
 import useCurrentUser from "../../../hook/select-current-user.hook";
+import axios from "../../../utils/axios.util";
 interface Props {
   room: Room;
   isBookingCard: boolean;
 }
 export const RoomCard: React.FC<Props> = ({ room, isBookingCard }) => {
   const [stateFavorite, setStateFavorite] = useState(false);
+
+  const AddToFavourites = async () => {
+    setStateFavorite(!stateFavorite);
+
+    try {
+      const response = await axios.patch(`/users/favourites/${room._id}`);
+      const data = await response.data;
+      return data;
+    } catch (error: any) {}
+  };
   const { user } = useCurrentUser();
-  console.log(room.name.length);
   const cardurl = isBookingCard
     ? `/profile/reservations/${room?.bookingid}`
-    : room?.owner?.id == user?.id
-    ? `/profile/room/${room.id}`
-    : `/room/${room.id}`;
+    : room?.owner?._id == user?._id
+    ? `/profile/room/${room._id}`
+    : `/room/${room._id}`;
   return (
     <div className="room-card">
-      <div
-        className="heart_icon"
-        onClick={() => setStateFavorite(!stateFavorite)}
-      >
+      <div className="heart_icon" onClick={() => AddToFavourites()}>
         <i
           className={stateFavorite ? "fas fa-heart heart-fav" : "fas fa-heart"}
         ></i>

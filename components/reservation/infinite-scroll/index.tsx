@@ -28,7 +28,7 @@ export const RoomsInfiniteScroll: React.FC<Props> = ({
       Roomspage?.data?.map((item) =>
         setRoomsScroll((prevState: any) => [
           ...prevState,
-          { ...item.room, bookingid: item.id },
+          { ...item.room, bookingid: item._id },
         ])
       );
     }

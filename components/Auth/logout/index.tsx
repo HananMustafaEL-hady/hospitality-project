@@ -1,11 +1,21 @@
 import React, { MouseEventHandler } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { BtnSubmit } from "../../form/button/btn-submit";
+import { useDispatch } from "react-redux";
+import Router from "next/router";
+import { logout } from "../../../slices/auth.slices";
 interface props {
   handleShow: Function;
   show: Boolean;
 }
 export const Logout: React.FC<props> = ({ handleShow, show }) => {
+  const dispatch = useDispatch();
+
+  const LogoutFun = () => {
+    dispatch(logout());
+    Router.push(`/login`);
+
+    handleShow(!show);
+  };
   return (
     <>
       <Modal
@@ -23,7 +33,7 @@ export const Logout: React.FC<props> = ({ handleShow, show }) => {
             variant="primary"
             className="btn-md"
             onClick={() => {
-              handleShow(!show);
+              LogoutFun();
             }}
           >
             خروج

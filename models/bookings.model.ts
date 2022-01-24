@@ -1,20 +1,21 @@
+import { Owner } from "./owner.model";
 import { Room } from "./rooms";
-export interface Bookings {
+export interface Booking {
   status: string;
   isPaid: boolean;
   notes: string;
   endDate: string;
   startDate: string;
   room: Room;
-  provider: number;
-  client: number;
+  provider: Owner;
+  client: Owner;
   createdAt: string;
   updatedAt: string;
-  id: string;
+  _id: string;
 }
 
 export interface BookingsPage {
-  data: [Bookings];
+  data: [Booking];
   limit: number;
   totalCount: number;
   currentPage: number;

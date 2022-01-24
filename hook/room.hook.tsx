@@ -9,8 +9,7 @@ interface returnType {
 }
 export function useRoom(id: any, fallbackData: Room | undefined): returnType {
   const { data, error } = useSWR(`/rooms/${id}`, { fallbackData });
-  console.log(id);
-  console.log(data);
+
   return {
     Roomdata: data,
     isLoading: !data && !error,

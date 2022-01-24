@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { FilterCard } from "../components/home/home-filtration/filter-card";
 import { RoomsCard } from "../components/room/rooms-card";
-import { Selectlocation } from "../components/search-filtration/filtering/filtration-modal";
+import { FiltrationModal } from "../components/search-filtration/filtering/filtration-modal";
 import { SortModal } from "../components/search-filtration/sort/sorting-modal";
-import { Room } from "../models/inputs/Rooms";
 import { useRouter } from "next/router";
+import { Roomspage } from "../models/rooms";
+import { RoomsSearchHOC } from "./rooms-search.hoc";
 
 interface Props {
-  Rooms: [Room];
+  initialData?: Roomspage;
 }
 
-export const SearchResulthoc: React.FC<Props> = ({ Rooms }) => {
-  const [filteringModalShow, setFilteringModalShow] = React.useState(false);
-  const [sortingModalShow, setSortingModalShow] = React.useState(false);
+export const SearchResulthoc: React.FC<Props> = ({ initialData }) => {
+  console.log(initialData);
+  const [filteringModalShow, setFilteringModalShow] = useState(false);
+  const [sortingModalShow, setSortingModalShow] = useState(false);
+  const [isfiltering, setIsfiltering] = useState(false);
   const router = useRouter();
 
   return (
@@ -20,15 +23,20 @@ export const SearchResulthoc: React.FC<Props> = ({ Rooms }) => {
       <FilterCard
         enddate={router.query.fromDate}
         startdate={router.query.toDate}
-        location={router.query.location}
-        count={router.query?.count}
+        longitude={router.query.longitude}
+        latitude={router.query.latitude}
+        count={router.query?.capacity}
       />
       <section className="d-flex flex-row justify-content-lg-between justify-content-md-between justify-content-sm-center  flex-wrap mt-32 align-items-center">
         <h2 className="title-section"> نتائج البحث</h2>
 
         <div className="justify-content-center text-center">
           <button
-            className="btn btn-sm btn-outline-secondary ml-16 "
+            className={
+              !isfiltering
+                ? `btn btn-sm btn-outline-secondary ml-16 `
+                : `btn btn-sm btn-outline-primary ml-16 `
+            }
             onClick={() => setFilteringModalShow(!filteringModalShow)}
           >
             <i className="fas fa-sliders-v px-1"></i> {"  "}
@@ -46,11 +54,12 @@ export const SearchResulthoc: React.FC<Props> = ({ Rooms }) => {
       </section>
 
       <section className=" mt-5">
-        {/* <RoomsCard Rooms={Rooms} roomscol={3} /> */}
+        <RoomsSearchHOC initialData={initialData} />
       </section>
-      <Selectlocation
+      <FiltrationModal
         modalShow={filteringModalShow}
         setModalShow={setFilteringModalShow}
+        setIsfiltering={setIsfiltering}
       />
       <SortModal
         modalShow={sortingModalShow}

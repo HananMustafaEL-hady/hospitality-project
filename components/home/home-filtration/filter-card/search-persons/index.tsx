@@ -8,7 +8,9 @@ interface Props {
 }
 
 export const Filtercount: React.FC<Props> = ({ register, defaultValue }) => {
-  const [state, setstate] = useState("عدد الأفراد");
+  const [state, setstate] = useState(
+    defaultValue ? defaultValue : "عدد الأفراد"
+  );
   return (
     <div className="grid__item">
       <i
@@ -25,8 +27,12 @@ export const Filtercount: React.FC<Props> = ({ register, defaultValue }) => {
         onChange={(e) => {
           setstate(e.target.value);
         }}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue ? defaultValue : 0}
       >
+        <option className="d-none" value="1">
+          0
+        </option>
+
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>

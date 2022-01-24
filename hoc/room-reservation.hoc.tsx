@@ -32,8 +32,8 @@ export const RoomReservationhoc = () => {
           notes,
           room: roomid,
         });
-        console.log(response.data);
-        // Router.push(`/profile/reservations`);
+        const resData = await response.data;
+        Router.push(`/profile/reservations/${resData._id}`);
       } catch (err: any) {
         console.log(err);
       }

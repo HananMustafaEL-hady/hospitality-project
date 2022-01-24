@@ -19,9 +19,7 @@ export default function useSignup(Data: any, OTPCode: string) {
         try {
           setLoading(true);
           const response1 = await axios.post("/otp/verify", { phone, OTPCode });
-          console.log(formData);
-          const response2 = await axios.post("", formData);
-          console.log(response2.data);
+          const response2 = await axios.post("/auth/signup", formData);
           dispatch(
             addAuthUser({
               user: response2.data.user,
@@ -31,7 +29,6 @@ export default function useSignup(Data: any, OTPCode: string) {
           Router.push(`/`);
           setData(response2.data);
         } catch (err: any) {
-          console.log(err);
           setError(err?.message);
           authFail(err?.message);
         } finally {

@@ -11,6 +11,9 @@ import useCurrentUser from "../../../hook/select-current-user.hook";
 import { getFormData } from "../../FormDataFun";
 import { updateUser } from "../../../slices/auth.slices";
 import { useDispatch } from "react-redux";
+import { mutate } from "swr";
+import { InputPhone } from "../../form/inputs/phone-input";
+
 export const EditInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -45,12 +48,14 @@ export const EditInfo = () => {
         const response = await axios.patch("/users/updateProfile", formdata);
         console.log(response.data);
         dispatch(updateUser({ user: response.data }));
-        Router.push(`/profile/${user?.id}`);
+        mutate(`/rooms?pageNumber=1&limit=12&owners=${user?._id}`, false);
+        mutate(`/users/${user?._id}`, false);
+
+        Router.push(`/profile/${user?._id}`);
       } catch (err: any) {
         console.log(err);
       }
     })();
-    setIsLoading(false);
   }
   return (
     <section className="section-edit-info ">
@@ -84,16 +89,11 @@ export const EditInfo = () => {
           />
         </div>
         <div className="mb-16">
-          <FormInput
-            register={register}
-            placeholder="أدخل رقم الهاتف"
-            inputtype="tel"
-            label="  رقم الهاتف"
-            hasError={Boolean(errors?.phone)}
-            message={errors?.phone?.message}
-            name="phone"
-            Errormessage="يجب إدخال رقم الهاتف"
+          <InputPhone
             isRequired={true}
+            register={register}
+            errors={errors}
+            disabled={true}
           />
         </div>
         <EditBtns

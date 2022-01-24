@@ -2,9 +2,8 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import SignupAPI from "../api/auth.api";
+import { SignupAPI } from "../api/auth.api";
 import AuthOTP from "../components/Auth/OTP";
-import useSignup from "../hook/signup.hook";
 import { authUser } from "../models/auth.model";
 interface Props {
   formdata: authUser;

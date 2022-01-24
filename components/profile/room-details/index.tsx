@@ -24,7 +24,7 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
           <button
             className="btn btn-outline-primary btn-sm ml-16 mb-16 "
             onClick={() => {
-              router.push(`/room/edit/${room.id}`);
+              router.push(`/room/edit/${room._id}`);
             }}
           >
             <i className="fas fa-pen mx-2 "></i>
@@ -64,8 +64,8 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
       <DeleteRoom
         handleShow={setDeleteModalShow}
         show={deleteModalShow}
-        roomid={room?.id}
-        ownerid={room?.owner?.id}
+        roomid={room?._id}
+        ownerid={room?.owner?._id}
       />
     </div>
   );

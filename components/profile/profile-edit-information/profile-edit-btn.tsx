@@ -7,7 +7,7 @@ export const ProfileEditbtn = () => {
   return (
     <div>
       <button
-        className="btn btn-outline-primary btn-sm"
+        className="btn btn-outline-primary btn-sm mt-3"
         onClick={() => {
           router.push("/profile/edit");
         }}

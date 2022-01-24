@@ -11,16 +11,18 @@ export const EmailInput: React.FC<FormInputProps> = ({
   isRequired,
 }) => {
   const [state, setstate] = useState(false);
-  //   if (state) {
-  //     setError(
-  //       "email",
-  //       {
-  //         type: "server",
-  //         message: "تم استخدام هذا البريد من قبل",
-  //       },
-  //       { shouldFocus: true }
-  //     );
-  //   }
+  console.log(setError);
+  if (state) {
+    setError &&
+      setError(
+        "email",
+        {
+          type: "server",
+          message: "تم استخدام هذا البريد من قبل",
+        },
+        { shouldFocus: true }
+      );
+  }
   return (
     <div className="mb-24">
       <label htmlFor="email" className="title-susubsection2">
@@ -47,15 +49,18 @@ export const EmailInput: React.FC<FormInputProps> = ({
             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
             message: "هذا البريد الإلكتروني غير صالح ",
           },
-          //   validate: {
-          //     asyncValidate: async (e) => {
-          //       console.log(e);
-          //       const res = await axios.post("users/checkEmail", { e });
-          //       const data = await res.data;
-          //       setstate(data);
-          //       return data;
-          //     },
-          //   },
+          validate: {
+            asyncValidate: async (e) => {
+              try {
+                const res = await axios.post("/users/checkEmail", { email: e });
+                const data = await res.data;
+                setstate(data);
+                return !data || "تم استخدام هذا البريد من قبل";
+              } catch (error) {
+                // return false;
+              }
+            },
+          },
         })}
         placeholder="أدخل البريد الالكتروني"
         autoComplete="email"

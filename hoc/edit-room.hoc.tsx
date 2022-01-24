@@ -8,6 +8,8 @@ import { Toast } from "../components/toast";
 import { getFormData } from "../components/FormDataFun";
 import axios from "../utils/axios.util";
 import Router from "next/router";
+import useSWR, { useSWRConfig } from "swr";
+import { userInfo } from "os";
 
 interface Props {
   room: Room;
@@ -15,9 +17,13 @@ interface Props {
 export const EditRoomhoc: React.FC<Props> = ({ room }) => {
   const router = useRouter();
   const { roomID } = router.query;
+  const [isLoadingState, setIsLoadingState] = useState(false);
+
   const { Roomdata, isLoading, error } = useRoom(roomID, room);
+  const { mutate } = useSWRConfig();
+
   // const [isLoading, setIsLoading] = useState(false);
-  console.log(Roomdata?.services[0].id);
+  console.log(Roomdata?.services[0]._id);
   const {
     register,
     handleSubmit,
@@ -43,13 +49,13 @@ export const EditRoomhoc: React.FC<Props> = ({ room }) => {
         };
       }),
       service: Roomdata?.services.map((item, index) => {
-        return item.id;
+        return item._id;
       }),
     },
   });
 
   async function onSubmit(data: any) {
-    // setIsLoading(true);
+    setIsLoadingState(true);
     const imagesarr = [];
     const imagearr = [];
 
@@ -66,8 +72,16 @@ export const EditRoomhoc: React.FC<Props> = ({ room }) => {
       console.log(formData);
       const res = await axios.patch(`/rooms/${roomID}`, formData);
       console.log(res);
+      // setIsLoadingState(false);
 
       Router.push(`/profile/room/${roomID}`);
+      mutate(`/rooms/${Roomdata?._id}`);
+      mutate(
+        `/rooms?pageNumber=1&limit=12&owners=${Roomdata?.owner._id}`,
+        true
+      );
+
+      // mutate(`/rooms?pageNumber=1&limit=12&owners=5`, true);
 
       return res.data;
     } catch (error: any) {
@@ -82,7 +96,7 @@ export const EditRoomhoc: React.FC<Props> = ({ room }) => {
       onSubmit={onSubmit}
       register={register}
       control={control}
-      isLoading={false}
+      isLoading={isLoadingState}
       errors={errors}
       setValue={setValue}
     />

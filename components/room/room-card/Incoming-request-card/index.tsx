@@ -2,48 +2,37 @@ import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
+import { Room } from "../../../../models/rooms";
 interface RoomIncomingReques {
-  id: string;
-  description: string;
-  imageurl: string;
-  location: string;
-  price: number;
-  FromDate: string;
-  Todate: string;
+  room: Room;
 }
 
 export const IncomingRequestRoomCard: React.FC<RoomIncomingReques> = ({
-  description,
-  imageurl,
-  location,
-  FromDate,
-  Todate,
-  id,
-  price,
+  room,
 }) => {
   return (
-    <Link href={`/profile/incomingrequests/${id}`}>
+    <Link href={`/profile/incomingrequests/${room.bookingid}`}>
       <div className="IncomingRequestRoomCard">
         <div className="IncomingRequestRoomCard__img">
-          <img src={imageurl} />
+          <img src={room.images[0].original} />
         </div>
         <div className="IncomingRequestRoomCard__right">
-          <h3 className="IncomingRequestRoomCard__description">
-            {description}
-          </h3>
+          <h3 className="IncomingRequestRoomCard__description">{room.name}</h3>
           <h4 className="IncomingRequestRoomCard__location">
             <i className="fa fa-map-marker"></i>
-            {location}
+            {room.location.coordinates}
           </h4>
           <div className="d-flex align-items-center justify-content-between">
             <h4 className="IncomingRequestRoomCard__date">
               <i className="fas fa-calendar-week"></i>
               <span> من تاريخ</span>
-              {FromDate}
+              {/* {room} */}
               <span> إلى تاريخ</span>
-              {Todate}
+              {/* {room.} */}
             </h4>
-            <h4 className="IncomingRequestRoomCard__price">{price}L.E</h4>
+            <h4 className="IncomingRequestRoomCard__price">
+              {room.nightPrice}L.E
+            </h4>
           </div>
         </div>
       </div>

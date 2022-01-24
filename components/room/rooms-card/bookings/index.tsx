@@ -11,8 +11,8 @@ export const RoomsCard: React.FC<Props> = ({ Rooms, roomscol }) => {
     <section className="row ">
       {Rooms?.map((room) => {
         return (
-          <div key={room.id} className={`col-lg-${roomscol} col-md-6`}>
-            <RoomCard room={room} />
+          <div key={room._id} className={`col-lg-${roomscol} col-md-6`}>
+            <RoomCard room={room} isBookingCard={true} />
           </div>
         );
       })}

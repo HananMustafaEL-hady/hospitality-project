@@ -1,16 +1,13 @@
-import { AxiosError } from "axios";
 import axios from "../utils/axios.util";
-import { mapAxiosError } from "../utils/map-error.util";
 export async function OTPsend(
   phone: string,
   setOTPResponse: Function,
   setISSignupform: Function
 ) {
-  console.log(phone);
   try {
     const response = await axios.post("/otp/send", { phone });
-
-    setOTPResponse(response.data);
+    const data = await response.data;
+    setOTPResponse(data);
     setISSignupform(false);
 
     return response.data;

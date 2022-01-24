@@ -12,6 +12,16 @@
     cursor: pointer;
     position: sticky;
     top: 82px;
+    &__img {
+      // height: 133px;
+      // width: 133px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      margin-bottom: funToRem(16);
+      width: 140px;
+      height: 140px;
+      border: 0.76px solid #d2d2d2;
+    }
   }
   &__fav-btn {
     border: 1px solid #626a6f;
@@ -97,6 +107,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+    &__services {
+      flex-direction: column;
+      &__icons {
+        margin-bottom: funToRem(8);
+      }
     }
   }
 

@@ -22,6 +22,7 @@ export const SignupHOC = () => {
     register,
     handleSubmit,
     reset,
+
     formState: { errors },
     control,
     setError,
@@ -32,7 +33,6 @@ export const SignupHOC = () => {
   async function onSubmitFun(data: any) {
     setIsLoading(true);
     await OTPsend(data.phone, setOTPResponse, setISSignupform);
-    console.log(OTPResponse);
     const { email, name, password, phone } = data;
     const profileImage = data?.profileImage ? data.profileImage[0] : "";
     SetDataFormState({ email, name, password, phone, profileImage });
@@ -52,6 +52,7 @@ export const SignupHOC = () => {
             watch={watch}
             errormessage={OTPResponse}
             setError={setError}
+            control={control}
           />
         </Fragment>
       ) : (

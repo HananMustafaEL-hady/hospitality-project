@@ -1,4 +1,5 @@
 import { image, OwnerImage } from "./image.model";
+import { Room } from "./rooms";
 
 export interface Owner {
   stripeCustomerId: string;
@@ -8,6 +9,7 @@ export interface Owner {
   phone: string;
   createdAt: string;
   updatedAt: string;
-  id: number;
+  _id: number;
   profileImage: OwnerImage;
+  favourite: [Room];
 }

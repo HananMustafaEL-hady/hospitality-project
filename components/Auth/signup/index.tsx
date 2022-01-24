@@ -6,6 +6,7 @@ import { EmailInput } from "../../form/inputs/email-input";
 import { FormInput } from "../../form/inputs/form-input";
 import { FormInputImage } from "../../form/inputs/image-input";
 import { FormPasswordInput } from "../../form/inputs/password-input/index";
+import { InputPhone } from "../../form/inputs/phone-input";
 import { Logo } from "../../logo";
 
 export const SignupForm: React.FC<hookFormLogin> = ({
@@ -17,6 +18,7 @@ export const SignupForm: React.FC<hookFormLogin> = ({
   watch,
   errormessage,
   setError,
+  control,
 }) => {
   const password = watch("password", "");
 
@@ -42,6 +44,7 @@ export const SignupForm: React.FC<hookFormLogin> = ({
                 <FormInputImage
                   imagename={"profileImage"}
                   register={register}
+                  imagaurl={""}
                 />
                 {errors?.profileImage?.message && (
                   <p className="text-danger">{errors?.profileImage?.message}</p>
@@ -59,19 +62,25 @@ export const SignupForm: React.FC<hookFormLogin> = ({
                 isRequired={true}
                 setError={setError}
               />
-
               <FormInput
                 register={register}
-                placeholder="أدخل رقم الهاتف"
-                inputtype="tel"
-                label="  رقم الهاتف"
-                hasError={Boolean(errors?.phonenumber)}
-                message={errors?.phonenumber?.message}
-                Errormessage="يجب إدخال رقم الهاتف"
+                placeholder="أدخل "
+                inputtype="text"
+                label="رقم الهاتف"
+                name="phone"
+                hasError={Boolean(errors?.phone)}
+                message={errors?.phone?.message}
+                Errormessage={"يجب إدخال الهاتف"}
                 isRequired={true}
-                name={"phone"}
                 setError={setError}
               />
+
+              {/* <InputPhone
+                isRequired={true}
+                register={register}
+                errors={errors}
+                disabled={false}
+              /> */}
 
               <EmailInput
                 register={register}

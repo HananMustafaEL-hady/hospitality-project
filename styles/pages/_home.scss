@@ -43,6 +43,8 @@
 .grid__item {
   direction: rtl;
   padding: 0 10px;
+  cursor: pointer;
+
   border-left: 1px solid $secondary_gray_color;
   &:last-child {
     border: 0;

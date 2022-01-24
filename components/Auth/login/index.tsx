@@ -2,8 +2,8 @@ import Link from "next/link";
 import React from "react";
 import { hookFormLogin } from "../../../models/inputs/hook-form-inputs";
 import { BtnSubmit } from "../../form/button/btn-submit";
-import { FormInput } from "../../form/inputs/form-input";
 import { FormPasswordInput } from "../../form/inputs/password-input/index";
+import { InputPhone } from "../../form/inputs/phone-input";
 
 export const LoginForm: React.FC<hookFormLogin> = ({
   onSubmitFun,
@@ -23,16 +23,11 @@ export const LoginForm: React.FC<hookFormLogin> = ({
       </div>
 
       <form className="login__form mb-24">
-        <FormInput
-          register={register}
-          placeholder="أدخل رقم الهاتف"
-          inputtype="tel"
-          label="  رقم الهاتف"
-          hasError={Boolean(errors?.username)}
-          message={errors?.username?.message}
-          name="username"
-          Errormessage="يجب إدخال رقم الهاتف"
+        <InputPhone
           isRequired={true}
+          register={register}
+          errors={errors}
+          disabled={false}
         />
         <FormPasswordInput
           register={register}

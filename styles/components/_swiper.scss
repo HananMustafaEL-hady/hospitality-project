@@ -74,3 +74,35 @@
 .swiper-button-prev::after {
   display: none;
 }
+
+@media (max-width: 376px) {
+  .mySwiper {
+    width: 280px;
+    justify-content: center;
+  }
+  .swiper-wrapper {
+    align-items: center;
+  }
+  .mySwiper img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.divImage {
+  position: relative;
+  .deleteImage {
+    position: absolute;
+    color: red;
+    top: 1px;
+    z-index: 100;
+    right: 5px;
+    display: none;
+    cursor: pointer;
+  }
+  &:hover {
+    .deleteImage {
+      display: inline-block;
+    }
+  }
+}

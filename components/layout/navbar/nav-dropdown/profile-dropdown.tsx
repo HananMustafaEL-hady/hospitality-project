@@ -8,7 +8,6 @@ import { RootState } from "../../../../store/store";
 export const ProfileDropdown = () => {
   const [logoutModalShow, setLogoutModalShow] = React.useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log("user", user);
   const name = user ? user?.name.split(" ") : [""];
   return (
     <Fragment>
@@ -17,7 +16,7 @@ export const ProfileDropdown = () => {
         id="navbarScrollingDropdowProfile"
       >
         <div className="dropdown-menu-profile">
-          <Link href={`/profile/${user?.id}`}>
+          <Link href={`/profile/${user?._id}`}>
             <a className="dropdown-item">الملف الشخصي</a>
           </Link>
           <Link href={"/profile/incomingrequests"}>
@@ -26,7 +25,7 @@ export const ProfileDropdown = () => {
           <Link href={"/profile/reservations"}>
             <a className="dropdown-item"> حجوزاتي</a>
           </Link>
-          <Link href={"/profile/reservations"}>
+          <Link href={"/profile/favourites"}>
             <a className="dropdown-item"> المفضلات</a>
           </Link>
           <NavDropdown.Item

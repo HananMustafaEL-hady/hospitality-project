@@ -6,20 +6,13 @@ import Router from "next/router";
 import { useDispatch } from "react-redux";
 import { addAuthUser, authFail } from "../slices/auth.slices";
 
-export default async function SignupAPI(
-  Data: any,
-  otp: string,
-  dispatch: Dispatch
-) {
+export async function SignupAPI(Data: any, otp: string, dispatch: Dispatch) {
   const { phone } = Data;
-  console.log(phone);
   const formData = getFormData(Data);
 
   try {
     const response1 = await axios.post("/otp/verify", { phone, otp });
-    console.log(formData);
     const response2 = await axios.post("/auth/signup", formData);
-    console.log(response2.data);
     dispatch(
       addAuthUser({
         user: response2.data.user,
@@ -28,7 +21,21 @@ export default async function SignupAPI(
     );
     Router.push(`/`);
   } catch (err: any) {
-    console.log(err);
+    authFail(err?.message);
+  }
+}
+
+export async function LoginAPI(Data: any, dispatch: Dispatch) {
+  try {
+    const response2 = await axios.post("/auth/login", Data);
+    dispatch(
+      addAuthUser({
+        user: response2.data.user,
+        token: response2.data.token,
+      })
+    );
+    Router.push(`/`);
+  } catch (err: any) {
     authFail(err?.message);
   }
 }

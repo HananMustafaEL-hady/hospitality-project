@@ -1,6 +1,7 @@
 import { getFormData } from "../components/FormDataFun";
 import axios from "../utils/axios.util";
 import Router from "next/router";
+import { mutate } from "swr";
 
 export const AddRoomAPI = async (
   data: any,
@@ -8,7 +9,6 @@ export const AddRoomAPI = async (
   setIsLoading: Function,
   setSuccessMessage: Function
 ) => {
-  console.log(data);
   const formData = getFormData(data);
   try {
     console.log(formData);
@@ -17,11 +17,10 @@ export const AddRoomAPI = async (
     setIsLoading(false);
     setErrorMessage("");
     setSuccessMessage("تم إضافة الغرفة بنجاح");
-    Router.push(`/profile/room/${res.data?.id}`);
+    Router.push(`/profile/room/${res.data?._id}`);
 
     return res.data;
   } catch (error: any) {
-    console.log(error?.message);
     setIsLoading(false);
     setSuccessMessage("");
     setErrorMessage(error?.message);
@@ -31,10 +30,14 @@ export const AddRoomAPI = async (
 export const deleteRoom = async (roomid: string, userid: number) => {
   try {
     const res = await axios.delete(`/rooms/${roomid}`);
-    console.log(res);
+    mutate(`/rooms?pageNumber=1&limit=12&owners=${userid}`);
+    // mutate(`/rooms?pageNumber=1&limit=12&owners=${userid}`, (data: any)=> {
+    //   console.log(data);
+    //   return data.filter((item: any) => item._id !== roomid);
+    // }, false);
     Router.push(`/profile/${userid}`);
     return res.data;
   } catch (error: any) {
-    console.log(error?.message);
+    // console.log(error?.message);
   }
 };
