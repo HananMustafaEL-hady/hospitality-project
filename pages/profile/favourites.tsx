@@ -5,7 +5,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { requireAuthentication } from "../../hoc/require-authentication.hoc";
 import ProfileFavouriteshoc from "../../hoc/profile-favourites.hoc";
 import { Room } from "../../models/rooms";
-import axios from "axios";
+import axios from "../../utils/axios.util";
 import nookies from "nookies";
 
 interface Props {
@@ -28,14 +28,7 @@ export const getServerSideProps: GetServerSideProps = requireAuthentication(
   async (context) => {
     const cookies = nookies.get(context);
     try {
-      const respons = await axios.get(
-        `https://index-hospitality.herokuapp.com/users/profile`,
-        {
-          headers: {
-            Authorization: cookies.token ? `Bearer ${cookies.token}` : "",
-          },
-        }
-      );
+      const respons = await axios.get(`users/profile`);
 
       const data = await respons.data;
       return {

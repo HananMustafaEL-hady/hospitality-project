@@ -4,7 +4,7 @@ import { Profilehoc } from "../../../hoc/profile.hoc";
 import { GetServerSideProps, NextPage } from "next";
 import axios from "../../../utils/axios.util";
 import { Owner } from "../../../models/owner.model";
-import { Room, Roomspage } from "../../../models/rooms";
+import { Roomspage } from "../../../models/rooms";
 interface Props {
   profile: Owner;
   Roomspage: Roomspage;

@@ -27,11 +27,7 @@ export const getServerSideProps: GetServerSideProps = requireAuthentication(
   async (context) => {
     const cookies = nookies.get(context);
     try {
-      const response = await axios.get(`/notifications?pageNumber=1&limit=12`, {
-        headers: {
-          Authorization: cookies.token ? `Bearer ${cookies.token}` : "",
-        },
-      });
+      const response = await axios.get(`/notifications?pageNumber=1&limit=12`);
 
       const notificationpage = await response.data;
       return {

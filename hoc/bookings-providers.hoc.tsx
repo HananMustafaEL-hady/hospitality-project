@@ -5,7 +5,7 @@ import { useBookingsProvidersPages } from "../hook/booking-providers.hook";
 import { useBookingsPages } from "../hook/bookings-clients.hook.";
 import { BookingsPage } from "../models/bookings.model";
 interface props {
-  initialData: BookingsPage;
+  initialData?: BookingsPage;
   status: string;
 }
 export const BookingsProvidersRoomsHOC: React.FC<props> = ({

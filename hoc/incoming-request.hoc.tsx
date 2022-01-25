@@ -8,19 +8,9 @@ import { BookingsPage } from "../models/bookings.model";
 import { BookingsProvidersRoomsHOC } from "./bookings-providers.hoc";
 interface Props {
   bookingsPENDING: BookingsPage;
-  bookingsCANCELLED_BY_CLIENT: BookingsPage;
-  bookingsREJECTED: BookingsPage;
-  bookingsAccepted: BookingsPage;
-  bookingsEXPIRED: BookingsPage;
 }
 
-export const IncomingRequestsHOC: React.FC<Props> = ({
-  bookingsPENDING,
-  bookingsCANCELLED_BY_CLIENT,
-  bookingsREJECTED,
-  bookingsAccepted,
-  bookingsEXPIRED,
-}) => {
+export const IncomingRequestsHOC: React.FC<Props> = ({ bookingsPENDING }) => {
   return (
     <section className="container mt-32">
       <Tabs id="left-tabs-example">
@@ -55,28 +45,16 @@ export const IncomingRequestsHOC: React.FC<Props> = ({
               />
             </TabPanel>
             <TabPanel>
-              <BookingsProvidersRoomsHOC
-                initialData={bookingsAccepted}
-                status={"ACCEPTED"}
-              />
+              <BookingsProvidersRoomsHOC status={"ACCEPTED"} />
             </TabPanel>
             <TabPanel>
-              <BookingsProvidersRoomsHOC
-                initialData={bookingsAccepted}
-                status={"bookingsAccepted"}
-              />
+              <BookingsProvidersRoomsHOC status={"bookingsAccepted"} />
             </TabPanel>
             <TabPanel>
-              <BookingsProvidersRoomsHOC
-                initialData={bookingsREJECTED}
-                status={"REJECTED"}
-              />
+              <BookingsProvidersRoomsHOC status={"REJECTED"} />
             </TabPanel>
             <TabPanel>
-              <BookingsProvidersRoomsHOC
-                initialData={bookingsEXPIRED}
-                status={"EXPIRED"}
-              />
+              <BookingsProvidersRoomsHOC status={"EXPIRED"} />
             </TabPanel>
           </div>
         </div>
