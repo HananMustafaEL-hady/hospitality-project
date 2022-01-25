@@ -4,10 +4,10 @@ import { Nav } from "react-bootstrap";
 import { ChatNotificationDropdown } from "./nav-dropdown/chat-notification-dropdown";
 import { NotificationDropdown } from "./nav-dropdown/notification-dropdown";
 import { ProfileDropdown } from "./nav-dropdown/profile-dropdown";
-import useCurrentUser from "../../../hook/select-current-user.hook";
-
+import { useSelector } from "react-redux";
+import { useCurrentUser } from "../../../slices/auth.slices";
 export const AuthNav = () => {
-  const { user } = useCurrentUser();
+  const user = useSelector(useCurrentUser);
 
   return (
     <Nav className="me-auto my-2 my-lg-0 " navbarScroll>

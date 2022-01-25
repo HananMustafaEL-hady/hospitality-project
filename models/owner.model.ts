@@ -11,5 +11,5 @@ export interface Owner {
   updatedAt: string;
   _id: number;
   profileImage: OwnerImage;
-  favourite: [Room];
+  favourites: [Room];
 }

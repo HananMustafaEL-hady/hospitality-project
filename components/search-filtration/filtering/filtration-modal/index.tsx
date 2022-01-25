@@ -35,6 +35,7 @@ export const FiltrationModal: React.FC<Props> = ({
         // longitude: data.longitude,
         // toDate: data.startdate,
         // fromDate: data.enddate,
+        page: 1,
         capacity: countcapacity,
         maxNightPrice: data.maxNightPrice,
         service: services,

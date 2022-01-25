@@ -2,18 +2,19 @@ import useSWR from "swr";
 import { AxiosError } from "axios";
 import { Owner } from "../models/owner.model";
 import { Room } from "../models/rooms";
+import Router from "next/router";
 interface returnType {
-  favourites?: [Room];
+  owner?: Owner;
   isLoading: boolean;
   error?: AxiosError;
 }
 export function useFavourites(fallbackData?: Owner): returnType {
-  const { data, error } = useSWR(`/users/profile`, {
+  const { data, error } = useSWR(`/users/${Router.query.profileID}`, {
     fallbackData,
   });
 
   return {
-    favourites: data?.favourite,
+    owner: data,
     isLoading: !data && !error,
     error: error,
   };

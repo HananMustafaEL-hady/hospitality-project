@@ -6,9 +6,9 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
   inputValue,
   inputPlaceholder,
   register,
-  iconClass,
   isRequired,
 }) => {
+  console.log(inputPlaceholder);
   return (
     <div className="d-inline-block ml-8 mb-8">
       <input
@@ -24,8 +24,11 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
         value={inputValue}
       />
       <label htmlFor={inputValue} className="CheckboxInput">
-        <i className={`fas fa-${iconClass}`}></i>
         <span>{inputPlaceholder}</span>
+
+        <span
+          className={`$icon icon-${inputPlaceholder} ml-8 CheckboxInput__text `}
+        ></span>
       </label>
     </div>
   );

@@ -9,6 +9,8 @@ import {
   NotFoundError,
   InternalServerError,
 } from "../models/errors.model";
+import Router from "next/router";
+
 export function mapAxiosError(error: AxiosError) {
   console.log(error);
   if (!error.response) {
@@ -16,10 +18,11 @@ export function mapAxiosError(error: AxiosError) {
   } else {
     const status = error.response.status;
     const causeError = error.response.data;
-    console.log(causeError);
     switch (status) {
       case 401:
+        Router.push(`/login`);
         return new UnAuthenticatedError("خطأ في بيانات المرور");
+
       case 403:
         return new ForbiddenError();
       case 400:
@@ -27,6 +30,8 @@ export function mapAxiosError(error: AxiosError) {
       // case 422:
       // 	return _mapUnProccessableEntityError(causeError.errors);
       case 404:
+        Router.push(`/notfound`);
+
         return new NotFoundError(causeError.errors[0].message);
       case 409:
         return new ConflictError(causeError.message);

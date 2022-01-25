@@ -9,8 +9,9 @@ import "swiper/css/thumbs";
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 interface Props {
   images: any[];
+  isbusy?: boolean;
 }
-export const ImagesSwiper: React.FC<Props> = ({ images }) => {
+export const ImagesSwiper: React.FC<Props> = ({ images, isbusy }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   return (
     <section className="container">
@@ -23,7 +24,18 @@ export const ImagesSwiper: React.FC<Props> = ({ images }) => {
         {images.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={item.original} />
+              <div className="container-overlay">
+                <img src={item.original} />
+                {isbusy ? (
+                  <div className="container-overlay__img">
+                    <div className="container-overlay__text">
+                      الغرفة معطلة الآن
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </SwiperSlide>
           );
         })}

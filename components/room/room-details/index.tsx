@@ -30,7 +30,11 @@ export const RoomDetails: React.FC<props> = ({
         ) : (
           ""
         )}
-        {hasReservationSection ? <ReservationSection id={room?._id} /> : ""}
+        {hasReservationSection ? (
+          <ReservationSection id={room?._id} isbusy={room?.busy} />
+        ) : (
+          ""
+        )}
       </div>
       <div className="room-details__line"></div>
       <div>

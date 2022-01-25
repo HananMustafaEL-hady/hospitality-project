@@ -15,11 +15,3 @@ const editInformation = () => {
 };
 
 export default editInformation;
-
-export const getServerSideProps: GetServerSideProps = requireAuthentication(
-  async (context) => {
-    return {
-      props: {},
-    };
-  }
-);

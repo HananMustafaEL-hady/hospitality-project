@@ -3,6 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Router from "next/router";
 import { logout } from "../../../slices/auth.slices";
+import { destroyCookie } from "nookies";
 interface props {
   handleShow: Function;
   show: Boolean;
@@ -12,6 +13,7 @@ export const Logout: React.FC<props> = ({ handleShow, show }) => {
 
   const LogoutFun = () => {
     dispatch(logout());
+    destroyCookie(null, "token");
     Router.push(`/login`);
 
     handleShow(!show);

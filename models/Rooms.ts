@@ -17,6 +17,8 @@ export interface Room {
   updatedAt: string;
   _id: string;
   bookingid?: string;
+  busy: boolean;
+  isFavourite: boolean;
 }
 
 export interface Roomspage {

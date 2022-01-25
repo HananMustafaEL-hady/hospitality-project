@@ -10,7 +10,7 @@ interface Props {
 export const RoomDetailshoc: React.FC<Props> = ({ room }) => {
   return (
     <div className="container ">
-      <ImagesSwiper images={room.images} />
+      <ImagesSwiper images={room.images} isbusy={room.busy} />
       <div className="row g-1 room-details">
         <div className="col-lg-3 col-md-12">
           <ProfileCard owner={room?.owner} />

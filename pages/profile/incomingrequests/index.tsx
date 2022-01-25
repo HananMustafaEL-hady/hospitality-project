@@ -2,9 +2,9 @@ import { Layout } from "../../../components/layout/layout";
 import Head from "next/head";
 import { IncomingRequestsHOC } from "../../../hoc/incoming-request.hoc";
 import { GetServerSideProps, NextPage } from "next";
-import axios from "../../../utils/axios.util";
 import { BookingsPage } from "../../../models/bookings.model";
-import { requireAuthentication } from "../../../hoc/require-authentication.hoc";
+import { fetcher } from "../../../utils/fetcher.utils";
+import nookies from "nookies";
 
 interface Props {
   bookingsPENDING: BookingsPage;
@@ -20,25 +20,23 @@ const IncomingRquests: NextPage<Props> = ({ bookingsPENDING }) => {
     </Layout>
   );
 };
-export const getServerSideProps: GetServerSideProps = requireAuthentication(
-  async (context) => {
-    try {
-      const responsePENDING = await axios.get(
-        `/bookings/providers?pageNumber=1&limit=9&status=PENDING`
-      );
-      const bookingsPENDING = await responsePENDING.data;
-
-      return {
-        props: {
-          bookingsPENDING,
-        },
-      };
-    } catch {
-      return {
-        props: {},
-      };
-    }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = nookies.get(context);
+  try {
+    const pending = await fetcher(
+      "/bookings/providers?limit=9&pageNumber=1&status=PENDING",
+      cookies.token
+    );
+    return {
+      props: {
+        bookingsPENDING: pending,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+    };
   }
-);
+};
 
 export default IncomingRquests;

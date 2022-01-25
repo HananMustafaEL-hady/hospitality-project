@@ -10,55 +10,37 @@ import dayjs from "dayjs";
 export const NotificationMessage = () => {
   const { notificationPage, isLoading, error } = useNotificationsMessages(1);
 
-  if (isLoading) return <LoadingSpinner color={"green"} loading={isLoading} />;
+  if (isLoading)
+    return (
+      <div className="d-flex justify-content-cemter mt-1">
+        <LoadingSpinner color={"blue"} loading={isLoading} />;
+      </div>
+    );
 
   return (
     <div className="dropdown-menu-notification">
-      <Link href={"/profile/notification"}>
-        <a className="dropdown-item">
-          <h3 className="font-14">
-            {notificationPage?.data[notificationPage.data.length - 1].text}
-          </h3>
-          <span className="notification__date font-14">
-            {" "}
-            {dayjs(
-              notificationPage?.data[notificationPage.data.length - 1].createdAt
-            ).format("hh A")}
-          </span>
-        </a>
-      </Link>
+      {notificationPage?.data.map((item, index) => {
+        return (
+          <Fragment>
+            <Link href={"/profile/notification"}>
+              <a className="dropdown-item">
+                <h3 className="font-14">{item.text}</h3>
+                <span className="notification__date font-14">
+                  {" "}
+                  {dayjs(item.createdAt).format("hh A")}
+                </span>
+              </a>
+            </Link>
 
-      <NavDropdown.Divider />
-      <Link href={"/profile/notification"}>
-        <a className="dropdown-item">
-          <h3 className="font-14">
-            {" "}
-            {notificationPage?.data[notificationPage.data.length - 2].text}
-          </h3>
-          <span className="notification__date font-14">
-            {" "}
-            {dayjs(
-              notificationPage?.data[notificationPage.data.length - 2].createdAt
-            ).format("hh A")}{" "}
-          </span>
-        </a>
-      </Link>
-
-      <NavDropdown.Divider />
-      {/* <Link href={"/profile/notification"}>
-        <a className="dropdown-item">
-          <h3 className="font-14">
-            {" "}
-            {notificationPage?.data[notificationPage.data.length - 3]?.text}
-          </h3>
-          <span className="notification__date font-14">
-            {" "}
-            {dayjs(
-              notificationPage?.data[notificationPage.data.length - 3]?.createdAt
-            ).format("hh A")}
-          </span>
-        </a>
-      </Link> */}
+            <NavDropdown.Divider />
+          </Fragment>
+        );
+      })}
+      <div className=" d-flex justify-content-center mt-1">
+        <Link href={"/profile/notification"}>
+          <a className="btn  btn-primary">مشاهدة المزيد</a>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+@use "../functions" as *;
+
 .user-title {
   color: #212529;
   font-size: 12px;
@@ -30,6 +32,12 @@ header {
 }
 .dropdown-menu-profile {
   width: 274px;
+
+  &__item {
+    font-size: funToRem(14);
+    color: #212529;
+    margin-bottom: funToRem(12);
+  }
 }
 .authheader {
   color: #013ca6;
@@ -43,10 +51,18 @@ header {
 }
 .dropdown-menu-notification {
   min-width: 295px;
+  max-height: 400px;
+  overflow: auto;
 }
 
 @media (max-width: 415px) {
   header {
     direction: ltr;
   }
+}
+
+nav .dropdown-item:hover {
+  color: #212529;
+  background-color: #fbfbfb !important;
+  border-right: 0.5px solid #013ca6;
 }

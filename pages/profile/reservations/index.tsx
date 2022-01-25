@@ -6,6 +6,7 @@ import { requireAuthentication } from "../../../hoc/require-authentication.hoc";
 import { UserReservationsHOC } from "../../../hoc/user-reservations.hoc";
 import { BookingsPage } from "../../../models/bookings.model";
 import axios from "../../../utils/axios.util";
+import { fetcher } from "../../../utils/fetcher.utils";
 
 interface Props {
   bookingsPENDING: BookingsPage;
@@ -21,24 +22,24 @@ const clientbookings: NextPage<Props> = ({ bookingsPENDING }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = requireAuthentication(
-  async (context) => {
-    try {
-      const pending = await axios.get(
-        `/bookings/clients?pageNumber=1&limit=9&status=PENDING`
-      );
-      const data = await pending.data;
-      return {
-        props: {
-          bookingsPENDING: data,
-        },
-      };
-    } catch (err) {
-      return {
-        props: {},
-      };
-    }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = nookies.get(context);
+  try {
+    const pending = await fetcher(
+      `/bookings/clients?pageNumber=1&limit=9&status=PENDING`,
+      cookies.token
+    );
+
+    return {
+      props: {
+        bookingsPENDING: pending,
+      },
+    };
+  } catch {
+    return {
+      props: {},
+    };
   }
-);
+};
 
 export default clientbookings;

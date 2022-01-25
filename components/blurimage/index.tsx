@@ -8,7 +8,6 @@ interface Props {
 }
 export const BlurImage: React.FC<Props> = ({ image, classimage }) => {
   const [isLoadingState, setIsLoadingState] = useState(true);
-  console.log(isLoadingState);
   return (
     <Fragment>
       {image?.placeholder && (

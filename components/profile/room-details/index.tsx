@@ -12,7 +12,6 @@ interface Props {
   room: Room;
 }
 export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
-  console.log(room);
   const [deleteModalShow, setDeleteModalShow] = React.useState(false);
 
   return (
@@ -37,7 +36,7 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
             }}
           >
             <i className="fas fa-ban mx-2"></i>
-            <span className="mx-1"> تعطيل </span>
+            <span className="mx-1"> {room.busy ? "تشغيل" : "تعطيل"} </span>
           </button>
           <button
             className="btn btn-outline-danger btn-sm ml-16"
@@ -51,7 +50,7 @@ export const ProfileRoomDetails: React.FC<Props> = ({ room }) => {
         </div>
       </section>
       <div className="container mt-5">
-        <ImagesSwiper images={room.images} />
+        <ImagesSwiper images={room.images} isbusy={room.busy} />
 
         <section className="p-32 container-section">
           <RoomDetails

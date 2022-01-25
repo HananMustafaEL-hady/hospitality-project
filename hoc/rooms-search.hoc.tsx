@@ -9,29 +9,18 @@ import { useRoomPagesProfile } from "../hook/rooms-profile.hook";
 import { useRoomPages } from "../hook";
 import { useRoomSearchPages } from "../hook/rooms-search.hook";
 import Image from "next/image";
+import { Pagination } from "../components/pagination";
 interface Props {
   initialData?: Roomspage;
 }
 
 export const RoomsSearchHOC: React.FC<Props> = ({ initialData }) => {
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [roomsScroll, setRoomsScroll] = useState<any>([]);
-  const [hasMore, setHasMore] = useState(true);
+  const router = useRouter();
+
   const { Roomspage, isLoading, error } = useRoomSearchPages(
-    pageNumber,
+    router?.query?.page ? router?.query?.page : 1,
     initialData
   );
-  useEffect(() => {
-    if (Roomspage?.data && !isLoading) {
-      setRoomsScroll((prevState: any) => [...prevState, ...Roomspage.data]);
-    }
-    if (pageNumber == maxPages) {
-      setHasMore(false);
-    }
-  }, [Roomspage, isLoading]);
-  const maxPages = Roomspage
-    ? Math.ceil(Roomspage.totalCount / Roomspage?.limit)
-    : 0;
 
   return (
     <Fragment>
@@ -41,26 +30,14 @@ export const RoomsSearchHOC: React.FC<Props> = ({ initialData }) => {
             <LoadingSpinner color={"green"} loading={isLoading} />
           </div>
         ) : Roomspage?.data.length ? (
-          <InfiniteScroll
-            dataLength={roomsScroll.length || 0}
-            style={{ overflow: "hidden" }}
-            next={() => setPageNumber(pageNumber + 1)}
-            hasMore={hasMore}
-            loader={
-              <div className="d-flex justify-content-center">
-                <LoadingSpinner color={"green"} loading={isLoading} />
-              </div>
-            }
-            // endMessage={<h4>لا يوجد المزيد </h4>}
-          >
-            {Roomspage && (
-              <RoomsCard
-                Rooms={roomsScroll}
-                roomscol={3}
-                isBookingCard={false}
-              />
-            )}
-          </InfiniteScroll>
+          <Fragment>
+            <RoomsCard
+              Rooms={Roomspage.data}
+              roomscol={3}
+              isBookingCard={false}
+            />
+            <Pagination maxPages={Roomspage?.pageCount} />
+          </Fragment>
         ) : (
           <div className="d-flex  flex-column justify-content-center align-items-center ">
             <h3 className="text-primary f-bold"> لا توجد غرف لنتائج البحث</h3>

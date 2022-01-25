@@ -25,7 +25,6 @@ export const Checkboxes: React.FC<Props> = ({
           inputValue={item._id}
           inputPlaceholder={item.name}
           register={register}
-          iconClass={item.name}
           isRequired={isRequired}
         />
       ))}

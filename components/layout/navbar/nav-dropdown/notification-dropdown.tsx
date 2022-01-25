@@ -12,7 +12,7 @@ export const NotificationDropdown = () => {
       className="pt-2"
       title={
         <i className="far  fa-bell i__Notification">
-          <span>{count ? (count > 90 ? `+90` : count) : 0}</span>
+          {count ? <span>{count > 90 ? `+90` : count}</span> : ""}
         </i>
       }
       id="navbarScrollingDropdownChat"

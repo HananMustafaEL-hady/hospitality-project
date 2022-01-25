@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button } from "./button";
 interface Props {
-  maxPages: number;
+  maxPages?: number;
 }
 export const Pagination: React.FC<Props> = ({ maxPages }) => {
   const router = useRouter();
@@ -11,10 +11,13 @@ export const Pagination: React.FC<Props> = ({ maxPages }) => {
   useEffect(() => {
     router.replace({
       query: {
+        ...router.query,
+
         page: pageIndex,
       },
     });
   }, [pageIndex]);
+
   function handleIncrement() {
     setPageIndex(pageIndex + 1);
   }
@@ -22,18 +25,20 @@ export const Pagination: React.FC<Props> = ({ maxPages }) => {
     setPageIndex(pageIndex - 1);
   }
   return (
-    <ul className="">
+    <ul className="d-flex justify-content-center">
       <Button
-        label="Previous"
+        fontAwesomeClass="fa-arrow-alt-circle-right"
         handleOnClick={handleDecrement}
         pageIndex={pageIndex}
         stopValue={1}
+        dataFor="pervious"
       />
       <Button
-        label="Next"
+        fontAwesomeClass="fa-arrow-alt-circle-left"
         handleOnClick={handleIncrement}
         pageIndex={pageIndex}
         stopValue={maxPages}
+        dataFor="Next"
       />
     </ul>
   );

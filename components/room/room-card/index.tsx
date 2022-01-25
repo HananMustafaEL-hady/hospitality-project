@@ -11,7 +11,9 @@ interface Props {
   isBookingCard: boolean;
 }
 export const RoomCard: React.FC<Props> = ({ room, isBookingCard }) => {
-  const [stateFavorite, setStateFavorite] = useState(false);
+  const [stateFavorite, setStateFavorite] = useState(
+    room?.isFavourite ? room?.isFavourite : false
+  );
 
   const AddToFavourites = async () => {
     setStateFavorite(!stateFavorite);

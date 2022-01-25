@@ -16,9 +16,6 @@ interface User {
 type AuthState = {
   user: User | null;
   token: string | null;
-  // error: string;
-  // isloading: boolean;
-  // isAuth: boolean;
 };
 
 const authSlice = createSlice({
@@ -26,13 +23,8 @@ const authSlice = createSlice({
   initialState: {
     token: "",
     user: null,
-    // isAuth: Boolean(authtoken),
-    // isloading: false,
   } as AuthState,
   reducers: {
-    authPending: (state) => {
-      // state.isloading = true;
-    },
     addAuthUser: (
       state,
       { payload: { user, token } }: PayloadAction<{ user: User; token: string }>
@@ -40,8 +32,6 @@ const authSlice = createSlice({
       console.log(state);
       state.user = user;
       state.token = token;
-      // state.isloading = false;
-      // state.isAuth = true;
       setCookie(null, "token", token);
     },
     updateUser: (
@@ -53,17 +43,12 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = "";
       state.user = null;
-      destroyCookie(null, "token");
     },
 
     authFail: (
       state,
       { payload: { message } }: PayloadAction<{ message: string }>
-    ) => {
-      // state.isloading = false;
-      // state.isAuth = false;
-      // state.error = message;
-    },
+    ) => {},
   },
 });
 
@@ -71,10 +56,9 @@ const { reducer, actions } = authSlice;
 export const { addAuthUser, authFail, updateUser, logout } = actions;
 export default reducer;
 
-export const CurrentUser = (state: RootState) => state.auth;
-type Return = (state: RootState) => string | User | null;
-
-export const selectcurrentUser = (): Return =>
-  createSelector(CurrentUser, (state) => state.user);
-export const selectTokenUser = (): Return =>
-  createSelector(CurrentUser, (state) => state.token);
+export const useCurrentUser = createSelector(
+  (state: RootState) => state.auth.user,
+  (user) => {
+    return user;
+  }
+);

@@ -31,7 +31,6 @@ export interface hookformCheckbox {
   inputValue: string;
   inputPlaceholder: string;
   register: UseFormRegister<FieldValues>;
-  iconClass: string;
   isRequired: boolean;
 }
 export interface hookformCount {

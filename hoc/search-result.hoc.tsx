@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const SearchResulthoc: React.FC<Props> = ({ initialData }) => {
-  console.log(initialData);
   const [filteringModalShow, setFilteringModalShow] = useState(false);
   const [sortingModalShow, setSortingModalShow] = useState(false);
   const [isfiltering, setIsfiltering] = useState(false);

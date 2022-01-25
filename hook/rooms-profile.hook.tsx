@@ -3,12 +3,12 @@ import { Roomspage, Room } from "../models/rooms";
 import { useRouter } from "next/router";
 import { AxiosError } from "axios";
 interface returnType {
-  Roomspage?: Roomspage;
-  isLoading: boolean;
-  error?: AxiosError;
+  RoomspageProfile?: Roomspage;
+  isLoadingRoomPagesProfile: boolean;
+  errorRoomPagesProfile?: AxiosError;
 }
 export function useRoomPagesProfile(
-  page: number,
+  page: string | string[] | number,
   fallbackData: Roomspage | undefined,
   id?: string | string[] | undefined
 ): returnType {
@@ -21,8 +21,8 @@ export function useRoomPagesProfile(
   );
 
   return {
-    Roomspage: data,
-    isLoading: !data && !error,
-    error: error,
+    RoomspageProfile: data,
+    isLoadingRoomPagesProfile: !data && !error,
+    errorRoomPagesProfile: error,
   };
 }

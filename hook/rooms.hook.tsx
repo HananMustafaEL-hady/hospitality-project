@@ -8,8 +8,8 @@ interface returnType {
   error?: AxiosError;
 }
 export function useRoomPages(
-  page: number,
-  fallbackData: Roomspage | undefined
+  page?: string | string[] | number,
+  fallbackData?: Roomspage | undefined
 ): returnType {
   fallbackData = page == 1 ? fallbackData : undefined;
   const { data, error } = useSWR(`/rooms?pageNumber=${page}&limit=12`, {

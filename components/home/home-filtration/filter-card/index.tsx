@@ -32,6 +32,9 @@ export const FilterCard: React.FC<filtrationtypes> = ({
   const [startDate, setStartDate] = useState(new Date());
   const router = useRouter();
   const { mutate } = useSWRConfig();
+  console.log(router.query);
+  console.log(router.query);
+  console.log(router.query);
 
   const onSubmit: SubmitHandler<filtrationtypes> = (data) => {
     console.log(data);
@@ -42,6 +45,7 @@ export const FilterCard: React.FC<filtrationtypes> = ({
         // longitude: data.longitude,
         // toDate: data.startdate,
         // fromDate: data.enddate,
+        ...router.query,
         capacity: data.count,
       },
     });
