@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { RoomsCard } from "../components/room/rooms-card";
 import { BookingsPage } from "../models/bookings.model";
 import { BookingsRoomsHOC } from "./bookings-rooms.hoc";
+
 interface Props {
   bookingsPENDING: BookingsPage;
 }
