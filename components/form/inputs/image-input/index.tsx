@@ -25,6 +25,7 @@ export const FormInputImage: React.FC<props> = ({
   const [imageURL, setImageURL] = useState<{ image: string | any }>({
     image: null,
   });
+  const hasImage = imagaurl?.image?.original;
   useEffect(() => {
     if (typeof imagaurl?.image?.original == "string") {
       setImageURL({ image: imagaurl?.image?.original });
@@ -64,7 +65,7 @@ export const FormInputImage: React.FC<props> = ({
       <input
         {...register(imagename, {
           required: {
-            value: isRequired ? isRequired : false,
+            value: hasImage ? false : isRequired ? isRequired : false,
             message: "يجب إدخال الصورة",
           },
           onChange: (e) => onImageChange(e),

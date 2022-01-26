@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React from "react";
 import { BtnsEditrops } from "../../../../models/inputs/button";
 import { LoadingSpinner } from "../../../spinner";
@@ -18,7 +19,14 @@ export const EditBtns: React.FC<BtnsEditrops> = ({
         <LoadingSpinner color={"#fff"} loading={isLoading} />
         {!isLoading && "حفظ"}
       </button>
-      <button className="btn btn-outline-primary btn-md">تراجع</button>
+      <button
+        className="btn btn-outline-primary btn-md"
+        onClick={() => {
+          Router.push("/");
+        }}
+      >
+        تراجع
+      </button>
     </div>
   );
 };
