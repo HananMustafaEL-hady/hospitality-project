@@ -1,14 +1,10 @@
 import React from "react";
-import { Alert } from "react-bootstrap";
 import {
   Control,
-  Controller,
   FieldValues,
-  UseFormGetValues,
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
-import { Room } from "../../../models/rooms";
 import { Checkboxes } from "../../form/checkboxes";
 import { FormInput } from "../../form/inputs/form-input";
 import { LocationModal } from "../../home/home-filtration/filter-card/map-Modal/map";
