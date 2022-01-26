@@ -26,7 +26,7 @@ export function mapAxiosError(error: AxiosError) {
       case 403:
         return new ForbiddenError();
       case 400:
-        return new BadRequestError(causeError.message[0]);
+        return new BadRequestError(causeError.message);
       // case 422:
       // 	return _mapUnProccessableEntityError(causeError.errors);
       case 404:

@@ -7,17 +7,16 @@ import { FormInput } from "../../form/inputs/form-input";
 import { FormInputImage } from "../../form/inputs/image-input";
 import axios from "../../../utils/axios.util";
 import Router from "next/router";
-import useCurrentUser from "../../../hook/select-current-user.hook";
 import { getFormData } from "../../FormDataFun";
-import { updateUser } from "../../../slices/auth.slices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser, useCurrentUser } from "../../../slices/auth.slices";
 import { mutate } from "swr";
 import { InputPhone } from "../../form/inputs/phone-input";
 
 export const EditInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { user } = useCurrentUser();
+  const user = useSelector(useCurrentUser);
   const {
     register,
     handleSubmit,
@@ -48,8 +47,8 @@ export const EditInfo = () => {
         const response = await axios.patch("/users/updateProfile", formdata);
         console.log(response.data);
         dispatch(updateUser({ user: response.data }));
-        mutate(`/rooms?pageNumber=1&limit=12&owners=${user?._id}`, false);
-        mutate(`/users/${user?._id}`, false);
+        mutate(`/rooms?pageNumber=1&limit=12&owners=${user?._id}`);
+        mutate(`/users/${user?._id}`);
 
         Router.push(`/profile/${user?._id}`);
       } catch (err: any) {

@@ -57,6 +57,14 @@ export const FormPasswordInput: React.FC<Props> = ({
               value: true,
               message: "يجب إدخال كلمة المرور ",
             },
+            minLength: {
+              value: 8,
+              message: "كلمة المرور غير كافية",
+            },
+            pattern: {
+              value: /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i,
+              message: " يجب أن يحتوي على أرقام وحروف  ",
+            },
             validate,
           })}
           autoComplete="new-password"

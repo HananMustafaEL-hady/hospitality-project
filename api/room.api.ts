@@ -3,7 +3,6 @@ import { getFormData } from "../components/FormDataFun";
 import axios from "../utils/axios.util";
 import Router from "next/router";
 import { mutate } from "swr";
-import { Room } from "../models/rooms";
 
 export const AddRoomAPI = async (
   data: any,

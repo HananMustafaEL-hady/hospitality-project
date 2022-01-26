@@ -6,9 +6,21 @@ import { EditBtns } from "../../form/button/edit-buttons";
 import { FormInputImage } from "../../form/inputs/image-input";
 import { FormPasswordInput } from "../../form/inputs/password-input";
 import { LoadingSpinner } from "../../spinner";
+import Router from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser, useCurrentUser } from "../../../slices/auth.slices";
+import { mutate } from "swr";
+import axios from "../../../utils/axios.util";
+import { ToastError } from "../../toast-error";
+import { AxiosError } from "axios";
+import { Toast } from "../../toast";
 
 export const EditPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorObj, setErrorObj] = useState<AxiosError>();
+  const [successmessage, setSuccessMessage] = useState("");
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -17,26 +29,43 @@ export const EditPassword = () => {
     control,
     watch,
   } = useForm({});
+  const user = useSelector(useCurrentUser);
 
   async function onSubmit(data: any) {
     setIsLoading(true);
-    setTimeout(() => {
-      console.log(data);
-      setIsLoading(false);
-    }, 2000);
+    const { newPassword, password } = data;
+
+    try {
+      const response = await axios.patch("/users/updateProfile", {
+        newPassword,
+        password,
+      });
+      console.log(response.data);
+      dispatch(updateUser({ user: response.data }));
+      mutate(`/rooms?pageNumber=1&limit=12&owners=${user?._id}`);
+      mutate(`/users/${user?._id}`);
+
+      Router.push(`/profile/${user?._id}`);
+      setSuccessMessage("تم التعديل بنجاح");
+    } catch (err: any) {
+      setErrorObj(err);
+    }
+    setIsLoading(false);
   }
-  const password = watch("password", "");
+  const password = watch("newPassword", "");
   return (
     <section className="section-edit-info ">
+      {errorObj ? <ToastError error={errorObj} /> : ""}
+      {successmessage ? <Toast message={successmessage} /> : ""}
       <form>
         <FormPasswordInput
           register={register}
           errors={errors}
           placeholder="كلمة المرور القديمة"
           label="كلمة المرور القديمة"
-          name={"oldPassword"}
-          hasError={Boolean(errors?.oldPassword)}
-          message={errors?.oldPassword?.message}
+          name={"password"}
+          hasError={Boolean(errors?.password)}
+          message={errors?.password?.message}
         />
 
         <FormPasswordInput
@@ -44,9 +73,9 @@ export const EditPassword = () => {
           errors={errors}
           placeholder="كلمة المرور الجديدة"
           label="كلمة المرور الجديدة"
-          name={"password"}
-          hasError={Boolean(errors?.password)}
-          message={errors?.password?.message}
+          name={"newPassword"}
+          hasError={Boolean(errors?.newPassword)}
+          message={errors?.newPassword?.message}
         />
 
         <FormPasswordInput
