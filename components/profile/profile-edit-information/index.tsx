@@ -12,11 +12,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser, useCurrentUser } from "../../../slices/auth.slices";
 import { mutate } from "swr";
 import { InputPhone } from "../../form/inputs/phone-input";
+import { AxiosError } from "axios";
+import { ToastError } from "../../toast-error";
+import { Toast } from "../../toast";
 
 export const EditInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorObj, setErrorObj] = useState<AxiosError>();
+  const [successmessage, setSuccessMessage] = useState("");
   const dispatch = useDispatch();
   const user = useSelector(useCurrentUser);
+
   const {
     register,
     handleSubmit,
@@ -42,22 +48,23 @@ export const EditInfo = () => {
     } else {
       formdata = getFormData({ name, profileImage });
     }
-    (async function () {
-      try {
-        const response = await axios.patch("/users/updateProfile", formdata);
-        console.log(response.data);
-        dispatch(updateUser({ user: response.data }));
-        mutate(`/rooms?pageNumber=1&limit=12&owners=${user?._id}`);
-        mutate(`/users/${user?._id}`);
 
-        Router.push(`/profile/${user?._id}`);
-      } catch (err: any) {
-        console.log(err);
-      }
-    })();
+    try {
+      const response = await axios.patch("/users/updateProfile", formdata);
+      console.log(response.data);
+      dispatch(updateUser({ user: response.data }));
+      mutate(`/rooms?pageNumber=1&limit=12&owners=${user?._id}`);
+      mutate(`/users/${user?._id}`);
+      setSuccessMessage("تم التعديل بنجاح");
+      Router.push(`/profile/${user?._id}`);
+    } catch (err: any) {
+      setErrorObj(err);
+    }
   }
   return (
     <section className="section-edit-info ">
+      {errorObj ? <ToastError error={errorObj} /> : ""}
+      {successmessage ? <Toast message={successmessage} /> : ""}
       <form className="section-edit-info__form">
         <div className="">
           <h4 className="title-susubsection2">
