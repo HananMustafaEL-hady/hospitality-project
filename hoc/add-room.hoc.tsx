@@ -18,27 +18,18 @@ export const AddRoomhoc = () => {
     control,
     watch,
     setValue,
+    setError,
   } = useForm({
     defaultValues: {
       capacity: 1,
-
-      // images: [
-      //   {
-      //     name: "images",
-      //   },
-      // ],
+      images: [
+        {
+          name: "images",
+        },
+      ],
     },
   });
-  // watch(["nightPrice", "number"]);
-  // const watchData = watch();
 
-  // const useWatchData = useWatch({
-  //   control,
-  //   name: "images",
-  //   defaultValue: defaultValues.images,
-  // });
-  // console.log("watch", watchData);
-  // console.log("useWatch", useWatchData);
   async function onSubmit(data: any) {
     setIsLoading(true);
     const arr = [];

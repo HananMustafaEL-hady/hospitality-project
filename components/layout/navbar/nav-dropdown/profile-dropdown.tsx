@@ -32,7 +32,7 @@ export const ProfileDropdown = () => {
               حجوزاتي
             </a>
           </Link>
-          <Link href={`/profile/${user?._id}/favourites`}>
+          <Link href={`/profile/favourites`}>
             <a className="dropdown-item dropdown-menu-profile__item">
               {" "}
               المفضلات

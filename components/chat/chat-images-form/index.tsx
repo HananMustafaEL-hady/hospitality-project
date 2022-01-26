@@ -30,10 +30,10 @@ export const ChatImagesForm: React.FC<any> = ({
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
-        <ImagesSwiper
+        {/* <ImagesSwiper
           images={imagesState}
           handleDeleteImage={handleDeleteImage}
-        />
+        /> */}
       </Modal.Body>
       <Modal.Footer>
         <label htmlFor="filesImage" className="chat-form__label">

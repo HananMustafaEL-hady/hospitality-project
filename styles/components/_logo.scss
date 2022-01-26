@@ -19,3 +19,17 @@
   margin-left: funToRem(5);
   margin-top: funToRem(5);
 }
+
+@media (max-width: 1230px) {
+  .logo {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 330px) {
+  .logo {
+    margin-bottom: funToRem(24);
+    justify-content: center;
+  }
+}

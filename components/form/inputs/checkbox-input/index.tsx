@@ -8,7 +8,6 @@ export const FormCheckboxInput: React.FC<hookformCheckbox> = ({
   register,
   isRequired,
 }) => {
-  console.log(inputPlaceholder);
   return (
     <div className="d-inline-block ml-8 mb-8">
       <input

@@ -1,0 +1,75 @@
+.home_container {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/authbg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  .overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(22, 22, 24, 0.5);
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .content {
+      width: 374px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1;
+      padding: 10px;
+      @media (min-width: 768px) {
+        padding: 0px;
+      }
+      &_logo {
+        margin-right: 1rem;
+      }
+      & > div:first-child {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .logo-title {
+        margin-left: 16px;
+        cursor: pointer;
+        h1 {
+          font-size: 28px;
+        }
+        h3 {
+          text-align: left;
+          font-size: 20px;
+        }
+      }
+    }
+    .btnscontainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      &__btn {
+        width: 100%;
+        height: 48px;
+        border-radius: 8px;
+        color: #212529;
+        font-size: 16px;
+        border: 1px solid #ffffff;
+
+        // background-color: #ffffff;
+        @media (min-width: 768px) {
+          width: 380px;
+        }
+      }
+    }
+  }
+}

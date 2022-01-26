@@ -9,7 +9,7 @@ interface returnType {
   error?: AxiosError;
 }
 export function useFavourites(fallbackData?: Owner): returnType {
-  const { data, error } = useSWR(`/users/${Router.query.profileID}`, {
+  const { data, error } = useSWR(`/users/profile`, {
     fallbackData,
   });
 

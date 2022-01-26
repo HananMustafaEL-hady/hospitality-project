@@ -102,15 +102,6 @@
   }
 }
 
-@media (max-width: 376px) {
-  .pass-btn {
-    &__eye {
-      position: absolute;
-      inset: 38px 300px;
-    }
-  }
-}
-
-btn:hover {
+.btn:hover {
   color: #ffffff;
 }

@@ -20,7 +20,7 @@ export function mapAxiosError(error: AxiosError) {
     const causeError = error.response.data;
     switch (status) {
       case 401:
-        Router.push(`/login`);
+        // Router.push(`/login`);
         return new UnAuthenticatedError("خطأ في بيانات المرور");
 
       case 403:

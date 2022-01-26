@@ -11,9 +11,14 @@ import { FormInputImage } from "../../../form/inputs/image-input";
 interface props {
   register: UseFormRegister<FieldValues>;
   control: Control<FieldValues, object>;
+  errors: any;
 }
 
-export const FieldArrayImage: React.FC<props> = ({ register, control }) => {
+export const FieldArrayImage: React.FC<props> = ({
+  register,
+  control,
+  errors,
+}) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "images",
@@ -38,7 +43,11 @@ export const FieldArrayImage: React.FC<props> = ({ register, control }) => {
               register={register}
               imagename={`images.${index}.image`}
               key={index}
-              imagaurl={item?.image?.original}
+              imagaurl={item}
+              isRequired={true}
+              errorMessage={
+                errors?.images ? errors?.images[index]?.image?.message : ""
+              }
               // append={append}
               // disabledAppend={Boolean(fields.length < 5)}
             />
@@ -46,6 +55,7 @@ export const FieldArrayImage: React.FC<props> = ({ register, control }) => {
               type="button"
               className="btn input-img__delete"
               onClick={() => remove(index)}
+              disabled={fields.length == 1 ? true : false}
             >
               <i className="fas fa-trash"></i>
             </button>

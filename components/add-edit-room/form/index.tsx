@@ -39,6 +39,7 @@ export const RoomForm: React.FC<props> = ({
   setValue,
 }) => {
   console.log(Object.keys(errors).length);
+  console.log(errors);
   return (
     <form className="mt-32">
       <section className="row ">
@@ -110,7 +111,11 @@ export const RoomForm: React.FC<props> = ({
         </div>
         <div className="col-lg-6 col-sm-12 ">
           <Checkboxes register={register} isRequired={true} errors={errors} />
-          <FieldArrayImage register={register} control={control} />
+          <FieldArrayImage
+            register={register}
+            control={control}
+            errors={errors}
+          />
           <div className="mtb-15">
             <h4 className="title-susubsection2">
               العنوان على الخريطة

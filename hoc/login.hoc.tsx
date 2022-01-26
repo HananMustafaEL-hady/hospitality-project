@@ -5,9 +5,14 @@ import { Logo } from "../components/logo";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { LoginAPI } from "../api/auth.api";
+import { Toast } from "../components/toast";
+import { Alert } from "react-bootstrap";
+import { ToastError } from "../components/toast-error";
+import { AxiosError } from "axios";
+
 export const LoginHOC = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const [errormessage, setErrorMessage] = useState<AxiosError>();
   const {
     register,
     handleSubmit,
@@ -22,10 +27,19 @@ export const LoginHOC = () => {
 
   async function onSubmitFun(data: any) {
     setIsLoading(true);
-    LoginAPI({ username: data.phone, password: data.password }, dispatch);
+    LoginAPI(
+      { username: data.phone, password: data.password },
+      dispatch,
+      setErrorMessage
+    );
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   }
   return (
     <div className="row">
+      {errormessage ? <ToastError error={errormessage} /> : ""}
       <div className=" login__img col-6"></div>
       <div className="col-lg-6 col-sm-12">
         <section className="container login__section ">
@@ -40,6 +54,7 @@ export const LoginHOC = () => {
           />
           <Logo />
         </section>
+        {/* {errormessage ? <Alert variant="danger">{errormessage}</Alert> : ""} */}
       </div>
     </div>
   );

@@ -6,6 +6,12 @@ import { BlurImage } from "../../blurimage";
 import { Room } from "../../../models/rooms";
 import useCurrentUser from "../../../hook/select-current-user.hook";
 import axios from "../../../utils/axios.util";
+import { mutate } from "swr";
+import { Owner } from "../../../models/owner.model";
+import { AddToFavouritesAPI } from "../../../api/favourites.api";
+import { ToastError } from "../../toast-error";
+import { AxiosError } from "axios";
+
 interface Props {
   room: Room;
   isBookingCard: boolean;
@@ -14,15 +20,14 @@ export const RoomCard: React.FC<Props> = ({ room, isBookingCard }) => {
   const [stateFavorite, setStateFavorite] = useState(
     room?.isFavourite ? room?.isFavourite : false
   );
+  const [errorstate, setErrorstate] = useState<AxiosError>();
 
-  const AddToFavourites = async () => {
-    setStateFavorite(!stateFavorite);
-
-    try {
-      const response = await axios.patch(`/users/favourites/${room._id}`);
-      const data = await response.data;
-      return data;
-    } catch (error: any) {}
+  const AddToFavourites = async (roomid: string) => {
+    // setStateFavorite(!stateFavorite);
+    const res = AddToFavouritesAPI(roomid, setStateFavorite, stateFavorite);
+    res.then((res) => {
+      setErrorstate(res);
+    });
   };
   const { user } = useCurrentUser();
   const cardurl = isBookingCard
@@ -32,7 +37,8 @@ export const RoomCard: React.FC<Props> = ({ room, isBookingCard }) => {
     : `/room/${room._id}`;
   return (
     <div className="room-card">
-      <div className="heart_icon" onClick={() => AddToFavourites()}>
+      {errorstate?.message ? <ToastError error={errorstate} /> : ""}
+      <div className="heart_icon" onClick={() => AddToFavourites(room._id)}>
         <i
           className={stateFavorite ? "fas fa-heart heart-fav" : "fas fa-heart"}
         ></i>

@@ -14,7 +14,7 @@ export const Logout: React.FC<props> = ({ handleShow, show }) => {
   const LogoutFun = () => {
     dispatch(logout());
     destroyCookie(null, "token");
-    Router.push(`/login`);
+    Router.push(`/auth`);
 
     handleShow(!show);
   };

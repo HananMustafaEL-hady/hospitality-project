@@ -25,7 +25,11 @@ export async function SignupAPI(Data: any, otp: string, dispatch: Dispatch) {
   }
 }
 
-export async function LoginAPI(Data: any, dispatch: Dispatch) {
+export async function LoginAPI(
+  Data: any,
+  dispatch: Dispatch,
+  setErrorMessage: Function
+) {
   try {
     const response2 = await axios.post("/auth/login", Data);
     dispatch(
@@ -34,8 +38,10 @@ export async function LoginAPI(Data: any, dispatch: Dispatch) {
         token: response2.data.token,
       })
     );
+    setErrorMessage("");
+
     Router.push(`/`);
   } catch (err: any) {
-    authFail(err?.message);
+    setErrorMessage(err);
   }
 }

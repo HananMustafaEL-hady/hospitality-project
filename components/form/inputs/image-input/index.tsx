@@ -5,34 +5,29 @@ import {
   FieldValues,
   UseFormRegister,
 } from "react-hook-form";
+
 interface props {
   imagename: string;
   register: UseFormRegister<any>;
   userimage?: string;
-  imagaurl: string;
-  // append: (
-  //   value: Partial<unknown> | Partial<unknown>[],
-  //   options?: FieldArrayMethodProps | undefined
-  // ) => void;
-  // disabledAppend: boolean;
+  imagaurl: any;
+  isRequired?: boolean;
+  errorMessage?: string;
 }
 export const FormInputImage: React.FC<props> = ({
   register,
   imagename,
   userimage,
   imagaurl,
-  // append,
-  // disabledAppend,
+  isRequired,
+  errorMessage,
 }) => {
   const [imageURL, setImageURL] = useState<{ image: string | any }>({
     image: null,
   });
-  console.log(typeof imagaurl);
-  console.log(imagaurl);
-
   useEffect(() => {
-    if (typeof imagaurl == "string") {
-      setImageURL({ image: imagaurl });
+    if (typeof imagaurl?.image?.original == "string") {
+      setImageURL({ image: imagaurl?.image?.original });
     }
   }, [imagaurl]);
 
@@ -48,13 +43,7 @@ export const FormInputImage: React.FC<props> = ({
 
   return (
     <div className="d-inline-block  ml-8">
-      <label
-        htmlFor={imagename}
-        className="input-img__label"
-        // onClick={() => {
-        //   disabledAppend && append({ image: "" });
-        // }}
-      >
+      <label htmlFor={imagename} className="input-img__label">
         {imageURL.image ? (
           <Image
             src={imageURL.image}
@@ -71,9 +60,13 @@ export const FormInputImage: React.FC<props> = ({
           <i className="fas fa-plus"></i>
         )}
       </label>
+      {errorMessage ? <p className="text-danger">{errorMessage}</p> : ""}
       <input
         {...register(imagename, {
-          // required: true,
+          required: {
+            value: isRequired ? isRequired : false,
+            message: "يجب إدخال الصورة",
+          },
           onChange: (e) => onImageChange(e),
         })}
         type="file"
