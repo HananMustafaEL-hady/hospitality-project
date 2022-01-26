@@ -4,7 +4,7 @@ import { OwnerCard } from "../components/user/owner-card";
 import { useRouter } from "next/router";
 import { useProfile } from "../hook/profile.hook";
 import { Owner } from "../models/owner.model";
-import { Room, Roomspage } from "../models/rooms";
+import { Room, Roomspage } from "../models/rooms.model";
 import { ProfileEditbtn } from "../components/profile/profile-edit-information/profile-edit-btn";
 import useCurrentUser from "../hook/select-current-user.hook";
 import { ProfileChatbtn } from "../components/profile/chat-btn";

@@ -6,7 +6,7 @@ import {
   UseFormRegister,
   UseFormSetValue,
 } from "react-hook-form";
-import { Room } from "../rooms";
+import { Room } from "../rooms.model";
 
 export interface AddroomProps {
   handleSubmit: UseFormHandleSubmit<FieldValues>;

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { FilterCard } from "../components/home/home-filtration/filter-card";
 import { RoomsCard } from "../components/room/rooms-card";
-import { Roomspage } from "../models/rooms";
+import { Roomspage } from "../models/rooms.model";
 import { useRoomPages } from "../hook";
 import { LoadingSpinner } from "../components/spinner";
 import { useRouter } from "next/router";

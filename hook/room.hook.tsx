@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Roomspage, Room } from "../models/rooms";
+import { Roomspage, Room } from "../models/rooms.model";
 import { useRouter } from "next/router";
 import { AxiosError } from "axios";
 interface returnType {

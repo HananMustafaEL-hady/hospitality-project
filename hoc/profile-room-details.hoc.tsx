@@ -2,7 +2,7 @@ import router from "next/router";
 import React from "react";
 import { useRoom } from "../hook/room.hook";
 import { useRouter } from "next/router";
-import { Room } from "../models/rooms";
+import { Room } from "../models/rooms.model";
 import { Toast } from "../components/toast";
 import { ProfileRoomDetails } from "../components/profile/room-details";
 import { LoadingSpinner } from "../components/spinner";

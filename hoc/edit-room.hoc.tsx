@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { EditRoom } from "../components/add-edit-room/edit-room";
 import { useRoom } from "../hook/room.hook";
 import { useRouter } from "next/router";
-import { Room } from "../models/rooms";
+import { Room } from "../models/rooms.model";
 import { Toast } from "../components/toast";
 import { getFormData } from "../components/FormDataFun";
 import axios from "../utils/axios.util";

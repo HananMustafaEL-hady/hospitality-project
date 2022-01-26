@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Layout } from "../components/layout/layout";
 import { HomeHOC } from "../hoc/home.hoc";
-import { Roomspage } from "../models/rooms";
+import { Roomspage } from "../models/rooms.model";
 import axios from "../utils/axios.util";
 
 interface Props {

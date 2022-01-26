@@ -4,7 +4,7 @@ import Head from "next/head";
 import { GetServerSideProps, NextPage } from "next";
 import { requireAuthentication } from "../../hoc/require-authentication.hoc";
 import ProfileFavouriteshoc from "../../hoc/profile-favourites.hoc";
-import { Room } from "../../models/rooms";
+import { Room } from "../../models/rooms.model";
 import axios from "../../utils/axios.util";
 import nookies from "nookies";
 

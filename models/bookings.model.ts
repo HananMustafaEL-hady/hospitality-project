@@ -1,5 +1,5 @@
 import { Owner } from "./owner.model";
-import { Room } from "./rooms";
+import { Room } from "./rooms.model";
 export interface Booking {
   status: string;
   isPaid: boolean;

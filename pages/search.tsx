@@ -4,7 +4,7 @@ import Head from "next/head";
 import { Layout } from "../components/layout/layout";
 import { RoomsData } from "../db";
 import { SearchResulthoc } from "../hoc/search-result.hoc";
-import { Roomspage } from "../models/rooms";
+import { Roomspage } from "../models/rooms.model";
 interface Props {
   Roomspage?: Roomspage;
 }

@@ -4,7 +4,7 @@ import { ProfileRoomDetailsHOC } from "../../../../hoc/profile-room-details.hoc"
 import axios from "../../../../utils/axios.util";
 import { GetServerSideProps, NextPage } from "next";
 import nookies from "nookies";
-import { Room } from "../../../../models/rooms";
+import { Room } from "../../../../models/rooms.model";
 interface Props {
   room: Room;
 }

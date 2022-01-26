@@ -4,7 +4,7 @@ import { RoomCard } from "../components/room/room-card";
 import { RoomsCard } from "../components/room/rooms-card";
 import { LoadingSpinner } from "../components/spinner";
 import { useFavourites } from "../hook/favourites.hook";
-import { Room } from "../models/rooms";
+import { Room } from "../models/rooms.model";
 
 interface Props {
   rooms: [Room];

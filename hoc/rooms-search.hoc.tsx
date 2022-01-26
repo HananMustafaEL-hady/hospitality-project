@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { RoomsCard } from "../components/room/rooms-card";
-import { Roomspage } from "../models/rooms";
+import { Roomspage } from "../models/rooms.model";
 import { LoadingSpinner } from "../components/spinner";
 import { useRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";

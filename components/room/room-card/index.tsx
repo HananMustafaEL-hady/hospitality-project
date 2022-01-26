@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
 import { BlurImage } from "../../blurimage";
-import { Room } from "../../../models/rooms";
+import { Room } from "../../../models/rooms.model";
 import useCurrentUser from "../../../hook/select-current-user.hook";
 import axios from "../../../utils/axios.util";
 import { mutate } from "swr";

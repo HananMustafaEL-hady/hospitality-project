@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { RoomsCard } from "../components/room/rooms-card";
 import { OwnerCard } from "../components/user/owner-card";
-import { Room } from "../models/rooms";
+import { Room } from "../models/rooms.model";
 interface Props {
   Rooms: [Room];
 }

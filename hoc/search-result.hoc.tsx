@@ -4,7 +4,7 @@ import { RoomsCard } from "../components/room/rooms-card";
 import { FiltrationModal } from "../components/search-filtration/filtering/filtration-modal";
 import { SortModal } from "../components/search-filtration/sort/sorting-modal";
 import { useRouter } from "next/router";
-import { Roomspage } from "../models/rooms";
+import { Roomspage } from "../models/rooms.model";
 import { RoomsSearchHOC } from "./rooms-search.hoc";
 
 interface Props {

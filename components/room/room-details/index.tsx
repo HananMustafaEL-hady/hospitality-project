@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import Image from "next/image";
 import { LocationModal } from "../../home/home-filtration/filter-card/map-Modal/map";
 import router from "next/router";
-import { Room } from "../../../models/rooms";
+import { Room } from "../../../models/rooms.model";
 import { ReservationSection } from "./reservation-section";
 import { RoomServices } from "./room-services";
 import { CapacitySection } from "./room-capacity";

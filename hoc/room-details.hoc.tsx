@@ -3,7 +3,7 @@ import { RoomDetails } from "../components/room/room-details";
 import { RoomDetailsSwiper } from "../components/room/room-images-slider";
 import { ImagesSwiper } from "../components/swiper";
 import { ProfileCard } from "../components/user/profile-card";
-import { Room } from "../models/rooms";
+import { Room } from "../models/rooms.model";
 interface Props {
   room: Room;
 }

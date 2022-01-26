@@ -1,5 +1,5 @@
 import { image, OwnerImage } from "./image.model";
-import { Room } from "./rooms";
+import { Room } from "./rooms.model";
 
 export interface Owner {
   stripeCustomerId: string;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
-import { Room } from "../../../../models/rooms";
+import { Room } from "../../../../models/rooms.model";
 interface RoomIncomingReques {
   room: Room;
 }

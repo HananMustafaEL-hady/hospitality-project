@@ -3,7 +3,7 @@ import Head from "next/head";
 import { EditRoomhoc } from "../../../../hoc/edit-room.hoc";
 import { GetServerSideProps, NextPage } from "next";
 import axios from "../../../../utils/axios.util";
-import { Room } from "../../../../models/rooms";
+import { Room } from "../../../../models/rooms.model";
 interface Props {
   room: Room;
 }

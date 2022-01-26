@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { RoomCard } from "../room-card/index";
-import { Room } from "../../../models/rooms";
+import { Room } from "../../../models/rooms.model";
 interface Props {
   Rooms: [Room];
   roomscol: number;

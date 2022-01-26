@@ -3,7 +3,7 @@ import React from "react";
 import { RoomDetails } from "../../room/room-details";
 import { RoomDetailsSwiper } from "../../room/room-images-slider";
 import { OwnerCard } from "../../user/owner-card";
-import { Room } from "../../../models/rooms";
+import { Room } from "../../../models/rooms.model";
 import { ImagesSwiper } from "../../swiper";
 import { deleteRoom } from "../../../api/room.api";
 import { DeleteRoom } from "../../room/room-delete";

@@ -7,7 +7,7 @@ import { ProfileCard } from "../components/user/profile-card";
 import { useBooking } from "../hook/booking.hook";
 import { Booking } from "../models/bookings.model";
 import { useRouter } from "next/router";
-import { Room } from "../models/rooms";
+import { Room } from "../models/rooms.model";
 import { Toast } from "../components/toast";
 import { LoadingSpinner } from "../components/spinner";
 import { ClientBooking } from "../components/reservation/client-Booking";

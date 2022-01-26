@@ -1,7 +1,7 @@
 import { Layout } from "../../../components/layout/layout";
 import { RoomDetailshoc } from "../../../hoc/room-details.hoc";
 import Head from "next/head";
-import { Room } from "../../../models/rooms";
+import { Room } from "../../../models/rooms.model";
 
 import { GetServerSideProps, NextPage } from "next";
 interface Props {
