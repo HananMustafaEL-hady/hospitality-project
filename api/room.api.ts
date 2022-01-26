@@ -2,7 +2,7 @@ import { getFormData } from "../components/FormDataFun";
 import axios from "../utils/axios.util";
 import Router from "next/router";
 import { mutate } from "swr";
-// import { Roomspage } from "../models/rooms";
+import { Roomspage } from "../models/rooms.model";
 
 export const AddRoomAPI = async (
   data: any,
@@ -34,14 +34,12 @@ export const deleteRoom = async (roomid: string, userid: number) => {
     mutate(`/rooms?pageNumber=1&limit=12&owners=${userid}`);
     mutate(
       `/rooms?pageNumber=1&limit=12&owners=${userid}`,
-      async (roomspage: any) => {
+      async (roomspage: Roomspage) => {
         return roomspage?.data.filter((item: any) => item._id !== roomid);
       },
       false
     );
     Router.push(`/profile/${userid}`);
     return res.data;
-  } catch (error: any) {
-    // console.log(error?.message);
-  }
+  } catch (error: any) {}
 };
