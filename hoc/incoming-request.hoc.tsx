@@ -5,7 +5,7 @@ import { Room } from "../models/rooms.model";
 import Image from "next/image";
 import { RoomRequestsCardS } from "../components/room/rooms-card/Incoming-request-cards";
 import { BookingsPage } from "../models/bookings.model";
-import { BookingsProvidersRoomsHOC } from "./bookings-providers.hoc";
+import { BookingsProvidersRoomsHOC } from "./bookings/bookings-providers.hoc";
 interface Props {
   bookingsPENDING: BookingsPage;
 }

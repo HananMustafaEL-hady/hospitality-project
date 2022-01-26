@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { RoomsInfiniteScroll } from "../components/reservation/infinite-scroll";
-import { ProvidersInfiniteScroll } from "../components/reservation/request/infinite-scroll";
-import { useBookingsProvidersPages } from "../hook/booking-providers.hook";
-import { useBookingsPages } from "../hook/bookings-clients.hook.";
-import { BookingsPage } from "../models/bookings.model";
+import { ProvidersInfiniteScroll } from "../../components/reservation/request/infinite-scroll";
+import { useBookingsProvidersPages } from "../../hook/booking-providers.hook";
+import { BookingsPage } from "../../models/bookings.model";
 interface props {
   initialData?: BookingsPage;
   status: string;
