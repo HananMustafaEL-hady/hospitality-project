@@ -1,4 +1,4 @@
-import { Roomspage } from "./../models/rooms";
+import { Roomspage } from "../models/rooms";
 import { getFormData } from "../components/FormDataFun";
 import axios from "../utils/axios.util";
 import Router from "next/router";
